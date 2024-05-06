@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>OfficeMate</title>
+  <link rel="stylesheet" href="css/notice_styles.css">
+</head>
+<body>
+
+  <div class="sidebar">
+    <div class="logo">OfficeMate</div>
+    <div class="padding"></div> <!-- 여백 추가 -->
+
+    <ul class="menu">
+      <li><a href="notice" style="background-color:#185066">공지사항</a></li>
+      <li><a href="dept">부서</a></li>
+      <li><a href="work">업무</a></li>
+      <li><a href="commute">출퇴근</a></li>
+      <li><a href="docu">문서</a></li>
+      <li><a href="salary">급여지급</a></li>
+      <li><a href="emp_manage">전체사원관리</a></li>
+    </ul>
+  </div>
+
+  <div class="login-container">
+    <button class="login-button">로그인</button>
+  </div>
+
+  <div class="content">
+    <h2>공지사항</h2>
+    <br>
+      <button class="notice_add" onclick="location.href='notice_add'">공지 등록</button>
+    <hr>
+    <table>
+      <tr>
+          <th class="ttitle">제목</th>
+          <th class="twriter">작성자</th>
+          <th class="tdate">작성일자</th>
+      </tr>
+      <tr class="notice" onclick="location.href='notice_content.html'">
+          <td>예시</td>
+          <td>장성민</td>
+          <td>2024/05/04</td>
+      </tr>
+      <tr class="notice" href="#">
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr class="notice" href="#">
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="notice" href="#">
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="notice" href="#">
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="notice" href="#">
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="notice" href="#">
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="notice" href="#">
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="notice" href="#">
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="notice" href="#">
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="notice" href="#">
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="notice" href="#">
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr class="notice" href="#">
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="notice" href="#">
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="notice" href="#">
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      
+    </table>
+  </div>
+
+</body>
+</html>

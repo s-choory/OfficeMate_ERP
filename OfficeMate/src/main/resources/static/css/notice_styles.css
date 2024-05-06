@@ -1,0 +1,182 @@
+/* styles.css */
+
+body {
+    margin: 0;
+    padding: 0;
+  }
+  .sidebar {
+    width: 200px;
+    height: 100%;
+    background-color: #0073a0; /* 하늘색 */
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding-top: 20px;
+    border-radius:px;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .padding {
+    background-color: #0073a0; /* 남색의 배경색 */
+    height: 30px; /* 원하는 높이 */
+    border-bottom: 1px solid #0c3252;
+  }
+  
+  .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .menu li {
+    margin-bottom: 0; /* 기존의 마진 제거 */
+  }
+  
+  .menu li a {
+    display: block;
+    padding: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    border-bottom: 1px solid #0c3252; /* 메뉴 버튼 간의 경계선 */
+  }
+  
+  .menu li a:hover {
+    background-color: #185066; /* 더 짙은 하늘색 */
+  }
+  
+  .content {
+    margin-left: 220px; /* 사이드바와 겹치지 않도록 왼쪽 여백 추가 */
+    margin-right: 100px;
+    margin-top: 60px;
+    padding: 20px; /* 내용 주변에 패딩 추가 */
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+table, th, td {
+    border: 1px solid black;
+  }
+tr {
+    height:40px;
+  }
+tr {
+  height:40px;
+  }
+
+th, td {
+    padding: 8px;
+    text-align: middle;
+  }
+th {
+    background-color: #f2f2f2;
+}
+.ttitle {
+    width:70%;
+}
+.twriter{
+    width:15%;
+}
+.tdate{
+    width:15%;
+}
+.notice:hover{
+  background-color: #dbdbdb;
+}
+.login-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+.login-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #0073a0; /* 로그인 버튼 배경색 */
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #13446b; /* 로그인 버튼 hover 시 배경색 */
+}
+
+.notice_add {
+  position: fixed;
+  top: 135px;
+  right: 120px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #0073a0; /* 로그인 버튼 배경색 */
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.login-button:hover {
+  background-color: #13446b; /* 로그인 버튼 hover 시 배경색 */
+}
+
+.notice_edit {
+  position: fixed;
+  top: 135px;
+  right: 240px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #0073a0; /* 로그인 버튼 배경색 */
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.notice_edit:hover {
+  background-color: #13446b; /* 로그인 버튼 hover 시 배경색 */
+}
+
+.notice_delete {
+  position: fixed;
+  top: 135px;
+  right: 120px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #0073a0; /* 로그인 버튼 배경색 */
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.notice_delete:hover {
+  background-color: #13446b; /* 로그인 버튼 hover 시 배경색 */
+}
+
+.notice_details {
+ font-weight: bold;
+}
+
+.notice_name {
+  width: 100%;
+  height:50px;
+	padding: 10px;
+	box-sizing: border-box;
+	border: solid 2px;
+	border-radius: 5px;
+	font-size: 20px;
+  resize:none;
+}
+.notice_text {
+  width: 100%;
+  height:600px;
+	padding: 10px;
+	box-sizing: border-box;
+	border: solid 2px;
+	border-radius: 5px;
+	font-size: 16px;
+  resize:both;
+}
