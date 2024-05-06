@@ -30,24 +30,20 @@ public class HomeController {
     	
     	model.addAttribute("name",name);
     	model.addAttribute("role",role);
-        return "start" ; // index.html 렌더링
+        return "home/start" ; // index.html 렌더링
     }
 
     @GetMapping("/home")
     public String home() {
-        return "home"; // home.html 렌더링
+        return "home/home"; // home.html 렌더링
     }
     
     @GetMapping("/login")
     public String login() {
     	System.out.println(1);
-        return "login"; // login.html 렌더링
+        return "home/login"; // login.html 렌더링
     }
     
-    @GetMapping("/admin")
-    public String admin() {
-    	return "admin";
-    }
     
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception {

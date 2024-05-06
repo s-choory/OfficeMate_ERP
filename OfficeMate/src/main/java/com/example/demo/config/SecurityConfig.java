@@ -49,7 +49,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/", "/login", "/join", "/loginProc", "/joinProc").permitAll() // /, /login 경로는 인증 없이 접근 가능
+                .requestMatchers("/", "/login", "/join", "/loginProc", "/joinProc").permitAll() // 해당 설정 경로는 인증 없이 접근 가능
                 .requestMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()
             );
@@ -77,7 +77,7 @@ public class SecurityConfig {
         	.sessionManagement((auth) -> auth
         			.maximumSessions(2)	//하나의 아이디에 대한 다중 로그인 허용 개
         			.maxSessionsPreventsLogin(true)	//다중 로그인 개수를 초과하였을 경우 새로운 로그인 차
-        	);
+        	); 
         
         http
         	.sessionManagement((auth -> auth

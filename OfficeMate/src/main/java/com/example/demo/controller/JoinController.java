@@ -16,7 +16,7 @@ public class JoinController {
 	
     @GetMapping("/join")
     public String join() {
-        return "join"; // join.html 렌더링
+        return "/home/join"; // join.html 렌더링
     }
     
     @PostMapping("/joinProc")
@@ -27,4 +27,5 @@ public class JoinController {
     	
     	return "redirect:/login";
     }
+    
 }
