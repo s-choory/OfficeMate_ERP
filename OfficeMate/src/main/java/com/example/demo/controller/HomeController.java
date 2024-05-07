@@ -40,7 +40,6 @@ public class HomeController {
     
     @GetMapping("/login")
     public String login() {
-    	System.out.println(1);
         return "home/login"; // login.html 렌더링
     }
     

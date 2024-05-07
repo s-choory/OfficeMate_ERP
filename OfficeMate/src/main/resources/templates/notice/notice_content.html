@@ -1,50 +1,65 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html xmlns:th="http://www.thymeleaf.org">
 
-  <title>OfficeMate</title>
-  <link rel="stylesheet" href="css/notice_styles.css">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>OfficeMate</title>
+	<link rel="stylesheet" href="../css/notice_styles.css">
 </head>
+
+
+<script th:inline="javascript">
+   function confirmDelete(url) {
+       if (confirm("공지사항을 삭제하시겠습니까?")) {
+           window.location.href = url;
+       }
+   }
+</script>
+
 <body>
 
-  <div class="sidebar">
-    <div class="logo">OfficeMate</div>
-    <div class="padding"></div> <!-- 여백 추가 -->
+	<div class="sidebar">
+		<div class="logo">OfficeMate</div>
+		<div class="padding"></div> <!-- 여백 추가 -->
 
-	 <ul class="menu">
-	   <li><a href="notice" style="background-color:#185066">공지사항</a></li>
-	   <li><a href="dept">부서</a></li>
-	   <li><a href="work">업무</a></li>
-	   <li><a href="commute">출퇴근</a></li>
-	   <li><a href="docu">문서</a></li>
-	   <li><a href="salary">급여지급</a></li>
-	   <li><a href="emp_manage">전체사원관리</a></li>
-	 </ul>
-	/div>
+		<ul class="menu">
+			<li><a href="../notice" style="background-color:#185066">공지사항</a></li>
+			<li><a href="../dept">부서</a></li>
+			<li><a href="../work">업무</a></li>
+			<li><a href="../commute">출퇴근</a></li>
+			<li><a href="../docu">문서</a></li>
+			<li><a href="../salary">급여지급</a></li>
+			<li><a href="../emp_manage">전체사원관리</a></li>
+		</ul>
+	</div>
 
-  <div class="login-container">
-    <button class="login-button">로그인</button>
-  </div>
+	<div class="login-container">
+		<button class="login-button">로그인</button>
+	</div>
 
-  <div class="content">
-    <h2>예시</h2>
-    <br>
-      <button class="notice_edit" onclick="location.href='notice_edit.html'">공지 수정</button>
-      <button class="notice_delete" onclick="location.href='notice.html'">공지 삭제</button>
-    <hr>
-    <form class="notice_form">
+	<div class="content">
+		<h2 th:text="${notice.title}"></h2>
+		<div sec:authorize="hasRole('ADMIN')">
+		<br>
+		<a th:href="@{'/admin/noticeEdit/' + ${notice.noticeId}}"><button class="notice_edit">공지 수정</button></a>
 
-      <div>
-      <span class="notice_details">작성자:   </span><span>장성민</span>
-      <span class="notice_details">작성일:   </span><span>2024/05/04</span>
-      <hr>
-      </div>
-      <textarea class="notice_text" readonly></textarea>
-      </form>
-  </div>
-  
+		<button class="notice_delete" th:onclick="|confirmDelete('@{/admin/noticeDelete(noticeId=${notice.noticeId})}')|">공지 삭제</button>	</div>
+		<hr>s
+		<form class="notice_form">
+
+			<div>
+				<span class="notice_details">작성자: </span><span th:text="${notice.postedBy}"></span>
+				<span class="notice_details">작성일: </span><span th:text="${notice.postDate}"></span>
+				<hr>
+			</div>
+			<span th:text="${notice.content}"></span>
+			<input type="hidden" name="noticeId" th:value="${notice.noticeId}">
+		</form>
+	</div>
+
 
 </body>
+
 </html>
