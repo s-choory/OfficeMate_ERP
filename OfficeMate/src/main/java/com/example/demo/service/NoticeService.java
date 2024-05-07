@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.NoticeDTO;
-import com.example.demo.dto.UserDTO;
 import com.example.demo.mapper.NoticeMapper;
-import com.example.demo.mapper.UserMapper;
 
 @Service
 public class NoticeService{
@@ -20,9 +18,20 @@ public class NoticeService{
 		return noticeMapper.noticeAll();
 	}
 	
-	public int noticeAdd(NoticeDTO noticeDTO) {
-		int n = noticeMapper.AddNotice(noticeDTO.getTitle(), noticeDTO.getContent(), noticeDTO.getPostedBy());
-		return n;
+	public int noticeAdd(NoticeDTO noticeDTO) { 
+		return noticeMapper.AddNotice(noticeDTO.getTitle(), noticeDTO.getContent(), noticeDTO.getPostedBy());
+	}
+
+	public NoticeDTO noticeOne(Integer noticeId) {
+		return noticeMapper.noticeOne(noticeId);
+	}
+
+	public int noticeEdit(NoticeDTO noticeDTO) {
+		return noticeMapper.noticeEdit(noticeDTO.getNoticeId(), noticeDTO.getTitle(), noticeDTO.getContent());
+	}
+
+	public int noticeDelete(Integer noticeId) {
+		return noticeMapper.noticeDelete(noticeId);
 	}
 
 
