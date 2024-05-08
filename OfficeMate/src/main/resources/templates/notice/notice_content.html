@@ -46,7 +46,7 @@
 		<a th:href="@{'/admin/noticeEdit/' + ${notice.noticeId}}"><button class="notice_edit">공지 수정</button></a>
 
 		<button class="notice_delete" th:onclick="|confirmDelete('@{/admin/noticeDelete(noticeId=${notice.noticeId})}')|">공지 삭제</button>	</div>
-		<hr>s
+		<hr>
 		<form class="notice_form">
 
 			<div>

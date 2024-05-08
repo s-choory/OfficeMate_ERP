@@ -1,121 +1,103 @@
 /* styles.css */
 
 body {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+
+  
+  .login:hover{
+    background-color: #23053b; /* 더 짙은 하늘색 */
+  }
+  
+  .sidebar {
+    width: 200px;
+    height: 100%;
+    background-color: #0980af; /* 하늘색 */
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding-top: 20px;
+    border-radius:px;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .padding {
+    background-color: #185066; /* 남색의 배경색 */
+    height: 20px; /* 원하는 높이 */
+  }
+  
+  .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .menu li {
+    margin-bottom: 0; /* 기존의 마진 제거 */
+  }
+  
+  .menu li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    border-bottom: 1px solid #0c3252; /* 메뉴 버튼 간의 경계선 */
+  }
+  
+  .menu li a:hover {
+    background-color: #6495ED; /* 더 짙은 하늘색 */
+  }
+  
+  .content {
+    margin-left: 220px; /* 사이드바와 겹치지 않도록 왼쪽 여백 추가 */
+    margin-right: 100px;
+    padding: 20px; /* 내용 주변에 패딩 추가 */
+  }
+  
+  .notice-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .notice-item {
+    width: calc(50% - 20px); /* 2열로 배치, 간격은 20px */
+    margin: 10px;
+    padding: 20px;
+    background-color: #f0f0f0; /* 공지사항 배경색 */
+  }
+  
+  .notice-item h3 {
+    margin-bottom: 10px;
+  }
+  
+  .notice-item p {
+    margin-bottom: 5px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
 }
-
-
-
-.login:hover {
-	background-color: #23053b;
-	/* 더 짙은 하늘색 */
+table, th, td {
+    border: 1px solid black;
 }
-
-.sidebar {
-	width: 200px;
-	height: 100%;
-	background-color: #0980af;
-	/* 하늘색 */
-	position: fixed;
-	left: 0;
-	top: 0;
-	padding-top: 20px;
-	border-radius: px;
-}
-
-.logo {
-	font-size: 1.5rem;
-	font-weight: bold;
-	color: white;
-	text-align: center;
-	margin-bottom: 20px;
-}
-
-.padding {
-	background-color: #185066;
-	/* 남색의 배경색 */
-	height: 20px;
-	/* 원하는 높이 */
-}
-
-.menu {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-
-.menu li {
-	margin-bottom: 0;
-	/* 기존의 마진 제거 */
-}
-
-.menu li a {
-	display: block;
-	padding: 10px;
-	text-decoration: none;
-	color: white;
-	text-align: center;
-	border-bottom: 1px solid #0c3252;
-	/* 메뉴 버튼 간의 경계선 */
-}
-
-.menu li a:hover {
-	background-color: #6495ED;
-	/* 더 짙은 하늘색 */
-}
-
-.content {
-	margin-left: 220px;
-	/* 사이드바와 겹치지 않도록 왼쪽 여백 추가 */
-	margin-right: 100px;
-	padding: 20px;
-	/* 내용 주변에 패딩 추가 */
-}
-
-.notice-list {
-	display: flex;
-	flex-wrap: wrap;
-}
-
-.notice-item {
-	width: calc(50% - 20px);
-	/* 2열로 배치, 간격은 20px */
-	margin: 10px;
-	padding: 20px;
-	background-color: #f0f0f0;
-	/* 공지사항 배경색 */
-}
-
-.notice-item h3 {
-	margin-bottom: 10px;
-}
-
-.notice-item p {
-	margin-bottom: 5px;
-}
-
-table {
-	width: 100%;
-	border-collapse: collapse;
-}
-
-table,
-th,
-td {
-	border: 1px solid black;
-}
-
 tr {
-	height: 35px;
+    height:35px;
 }
-
-th,
-td {
-	padding: 8px;
-	text-align: middle;
+th, td {
+    padding: 8px;
+    text-align: middle;
 }
-
 th {
-	background-color: #f2f2f2;
+    background-color: #f2f2f2;
 }
