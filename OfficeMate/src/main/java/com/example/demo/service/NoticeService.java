@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.NoticeDTO;
+import com.example.demo.dto.PageDTO;
 import com.example.demo.mapper.NoticeMapper;
 
 @Service
@@ -14,8 +15,10 @@ public class NoticeService{
 	@Autowired
 	NoticeMapper noticeMapper;
 
-	public List<NoticeDTO> noticeAll() {
-		return noticeMapper.noticeAll();
+
+	public int noticeGetCount() {
+		return noticeMapper.noticeGetCount();
+		
 	}
 	
 	public int noticeAdd(NoticeDTO noticeDTO) { 
@@ -33,6 +36,11 @@ public class NoticeService{
 	public int noticeDelete(Integer noticeId) {
 		return noticeMapper.noticeDelete(noticeId);
 	}
+
+	public List<NoticeDTO> getListPage(PageDTO pageDTO) {
+		return noticeMapper.getListPage(pageDTO);
+	}
+
 
 
 }

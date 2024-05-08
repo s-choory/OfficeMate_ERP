@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.dto.NoticeDTO;
+import com.example.demo.dto.PageDTO;
 import com.example.demo.service.NoticeService;
 
 
@@ -21,9 +22,12 @@ public class NoticeController {
 	NoticeService noticeService;
 	
     @GetMapping("/notice")
-    public String notice(Model model) {
-    	List<NoticeDTO> list = noticeService.noticeAll();
+    public String notice(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+    	PageDTO pageDTO = new PageDTO(noticeService.noticeGetCount(), page);
+    	List<NoticeDTO> list = noticeService.getListPage(pageDTO);
     	model.addAttribute("noticeList",list);
+    	model.addAttribute("page", page);
+    	model.addAttribute("pageDTO", pageDTO);
         return "notice/notice"; 
     }
     

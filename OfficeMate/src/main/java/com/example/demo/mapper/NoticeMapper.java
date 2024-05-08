@@ -8,18 +8,22 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.data.relational.core.sql.From;
 
 import com.example.demo.dto.NoticeDTO;
+import com.example.demo.dto.PageDTO;
 	
 @Mapper
 public interface NoticeMapper {
     
-    
+	@Select("Select count(*) from Notices")
+	int noticeGetCount();
+	
     @Insert("INSERT INTO Notices (title, content, postedBy, postDate, updateDate) VALUES \n (#{title}, #{content}, #{postedBy}, now(), null)")
     int AddNotice(@Param("title") String title, @Param("content") String content, @Param("postedBy") int postedBy);
 
-    @Select("Select * from Notices order by noticeId desc")
-	List<NoticeDTO> noticeAll();
+    @Select("SELECT * from Notices order by noticeId desc LIMIT #{rowCount} OFFSET #{offset}")
+	List<NoticeDTO> getListPage(PageDTO pageDTO);
 
     @Select("Select * from Notices WHERE noticeId = #{noticeId}")
 	NoticeDTO noticeOne(Integer noticeId);
@@ -29,6 +33,8 @@ public interface NoticeMapper {
 
     @Delete("Delete FROM Notices WHERE noticeId=#{noticeId}")
 	int noticeDelete(Integer noticeId);
+
+
 
 	
 } 
