@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.dto.NoticeDTO;
 import com.example.demo.dto.PageDTO;
@@ -36,17 +40,30 @@ public class NoticeController {
         return "notice/notice_add";
     }
     
-    @GetMapping("/admin/noticeAddConfirm")
-    public String noticeAddConfirm(NoticeDTO noticeDTO) {
+    @PostMapping("/admin/noticeAddConfirm")
+    public String noticeAddConfirm(NoticeDTO noticeDTO, @RequestParam("files") MultipartFile file) {
+    	
+        try {
+            noticeDTO.setFile(file.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
     	noticeDTO.setPostedBy(1);	//userid get,set하기.
     	int n = noticeService.noticeAdd(noticeDTO);
     	System.out.println(n);
+    	
         return "redirect:/notice";
     }
     
     @GetMapping("/notice/{noticeId}")
     public String noticeContent(@PathVariable Integer noticeId, Model model) {
     	NoticeDTO noticeDTO = noticeService.noticeOne(noticeId);
+    	byte[] fileBytes = noticeDTO.getFile();
+        if (fileBytes != null && fileBytes.length > 0) {
+            String base64EncodedImage = Base64.getEncoder().encodeToString(fileBytes);
+            model.addAttribute("base64EncodedFile", base64EncodedImage);
+        }
     	model.addAttribute("notice", noticeDTO);
     	return "notice/notice_content";
     }

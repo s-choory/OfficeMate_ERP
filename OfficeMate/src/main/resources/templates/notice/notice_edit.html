@@ -20,7 +20,7 @@
 			<li><a href="../../dept">부서</a></li>
 			<li><a href="../../work">업무</a></li>
 			<li><a href="../../commute">출퇴근</a></li>
-			<li><a href="../../docu">문서</a></li>
+			<li><a href="../../document">문서</a></li>
 			<li><a href="../../salary">급여지급</a></li>
 			<li><a href="../../emp_manage">전체사원관리</a></li>
 		</ul>
@@ -38,6 +38,7 @@
 			<hr>
 			<textarea class="notice_name" name="title" th:text="${notice.title}"></textarea>
 			<hr>
+			<!-- 이미지 파일 업로드 -->
 			<textarea class="notice_text" name="content" th:text="${notice.content}"></textarea>
 			<input type="hidden" name="noticeId" th:value="${notice.noticeId}">
 		</form>
