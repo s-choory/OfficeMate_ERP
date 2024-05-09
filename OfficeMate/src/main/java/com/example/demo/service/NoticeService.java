@@ -1,9 +1,11 @@
 package com.example.demo.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.dto.NoticeDTO;
 import com.example.demo.dto.PageDTO;
@@ -22,7 +24,7 @@ public class NoticeService{
 	}
 	
 	public int noticeAdd(NoticeDTO noticeDTO) { 
-		return noticeMapper.AddNotice(noticeDTO.getTitle(), noticeDTO.getContent(), noticeDTO.getPostedBy());
+		return noticeMapper.AddNotice(noticeDTO);
 	}
 
 	public NoticeDTO noticeOne(Integer noticeId) {
@@ -41,7 +43,10 @@ public class NoticeService{
 		return noticeMapper.getListPage(pageDTO);
 	}
 
-
+	public void uploadImage(String fileName, MultipartFile file) {
+		
+		
+	}
 
 }
 	

@@ -20,7 +20,7 @@
 			<li><a href="dept">부서</a></li>
 			<li><a href="work">업무</a></li>
 			<li><a href="commute">출퇴근</a></li>
-			<li><a href="docu">문서</a></li>
+			<li><a href="document">문서</a></li>
 			<li><a href="salary">급여지급</a></li>
 			<li><a href="emp_manage">전체사원관리</a></li>
 		</ul>
@@ -47,12 +47,12 @@
 			<tr th:each="notice : ${noticeList}">
 				<td><a th:href="@{'/notice/' + ${notice.noticeId}}" style="color: black;"><span
 							th:text="${notice.title}"></span></a></td>
-				<td>Admin</td>
+				<td>관리자</td>
 				<td th:text="${notice.postDate}"></td>
 				<td th:text="${notice.updateDate}"></td>
 			</tr>
 		</table>
-		<!-- 페이징 넘버 -->
+		<!-- 페이징 넘버-->
 		<div id="pagination">
 			<!-- 맨 처음 페이지로 이동하는 버튼 -->
 		    <span th:if="${pageDTO.startPage > 1}">

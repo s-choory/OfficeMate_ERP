@@ -29,7 +29,7 @@
 			<li><a href="../dept">부서</a></li>
 			<li><a href="../work">업무</a></li>
 			<li><a href="../commute">출퇴근</a></li>
-			<li><a href="../docu">문서</a></li>
+			<li><a href="../document">문서</a></li>
 			<li><a href="../salary">급여지급</a></li>
 			<li><a href="../emp_manage">전체사원관리</a></li>
 		</ul>
@@ -54,6 +54,11 @@
 				<span class="notice_details">작성일: </span><span th:text="${notice.postDate}"></span>
 				<hr>
 			</div>
+			<div th:if="${base64EncodedFile != null}">
+			    <!-- 이미지를 base64 인코딩된 문자열로 표시 -->
+			    <img th:src="'data:image/*;base64,' + ${base64EncodedFile}" alt="Notice Image" width="200" height="200">
+			</div>
+			<br>
 			<span th:text="${notice.content}"></span>
 			<input type="hidden" name="noticeId" th:value="${notice.noticeId}">
 		</form>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OfficeMate</title>
+  <link rel="stylesheet" href="css/docu_styles.css">
+</head>
+<body>
+    
+  <div class="sidebar">
+    <div class="logo">OfficeMate</div>
+    <div class="padding"></div> <!-- 여백 추가 -->
+	<ul class="menu">
+		<li><a href="notice">공지사항</a></li>
+		<li><a href="dept">부서</a></li>
+		<li><a href="work">업무</a></li>
+		<li><a href="commute">출퇴근</a></li>
+		<li><a href="document" style="background-color:#185066">문서</a></li>
+		<li><a href="salary">급여지급</a></li>
+		<li><a href="emp_manage">전체사원관리</a></li>
+	</ul>
+  </div>
+  
+  <div class="content">
+    <h2>문서</h2>
+    <br>
+      <button class="docu_add" onclick="location.href='documentAdd'">등록</button>
+    <hr>
+	
+	<table>
+		<tr>
+			<th class="dtitle">제목</th>
+			<th class="dwriter">작성자</th>
+			<th class="ddate">작성일자</th>
+			<th class="ddate">공유자</th>
+		</tr>
+		<tr th:each="document : ${documentList}">
+			<td><a th:href="@{'/document/' + ${document.documentId}}" style="color: black;"><span
+						th:text="${document.documentName}"></span></a></td>
+			<td th:text="${document.uploadedBy}"></td>
+			<td th:text="${document.uploadDate}"></td>
+			<td> </td>
+		</tr>
+	</table>
+	<div id="pagination">
+		<!-- 맨 처음 페이지로 이동하는 버튼 -->
+	    <span th:if="${pageDTO.startPage > 1}">
+	        <a th:href="@{'/document?page=1'}" th:text="'처음&emsp;'"></a>
+	    </span>
+	
+		<!-- 이전 블록으로 이동하는 버튼 -->
+	    <span th:if="${pageDTO.isPrev == true}">
+	    	<a th:href="@{'/document?page='+${pageDTO.startPage - 1}}" th:text="'이전'"></a>
+	    </span>
+	
+	    <!-- 시퀀스 보여주는 값을 변경. -->
+	    <span th:each="pageNum : ${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
+	        <a class="div2" th:href="@{'/document?page='+${pageNum}}" th:text="|&emsp;${pageNum}&emsp;|"></a>
+	    </span>
+		
+	    <!-- 다음 블록으로 이동하는 버튼 -->
+	    <span th:if="${pageDTO.isNext == true}">
+		<a th:href="@{'/document?page='+|${pageDTO.endPage + 1}|}" th:text="'다음'"></a>
+	    </span>
+		
+	    <!-- 맨 뒷 페이지로 이동하는 버튼 -->
+	    <span th:if="${pageDTO.endPage < pageDTO.totalPageCount}">
+		<a th:href="@{'/document?page='+${pageDTO.totalPageCount}}" th:text="|&emsp;끝|"></a>
+	    </span>
+	</div>
+  </div>
+
+</body>
+</html>
