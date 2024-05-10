@@ -18,4 +18,5 @@ public interface UserMapper {
     
     @Insert("INSERT INTO Users (username, email, password, departmentId, role) VALUES \n (#{username}, 'example@example.com', #{password}, 0, 'ROLE_ADMIN')")
     void JoinMember(@Param("username") String username, @Param("password") String password);
+
 } 

@@ -6,8 +6,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<title>OfficeMate</title>
-	<link rel="stylesheet" href="css/docu_styles.css">
+	<link rel="stylesheet" href="../css/docu_styles.css">
 </head>
+
+<script th:inline="javascript">
+   function confirmDelete(url) {
+       if (confirm("정말 삭제하시겠습니까?")) {
+           window.location.href = url;
+       }
+   }
+</script>
 
 <body>
 
@@ -16,32 +24,33 @@
 		<div class="padding"></div> <!-- 여백 추가 -->
 
 		<ul class="menu">
-			<li><a href="notice.html">공지사항</a></li>
-			<li><a href="dept.html">부서</a></li>
-			<li><a href="work.html">업무</a></li>
-			<li><a href="commute.html">출퇴근</a></li>
-			<li><a href="docu.html" style="background-color:#185066">문서</a></li>
-			<li><a href="salary.html">급여지급</a></li>
-			<li><a href="emp_manage.html">전체사원관리</a></li>
+			<li><a href="../notice">공지사항</a></li>
+			<li><a href="../dept">부서</a></li>
+			<li><a href="../work">업무</a></li>
+			<li><a href="../commute">출퇴근</a></li>
+			<li><a href="../document" style="background-color:#185066">문서</a></li>
+			<li><a href="../salary">급여지급</a></li>
+			<li><a href="../emp_manage">전체사원관리</a></li>
 		</ul>
 	</div>
 
 	<div class="content">
-		<h2>문서 예시</h2>
+		<h2 th:text="${document.documentName}"></h2>
 		<br>
-		<button class="docu_edit" onclick="location.href='docu_edit.html'">수정</button>
-		<button class="docu_delete" onclick="location.href='docu.html'">삭제</button>
+		<a th:href="@{'/documentEdit/' + ${document.documentId}}"><button class="docu_edit">수정</button></a>
+		<button class="docu_delete" th:onclick="|confirmDelete('@{/documentDelete(documentId=${document.documentId})}')|">삭제</button>
 		<button class="docu_share">공유</button>
-		<button class="docu_dload">다운로드</button>
 		<hr>
+		<a th:href="@{/document/download/{documentId}(documentId=${document.documentId})}" th:text="${document.fileName}">파일 다운로드</a>
+
 		<form class="docu_form">
 
 			<div>
-				<span class="docu_details">작성자: </span><span>장성민</span>
-				<span class="docu_details">작성일: </span><span>2024/05/04</span>
+				<span class="docu_details">작성자: </span><span th:text="${document.uploadUser}"></span>
+				<span class="docu_details">작성일: </span><span th:text="${document.uploadDate}"></span>
 				<hr>
 			</div>
-			<textarea class="docu_text" readonly></textarea>
+			<span th:text="${document.description}"></span>
 		</form>
 	</div>
 
