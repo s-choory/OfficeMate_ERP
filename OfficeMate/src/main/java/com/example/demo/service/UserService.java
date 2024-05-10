@@ -15,6 +15,10 @@ public class UserService{
 	public UserDTO getUserById(int userId) {
 		return userMapper.getUserById(userId);
 	}
-    // 사용자 관련 비즈니스 로직을 구현합니다.
+
+	public UserDTO getUserByName(String username) {
+		return userMapper.findByUsername(username);
+	}
+
 	
 }

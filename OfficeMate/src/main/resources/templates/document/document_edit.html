@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<title>OfficeMate</title>
-	<link rel="stylesheet" href="css/docu_styles.css">
+	<link rel="stylesheet" href="../css/docu_styles.css">
 </head>
 
 <body>
@@ -16,25 +16,32 @@
 		<div class="padding"></div> <!-- 여백 추가 -->
 
 		<ul class="menu">
-			<li><a href="notice.html">공지사항</a></li>
-			<li><a href="dept.html">부서</a></li>
-			<li><a href="work.html">업무</a></li>
-			<li><a href="commute.html">출퇴근</a></li>
-			<li><a href="docu.html" style="background-color:#185066">문서</a></li>
-			<li><a href="salary.html">급여지급</a></li>
-			<li><a href="emp_manage.html">전체사원관리</a></li>
+			<li><a href="../notice">공지사항</a></li>
+			<li><a href="../dept">부서</a></li>
+			<li><a href="../work">업무</a></li>
+			<li><a href="../commute">출퇴근</a></li>
+			<li><a href="../document" style="background-color:#185066">문서</a></li>
+			<li><a href="../salary">급여지급</a></li>
+			<li><a href="../emp_manage">전체사원관리</a></li>
 		</ul>
 	</div>
 
 	<div class="content">
 		<h2>문서 수정</h2>
 		<br>
-		<button class="docu_edit" style="right:120px" onclick="location.href='docu.html'">완료</button>
+		<form class="docu_form" action="/documentEditConfirm" method="post" enctype="multipart/form-data">
+		<button class="docu_edit" type="submit">완료</button>
 		<hr>
-		<form class="docu_form">
-			<textarea class="docu_name">예시</textarea>
+			<textarea class="docu_name" name="documentName" th:text="${document.documentName}"></textarea>
 			<hr>
-			<textarea class="docu_text"></textarea>
+			현재 파일:	<a th:href="@{/document/download/{documentId}(documentId=${document.documentId})}" th:text="${document.fileName}">파일 다운로드</a>
+			<br><br>
+			다른 파일로 변경:<input type="file" name="file" accept=".pdf,.doc,.docx,.txt"><br>
+						<span style="font-size: 10px; color: lightgray;">(1MB 이하의 문서만 업로드하세요)</span>
+			<textarea class="docu_text" name=description th:text="${document.description}"></textarea>
+			<input type="hidden" name="documentId" th:value="${document.documentId}">
+			<input type="hidden" name="uploadUser" th:value="${document.uploadUser}">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 		</form>
 	</div>
 

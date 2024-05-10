@@ -33,14 +33,16 @@
 			<th class="dtitle">제목</th>
 			<th class="dwriter">작성자</th>
 			<th class="ddate">작성일자</th>
+			<th class="ddate">수정일자</th>
 			<th class="ddate">공유자</th>
 		</tr>
 		<tr th:each="document : ${documentList}">
 			<td><a th:href="@{'/document/' + ${document.documentId}}" style="color: black;"><span
 						th:text="${document.documentName}"></span></a></td>
-			<td th:text="${document.uploadedBy}"></td>
+			<td th:text="${document.uploadUser}"></td>
 			<td th:text="${document.uploadDate}"></td>
-			<td> </td>
+			<td th:text="${document.updateDate}"></td>
+			<td th:text="${document.shareUser}"></td>
 		</tr>
 	</table>
 	<div id="pagination">

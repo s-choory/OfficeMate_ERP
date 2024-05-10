@@ -23,6 +23,26 @@ public class DocumentsService{
 		return documentsMapper.getListPage(pageDTO);
 	}
 
+	public int documentAdd(DocumentDTO documentDTO) {
+		return documentsMapper.documentAdd(documentDTO);
+	}
+
+	public DocumentDTO documentOne(Integer documentId) {
+		return documentsMapper.documentOne(documentId);
+	}
+
+	public int documentEdit(DocumentDTO documentDTO) {
+		return documentsMapper.documentEdit(documentDTO);
+	}
+
+	public int documentEditFile(DocumentDTO documentDTO) {
+		return documentsMapper.documentEditFile(documentDTO);
+	}
+
+	public int documentDelete(Integer documentId) {
+		return documentsMapper.documentDelete(documentId);
+	}
+
 }
 	
 
