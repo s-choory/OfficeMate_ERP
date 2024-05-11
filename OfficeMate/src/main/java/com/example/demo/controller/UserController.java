@@ -15,20 +15,14 @@ public class UserController {
 	@Autowired
 	private UserService userService;
     
-    @GetMapping("/users")
-    public String getUsersPage() {
-        return "users";
-    }
     
-    @GetMapping("/users/{userId}")
+    @GetMapping("admin/userDetail/{userId}")
     public String getUserById(@PathVariable int userId, Model model) {
-        // 사용자 정보를 받아오는 로직
+        
         UserDTO user = userService.getUserById(userId);
         model.addAttribute("user", user);
-        // 사용자 정보를 HTML 페이지에 전달하여 사용자 정보를 표시
-        return "userDetails"; // 사용자 정보를 표시하는 HTML 파일의 경로
+        
+        return "user/userDetail";
     }
-
     
-    // 다른 컨트롤러 메소드들을 여기에 추가할 수 있습니다.
 }

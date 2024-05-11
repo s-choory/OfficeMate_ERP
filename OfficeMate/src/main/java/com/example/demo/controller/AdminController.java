@@ -18,5 +18,6 @@ public class AdminController {
     public String commute() {
         return "admin/emp_manage"; 
     }
+   
 
 }

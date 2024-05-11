@@ -139,6 +139,7 @@ public class DocumentsController {
     	
     	return "redirect:/document/"+documentDTO.getDocumentId();
     }
+   
     
     @GetMapping("/documentDelete")
     public String documentDelete(@RequestParam Integer documentId) {
@@ -151,6 +152,11 @@ public class DocumentsController {
     	int n = documentsService.documentDelete(documentId);
     	System.out.println(n);
     	return "redirect:/document";
+    }
+    
+    @GetMapping("/userSearch")
+    public String userSearch() {
+    	return "document/user_search";
     }
     
     // 파일 이름을 UTF-8로 인코딩하는 메서드
