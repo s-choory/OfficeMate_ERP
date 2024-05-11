@@ -14,18 +14,18 @@
     <div class="padding"></div> <!-- 여백 추가 -->
 
     <ul class="menu">
-      <li><a href="notice.html">공지사항</a></li>
-      <li><a href="dept.html" style="background-color:#185066">부서</a></li>
-      <li><a href="work.html">업무</a></li>
-      <li><a href="commute.html">출퇴근</a></li>
-      <li><a href="docu.html">문서</a></li>
-      <li><a href="salary.html">급여지급</a></li>
-      <li><a href="emp_manage.html">전체사원관리</a></li>
+      <li><a href="notice">공지사항</a></li>
+      <li><a href="dept" style="background-color:#185066">부서</a></li>
+      <li><a href="work">업무</a></li>
+      <li><a href="commute">출퇴근</a></li>
+      <li><a href="document">문서</a></li>
+      <li><a href="salary">급여지급</a></li>
+      <li><a href="emp_manage">전체사원관리</a></li>
     </ul>
   </div>
 
   <div class="content">
-    <h2>부서 정보</h2>
+    <h2 th:text="${deptDTO.departmentName}"></h2>
     <br>
     <hr>
     <table>
@@ -34,62 +34,14 @@
           <th class="e_name">이름</th>
           <th class="e_email">이메일</th>
       </tr>
-      <tr class="e_detail" onclick="location.href='emp_manage.html'">
-          <td>사원</td>
-          <td>장성민</td>
-          <td>32193862@dankook.ac.kr</td>
-      </tr>
-      <tr class="e_detail" href="#">
-          <td></td>
-          <td></td>
-          <td></td>
-      </tr>
-      <tr class="e_detail" href="#">
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr class="e_detail" href="#">
-          <td></td>
-          <td></td>
-          <td></td>
-      </tr>
-      <tr class="e_detail" href="#">
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr class="e_detail" href="#">
-          <td></td>
-          <td></td>
-          <td></td>
-      </tr>
-      <tr class="e_detail" href="#">
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr class="e_detail" href="#">
-          <td></td>
-          <td></td>
-          <td></td>
-      </tr>
-      <tr class="e_detail" href="#">
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr class="e_detail" href="#">
-          <td></td>
-          <td></td>
-          <td></td>
-      </tr>
-      <tr class="e_detail" href="#">
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      
+	  <tr class="e_detail" th:each="user : ${userList}"	 th:onclick="|location.href='@{/admin/userDetail/{userId}(userId=${user.userId})}'|" >
+	  	<td>123</td>
+		<td th:text="${user.username}"></td>
+	  	<td th:text="${user.email}"></td>
+		</a>
+	  </tr>
+
+
     </table>
   </div>
 

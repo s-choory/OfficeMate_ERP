@@ -1,5 +1,7 @@
 package com.example.demo.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -18,5 +20,8 @@ public interface UserMapper {
     
     @Insert("INSERT INTO Users (username, email, password, departmentId, role) VALUES \n (#{username}, 'example@example.com', #{password}, 0, 'ROLE_ADMIN')")
     void JoinMember(@Param("username") String username, @Param("password") String password);
+
+    @Select("SELECT * FROM users WHERE departmentId = #{departmentId}")
+	List<UserDTO> getDeptUser(int departmentId);
 
 } 
