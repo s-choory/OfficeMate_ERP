@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,10 @@ public class UserService{
 
 	public UserDTO getUserByName(String username) {
 		return userMapper.findByUsername(username);
+	}
+
+	public List<UserDTO> getUserByNamIncluded(String userName) {
+		return userMapper.findByUsernameIncluded(userName);
 	}
 
 	

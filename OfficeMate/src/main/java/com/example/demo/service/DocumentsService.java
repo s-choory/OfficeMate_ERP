@@ -19,8 +19,13 @@ public class DocumentsService{
 		return documentsMapper.documentsGetCount();
 	}
 
-	public List<DocumentDTO> getListPage(PageDTO pageDTO) {
-		return documentsMapper.getListPage(pageDTO);
+	public List<DocumentDTO> getListPage(PageDTO pageDTO, String name) {
+		return documentsMapper.getListPage(pageDTO, name);
+	}
+
+	public List<DocumentDTO> getListAdminPage(PageDTO pageDTO) {
+		return documentsMapper.getListAdminPage(pageDTO);
+
 	}
 
 	public int documentAdd(DocumentDTO documentDTO) {
@@ -42,6 +47,11 @@ public class DocumentsService{
 	public int documentDelete(Integer documentId) {
 		return documentsMapper.documentDelete(documentId);
 	}
+
+	public int updateDocumentShareUser(String userName, int documentId) {
+		return documentsMapper.documentEditShareUser(userName, documentId);
+	}
+
 
 }
 	
