@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OfficeMate</title>
-  <link rel="stylesheet" href="css/docu_styles.css">
+  <link rel="stylesheet" href="../css/docu_styles.css">
 </head>
 <body>
     
@@ -12,20 +12,20 @@
     <div class="logo">OfficeMate</div>
     <div class="padding"></div> <!-- 여백 추가 -->
 	<ul class="menu">
-		<li><a href="notice">공지사항</a></li>
-		<li><a href="dept">부서</a></li>
-		<li><a href="work">업무</a></li>
-		<li><a href="commute">출퇴근</a></li>
-		<li><a href="document" style="background-color:#185066">문서</a></li>
-		<li><a href="salary">급여지급</a></li>
-		<li><a href="emp_manage">전체사원관리</a></li>
+		<li><a href="../notice">공지사항</a></li>
+		<li><a href="../dept">부서</a></li>
+		<li><a href="../work">업무</a></li>
+		<li><a href="../commute">출퇴근</a></li>
+		<li><a href="../document" style="background-color:#185066">문서</a></li>
+		<li><a href="../salary">급여지급</a></li>
+		<li><a href="../emp_manage">전체사원관리</a></li>
 	</ul>
   </div>
   
   <div class="content">
     <h2>문서</h2>
 	<div sec:authorize="hasRole('ADMIN')">
-		<button class="" onclick="location.href='admin/document'">전체 유저 문서 보기</button><br>
+		<button class="" onclick="location.href='/document'">관리자 문서만 보기</button><br>
 	<hr>
     <br>
       <button class="docu_add" onclick="location.href='documentAdd'">등록</button>

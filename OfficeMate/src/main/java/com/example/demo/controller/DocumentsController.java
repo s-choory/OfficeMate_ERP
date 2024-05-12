@@ -34,10 +34,21 @@ public class DocumentsController {
 	@Autowired
 	UserService userSerivce;
 	
+	@GetMapping("/admin/document")
+    public String documentAll(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+    	PageDTO pageDTO = new PageDTO(documentsService.documentsGetCount(), page);
+    	List<DocumentDTO> list = documentsService.getListAdminPage(pageDTO);
+    	model.addAttribute("documentList",list);
+    	model.addAttribute("page", page);
+    	model.addAttribute("pageDTO", pageDTO);
+    	return "document/adminDocument";
+    }
+	
     @GetMapping("/document")
     public String document(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+    	String name = SecurityContextHolder.getContext().getAuthentication().getName();
     	PageDTO pageDTO = new PageDTO(documentsService.documentsGetCount(), page);
-    	List<DocumentDTO> list = documentsService.getListPage(pageDTO);
+    	List<DocumentDTO> list = documentsService.getListPage(pageDTO, name);
     	model.addAttribute("documentList",list);
     	model.addAttribute("page", page);
     	model.addAttribute("pageDTO", pageDTO);
@@ -155,9 +166,26 @@ public class DocumentsController {
     }
     
     @GetMapping("/userSearch")
-    public String userSearch() {
+    public String userSearch(@RequestParam String userName, @RequestParam int documentId,Model model) {
+    	model.addAttribute("documentId",documentId);
+    	if(userName == null || userName.equals("")) {
+    		List<UserDTO> userList = userSerivce.getUserByNamIncluded("");
+    		model.addAttribute("userList",userList);
+    		System.out.println(userList.size());
+    	}else {
+	    	List<UserDTO> userList = userSerivce.getUserByNamIncluded(userName);
+	    	System.out.println(userList.size());
+	    	model.addAttribute("userList",userList);
+    	}
     	return "document/user_search";
     }
+    @GetMapping("/updateDocumentShareUser")
+    public String updateDocumentShareUser(@RequestParam String username, @RequestParam int documentId,Model model) {
+    	int n = documentsService.updateDocumentShareUser(username, documentId);
+    	System.out.println(n);
+    	return "redirect:document/"+documentId;
+    }
+
     
     // 파일 이름을 UTF-8로 인코딩하는 메서드
     private String encodeFilename(String filename) {

@@ -24,4 +24,7 @@ public interface UserMapper {
     @Select("SELECT * FROM users WHERE departmentId = #{departmentId}")
 	List<UserDTO> getDeptUser(int departmentId);
 
+    @Select("SELECT * FROM users WHERE username LIKE CONCAT('%', #{username}, '%')")
+    List<UserDTO> findByUsernameIncluded(String userName);
+
 } 
