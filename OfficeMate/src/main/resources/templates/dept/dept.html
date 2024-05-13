@@ -1,38 +1,116 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OfficeMate</title>
-  <link rel="stylesheet" href="../css/dept_styles.css">
-</head>
-<body>
-    
-  <div class="sidebar">
-    <div class="logo">OfficeMate</div>
-    <div class="padding"></div> <!-- 여백 추가 -->
-	<ul class="menu">
-		<li><a href="../notice">공지사항</a></li>
-		<li><a href="../dept" style="background-color:#185066">부서</a></li>
-		<li><a href="../work">업무</a></li>
-		<li><a href="../commute">출퇴근</a></li>
-		<li><a href="../document">문서</a></li>
-		<li><a href="../salary">급여지급</a></li>
-		<li><a href="../emp_manage">전체사원관리</a></li>
-	</ul>
-  </div>
-  
-  <div class="login-container">
-    <button class="login-button">로그인</button>
-  </div>
 
-  <div class="content">
-    <h2>부서 정보</h2>
-    <br>
-    <hr>
-	<div th:each="dept : ${deptList}" 
-	     th:text="${dept.departmentName}" 
-	     th:onclick="|location.href='/deptDetail?departmentId=${dept.departmentId}'|"></div>
-  </div>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>OfficeMate</title>
+	<link rel="stylesheet" href="../css/dept_styles.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+	<div class="sidebar">
+		<div class="logo">OfficeMate</div>
+		<div class="padding"></div> <!-- 여백 추가 -->
+		<ul class="menu">
+			<li><a href="../notice">공지사항</a></li>
+			<li><a href="../dept" style="background-color:#185066">부서</a></li>
+			<li><a href="../work">업무</a></li>
+			<li><a href="../commute">출퇴근</a></li>
+			<li><a href="../document">문서</a></li>
+			<li><a href="../salary">급여지급</a></li>
+			<li><a href="../emp_manage">전체사원관리</a></li>
+		</ul>
+	</div>
+	<div class="login-container">
+		<button class="login-button">로그인</button>
+	</div>
+	<div class="content">
+		<h2>부서 정보</h2>
+		<br>
+		<hr>
+		
+		<div th:each="dept : ${deptList}">
+			<span th:text="${dept.departmentName}"></span>
+			<i class="fas fa-edit" th:data-dept-id="${dept.departmentId}" title="수정"></i>
+			<i class="fas fa-trash-alt" th:data-dept-id="${dept.departmentId}" title="삭제"></i>
+		</div>
+		<br>
+		<div id="deptManageDiv" style="display: none;">
+			<h3>부서 추가</h3>
+			<input type="text" id="newDeptInput" placeholder="새 부서명 입력">
+			<button id="addDeptBtn">추가</button>
+		</div>
+		<button id="deptManageBtn">부서 관리</button>
+		<input type="hidden" name="_csrf" th:value="${_csrf.token}">
+
+	</div>
+	<script>
+		const deptManageBtn = document.getElementById('deptManageBtn');
+		const deptManageDiv = document.getElementById('deptManageDiv');
+
+		deptManageBtn.addEventListener('click', () => {
+			deptManageDiv.style.display = deptManageDiv.style.display === 'none' ? 'block' : 'none';
+		});
+
+		const editIcons = document.querySelectorAll('.fa-edit');
+		const deleteIcons = document.querySelectorAll('.fa-trash-alt');
+
+		editIcons.forEach(icon => {
+			icon.addEventListener('click', () => {
+				const deptId = icon.dataset.deptId;
+				// 부서 수정 기능 구현
+				console.log(`수정 버튼 클릭: 부서 ID ${deptId}`);
+			});
+		});
+
+		deleteIcons.forEach(icon => {
+			icon.addEventListener('click', () => {
+				const deptId = icon.dataset.deptId;
+				// 부서 삭제 기능 구현
+				console.log(`삭제 버튼 클릭: 부서 ID ${deptId}`);
+			});
+		});
+
+		addDeptBtn.addEventListener('click', () => {
+			const newDeptName = newDeptInput.value.trim();
+			if (newDeptName) {
+				const url = `/deptAdd?departmentName=${encodeURIComponent(newDeptName)}`;
+				// JavaScript에서 CSRF 토큰 가져오기
+				const csrfToken = document.querySelector('input[name="_csrf"]').value;
+
+				// fetch 요청 시 CSRF 토큰 포함
+				fetch(url, {
+					method: 'POST',
+					headers: {
+						'X-CSRF-TOKEN': csrfToken
+					}
+				})
+					.then(response => {
+						if (response.ok) {
+							return response.json();
+						} else {
+							throw new Error('부서 추가 실패');
+						}
+					})
+					.then(data => {
+						console.log(data.message);
+						if (data.status === 'success') {
+							// 새로운 부서 엘리먼트 생성 및 추가
+							const newDept = document.createElement('div');
+							newDept.textContent = data.department.departmentName;
+							const content = document.querySelector('.content');
+							content.insertBefore(newDept, deptManageDiv);
+						}
+					})
+					.catch(error => {
+						console.error('부서 추가 요청 중 오류 발생:', error);
+					});
+			}
+		});
+
+	</script>
 </body>
+
 </html>
