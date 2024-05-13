@@ -34,6 +34,18 @@ public class DeptService{
 		return userMapper.findByUsername(name);
 	}
 
+	public int insertDept(String departmentName) {
+		return deptMapper.insertDept(departmentName);
+	}
+
+	public DeptDTO getDeptOneName(String departmentName) {
+		return deptMapper.getDeptOneName(departmentName);
+	}
+
+	public int updateDept(int departmentId, String departmentName) {
+		return deptMapper.updateDept(departmentId, departmentName);
+	}
+
 
 	
 }
