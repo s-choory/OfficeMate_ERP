@@ -94,5 +94,12 @@ public class DeptController {
         }
     }
     
+    @GetMapping("/admin/deptDelete")
+    public String deptDelete(@RequestParam int departmentId) {
+    	int n = deptService.deptDelete(departmentId);
+    	System.out.println(n);
+    	return "redirect:/admin/dept";
+    }
+    
     
 }

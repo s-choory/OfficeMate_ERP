@@ -49,7 +49,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/", "/login", "/join", "/loginProc", "/joinProc").permitAll() // 해당 설정 경로는 인증 없이 접근 가능
+                .requestMatchers("/", "/login", "/join", "/loginProc", "/joinProc", "/css/**").permitAll() // 해당 설정 경로는 인증 없이 접근 가능
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
             );

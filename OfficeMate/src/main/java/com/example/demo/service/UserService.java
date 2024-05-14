@@ -26,5 +26,9 @@ public class UserService{
 		return userMapper.findByUsernameIncluded(userName);
 	}
 
+	public List<UserDTO> getUserAll() {
+		return userMapper.getUserAll();
+	}
+
 	
 }

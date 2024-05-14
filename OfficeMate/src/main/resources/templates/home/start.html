@@ -8,9 +8,11 @@
 </head>
 
 <body>
-	<h1>start.html</h1>
-	<div th:text="${name}"></div>
-	<div th:text="${role}"></div>
+	<h1>Office Mate</h1>
+	현재 계정 이름: <span th:text="${name}"></span><br>
+	현재 계정 권한: <span th:text="${role}"></span><br>
+	<br>
+	<a href="login"><div>로그인 페이지 이동	</div></a>
 </body>
 
 </html>

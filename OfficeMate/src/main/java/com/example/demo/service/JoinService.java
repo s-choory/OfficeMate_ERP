@@ -16,15 +16,15 @@ public class JoinService {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
-	public void joinProcess(JoinDTO joinDTO) {	
+	public int joinProcess(JoinDTO joinDTO) {	
 		//db에 동일한 username인 회원이 존재하는지 검증
 		//!!!프론트에도 중복된 알림처리 해야함 -> 아직 안함
 		UserDTO isUser = userMapper.findByUsername(joinDTO.getUsername());
 		if(isUser != null) { 
-			return;
+			return 0;
 		}
 		
-		userMapper.JoinMember(joinDTO.getUsername(), bCryptPasswordEncoder.encode(joinDTO.getPassword()));
+		return userMapper.JoinMember(joinDTO.getUsername(), bCryptPasswordEncoder.encode(joinDTO.getPassword()));
 	
 	}
 }
