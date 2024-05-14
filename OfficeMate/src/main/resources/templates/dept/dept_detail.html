@@ -34,7 +34,7 @@
           <th class="e_name">이름</th>
           <th class="e_email">이메일</th>
       </tr>
-	  <tr class="e_detail" th:each="user : ${userList}"	 th:onclick="|location.href='@{/admin/userDetail/{userId}(userId=${user.userId})}'|" >
+	  <tr class="e_detail" th:each="user : ${userList}"	 th:onclick="|location.href='@{/userDetail/{userId}(userId=${user.userId})}'|" >
 	  	<td>123</td>
 		<td th:text="${user.username}"></td>
 	  	<td th:text="${user.email}"></td>

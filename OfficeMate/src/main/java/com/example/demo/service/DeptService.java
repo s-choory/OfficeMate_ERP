@@ -46,6 +46,10 @@ public class DeptService{
 		return deptMapper.updateDept(departmentId, departmentName);
 	}
 
+	public int deptDelete(int departmentId) {
+		return deptMapper.deptDelete(departmentId);
+	}
+
 
 	
 }

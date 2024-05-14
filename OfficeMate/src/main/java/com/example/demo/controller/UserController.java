@@ -16,7 +16,7 @@ public class UserController {
 	private UserService userService;
     
     
-    @GetMapping("admin/userDetail/{userId}")
+    @GetMapping("userDetail/{userId}")
     public String getUserById(@PathVariable int userId, Model model) {
         
         UserDTO user = userService.getUserById(userId);
@@ -25,4 +25,6 @@ public class UserController {
         return "user/userDetail";
     }
     
-}
+    
+    
+}	
