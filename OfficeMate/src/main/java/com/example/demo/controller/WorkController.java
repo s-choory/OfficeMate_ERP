@@ -12,5 +12,10 @@ public class WorkController {
     public String work() {
         return "work/work"; 
     }
+    
+    @GetMapping("/workUser")
+    public String workuser() {
+    	return "work/work_user"; 
+    }
 
 }
