@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>OfficeMate</title>
+	<link rel="stylesheet" href="css/attendence_styles.css">
+</head>
+
+<body>
+	<div class="sidebar">
+		<div class="logo">OfficeMate</div>
+		<div class="padding"></div> <!-- 여백 추가 -->
+		<ul class="menu">
+			<li><a href="notice">공지사항</a></li>
+			<li><a href="dept">부서</a></li>
+			<li><a href="work">업무</a></li>
+			<li><a href="attendence" style="background-color:#185066">출퇴근</a></li>
+			<li><a href="document">문서</a></li>
+			<li><a href="salary">급여지급</a></li>
+			<li><a href="emp_manage">전체사원관리</a></li>
+		</ul>
+	</div>
+
+	<div class="login-container">
+		<button class="login-button">로그인</button>
+	</div>
+
+	<div class="content">
+		<h2>출퇴근 내역</h2>
+		<br>
+		
+		<div sec:authorize="hasRole('ADMIN')">
+					<button class="user_search" onclick="window.open('../docuent/user_search.html','blank', 'resizealbe=yes scrollbars=no width=790 height=450 left=100 top=200')">검색</button>
+		</div>
+		<button class="check_in">출근</button>
+		<button class="check_out">퇴근</button>
+		<hr>
+		<table>
+			<tr>
+				<th style="width:20%">일자</th>
+				<th style="width:40%">출근 시각</th>
+				<th style="width:40%">퇴근 시각</th>
+			</tr>
+			<tr class="attendence" th:each="attendence : ${attendenceList}" th:onclick="|location.href='@{'/attendence/' + ${attendence.attendenceId}}'|">
+							<td><span th:text="${attendence.date}"></span></td>
+							<td th:text="${attendence.checkin}"></td>
+							<td th:text="${attendence.checkout}"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+												
+		</table>
+
+
+
+</body>
+
+</html>

@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 @Controller
-public class CommuteController {
+public class AttendenceController {
 	
-    @GetMapping("/commute")
+    @GetMapping("/attendence")
     public String commute() {
-        return "commute/commute"; 
+        return "attendence/attendence"; 
     }
 
 }

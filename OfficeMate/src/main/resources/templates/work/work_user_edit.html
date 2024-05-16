@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>OfficeMate</title>
+	<link rel="stylesheet" href="../../css/work_styles.css">
+</head>
+
+<body>
+
+	<div class="sidebar">
+		<div class="logo">OfficeMate</div>
+		<div class="padding"></div> <!-- 여백 추가 -->
+
+		<ul class="menu">
+			<li><a href="../../notice" style="background-color:#185066">공지사항</a></li>
+			<li><a href="../../dept">부서</a></li>
+			<li><a href="../../work">업무</a></li>
+			<li><a href="../../commute">출퇴근</a></li>
+			<li><a href="../../document">문서</a></li>
+			<li><a href="../../salary">급여지급</a></li>
+			<li><a href="../../emp_manage">전체사원관리</a></li>
+		</ul>
+	</div>
+
+	<div class="login-container">
+		<button class="login-button">로그인</button>
+	</div>
+
+	<div class="content">
+		<h2>업무 수정</h2>
+		<br>
+		<form class="work_form" action="/admin/workEditConfirm" method="get"><!--마찬가지로 사용자가 보는 화면이니 어드민인 부분은 전부 수정해주시길 바랍니다.-->
+			<button class="work_edit" style="right:120px" onclick="location.href='/workEditConfirm'">수정 완료</button>
+			<hr>
+			<textarea class="work_name" name="title" th:text="${work.title}"></textarea>
+			<hr>
+			<!-- 이미지 파일 업로드 -->
+			<textarea class="work_text" name="content" th:text="${work.content}"></textarea>
+			<input type="hidden" name="workId" th:value="${work.workId}">
+		</form>
+	</div>
+
+
+</body>
+
+</html>
