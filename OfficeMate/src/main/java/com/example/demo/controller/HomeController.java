@@ -16,43 +16,42 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class HomeController {
-	
-    @GetMapping("/")
-    public String root(Model model) {
-    	String name = SecurityContextHolder.getContext().getAuthentication().getName();
-    	
-    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-    	Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-    	Iterator<? extends GrantedAuthority> iter = authorities.iterator();
-    	GrantedAuthority auth = iter.next();
-    	String role = auth.getAuthority();
-    	
-    	model.addAttribute("name",name);
-    	model.addAttribute("role",role);
-        return "home/start" ; // index.html 렌더링
-    }
+	@GetMapping("/")
+	public String root(Model model) {
+		String name = SecurityContextHolder.getContext().getAuthentication().getName();
 
-    @GetMapping("/home")
-    public String home() {
-        return "home/home"; // home.html 렌더링
-    }
-    
-    @GetMapping("/login")
-    public String login() {
-        return "home/login"; // login.html 렌더링
-    }
-    
-    
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(authentication != null) {
-            new SecurityContextLogoutHandler().logout(request, response, authentication);
-        }
+		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+		Iterator<? extends GrantedAuthority> iter = authorities.iterator();
+		GrantedAuthority auth = iter.next();
+		String role = auth.getAuthority();
 
-        return "redirect:/";
-    }
-   
+		model.addAttribute("name", name);
+		model.addAttribute("role", role);
+		return "home/start"; // index.html 렌더링
+	}
+
+	@GetMapping("/home")
+	public String home() {
+		return "home/home"; // home.html 렌더링
+	}
+
+	@GetMapping("/login")
+	public String login() {
+		return "home/login"; // login.html 렌더링
+	}
+
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication != null) {
+			new SecurityContextLogoutHandler().logout(request, response, authentication);
+		}
+
+		return "redirect:/";
+	}
+
 }

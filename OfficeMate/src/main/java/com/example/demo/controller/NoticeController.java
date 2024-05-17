@@ -86,6 +86,6 @@ public class NoticeController {
     public String noticeDelete(@RequestParam Integer noticeId) {
     	int n = noticeService.noticeDelete(noticeId);
     	System.out.println(n);
-    	return "redirect:/notice";
-    }
+		return "redirect:/notice";
+	}
 }
