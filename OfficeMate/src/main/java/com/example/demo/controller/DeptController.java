@@ -99,7 +99,6 @@ public class DeptController {
     	int n = deptService.deptDelete(departmentId);
     	System.out.println(n);
     	return "redirect:/admin/dept";
-    }
-    
-    
+	}
+
 }

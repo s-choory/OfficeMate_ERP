@@ -11,20 +11,17 @@ import com.example.demo.service.UserService;
 
 @Controller
 public class UserController {
-	
+
 	@Autowired
 	private UserService userService;
-    
-    
-    @GetMapping("userDetail/{userId}")
-    public String getUserById(@PathVariable int userId, Model model) {
-        
-        UserDTO user = userService.getUserById(userId);
-        model.addAttribute("user", user);
-        
-        return "user/userDetail";
-    }
-    
-    
-    
-}	
+
+	@GetMapping("userDetail/{userId}")
+	public String getUserById(@PathVariable int userId, Model model) {
+
+		UserDTO user = userService.getUserById(userId);
+		model.addAttribute("user", user);
+
+		return "user/userDetail";
+	}
+
+}
