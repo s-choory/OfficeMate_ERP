@@ -18,9 +18,6 @@ import com.example.demo.dto.DeptDTO;
 import com.example.demo.dto.UserDTO;
 import com.example.demo.service.DeptService;
 
-
-
-
 @Controller
 public class DeptController {
 	
