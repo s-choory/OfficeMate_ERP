@@ -22,7 +22,9 @@
 			<li><a href="attendence">출퇴근</a></li>
 			<li><a href="document">문서</a></li>
 			<li><a href="salary">급여지급</a></li>
-			<li><a href="emp_manage">전체사원관리</a></li>
+			<div sec:authorize="hasRole('ADMIN')">
+				<li><a href="admin/empManage">전체사원관리</a></li>
+			</div>
 		</ul>
 	</div>
 
@@ -33,23 +35,22 @@
 	<div class="content">
 		<h2>공지사항</h2>
 		<div sec:authorize="hasRole('ADMIN')">
-			<br>
 			<button class="notice_add" onclick="location.href='admin/notice_add'">공지 등록</button>
-		<hr>
 		</div>
+		<br>
+		<hr>
 		<table>
 			<tr>
 				<th class="ttitle">제목</th>
 				<th class="twriter">작성자</th>
-				<th class="tdate">작성일자</th>
-				<th class="tdate">수정일자</th>
+				<th class="twdate">작성일자</th>
+				<th class="tedate">수정일자</th>
 			</tr>
-			<tr th:each="notice : ${noticeList}">
-				<td><a th:href="@{'/notice/' + ${notice.noticeId}}" style="color: black;"><span
-							th:text="${notice.title}"></span></a></td>
-				<td>관리자</td>
-				<td th:text="${notice.postDate}"></td>
-				<td th:text="${notice.updateDate}"></td>
+			<tr th:each="notice : ${noticeList}" class="notice" style="cursor: pointer;" th:onclick="|location.href='@{'/notice/' + ${notice.noticeId}}'|">
+				<td class="ttitle" th:text="${notice.title}"></td>
+				<td class="twriter">관리자</td>
+				<td class="twdate" th:text="${notice.postDate}"></td>
+				<td class="tedate" th:text="${notice.updateDate}"></td>
 			</tr>
 		</table>
 		<!-- 페이징 넘버-->

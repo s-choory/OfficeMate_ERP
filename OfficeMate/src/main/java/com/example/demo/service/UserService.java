@@ -30,5 +30,13 @@ public class UserService{
 		return userMapper.getUserAll();
 	}
 
+	public int updateUserDetail(UserDTO userDTO) {
+		return userMapper.updateUserDetail(userDTO);
+	}
+
+	public int deleteUser(int userId) {
+		return userMapper.deleteUser(userId);
+	}
+
 	
 }

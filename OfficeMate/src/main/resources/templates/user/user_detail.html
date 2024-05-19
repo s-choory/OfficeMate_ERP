@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>OfficeMate</title>
+	<link rel="stylesheet" href="../../css/user_styles.css">
+</head>
+
+<script>
+  function confirmUpdate(event) {
+    if (!confirm("정말 수정하시겠습니까?")) {
+      event.preventDefault(); // 폼 제출을 취소
+    }
+  }
+  
+  function confirmDelete(event) {
+    if (!confirm("정말 삭제하시겠습니까?")) {
+      event.preventDefault(); // 폼 제출을 취소
+    }
+  }
+</script>
+
+
+<body>
+
+	<div class="content">
+		<h2>사용자 상세정보</h2>
+		<hr>
+		<form th:action="@{/admin/userDetailUpdate}" method="post" onsubmit="confirmUpdate(event)">
+			<h3>사용자 명</h3>
+			<div class="detail_text" th:text="${user.username}"></div>
+			<h3>부서명</h3>
+			<select name="departmentId" class="detail_select">
+				<option value="0">없음</option>
+				<div th:if="${dept != null}">
+					<option th:each="dept : ${deptList}" th:value="${dept.departmentId}"
+						th:text="${dept.departmentName}" th:selected="${dept.departmentName == deptOne.departmentName}">
+					</option>
+				</div>
+				<option th:each="dept : ${deptList}" th:value="${dept.departmentId}" th:text="${dept.departmentName}">
+				</option>
+			</select><br>
+
+			<h3>직급</h3>
+			<select name="userRank" class="detail_select">
+			    <option value="사장" th:selected="${user.userRank == '사장'}">사장</option>
+			    <option value="팀장" th:selected="${user.userRank == '팀장'}">팀장</option>
+			    <option value="사원" th:selected="${user.userRank == null || user.userRank == '사원'}">사원</option>
+			</select><br>
+
+			<h3>이메일</h3>
+			<input type="text" name="email" th:value="${user.email}" class="detail_input"><br>
+
+			<button type="submit" class="submit-button">수정</button>
+			<input type="hidden" name="userId" th:value="${user.userId}">
+		</form>
+		
+		<form th:action="@{/admin/userDelete}" method="post" onsubmit="confirmDelete(event)">
+		    <input type="hidden" name="userId" th:value="${user.userId}">
+		    <button type="submit" class="back-button" style="background-color:red;">삭제하기</button>
+		</form>
+
+		<button onclick="location.href='/admin/empManage'" class="back-button">돌아가기</button>
+	</div>
+
+</body>
+
+</html>

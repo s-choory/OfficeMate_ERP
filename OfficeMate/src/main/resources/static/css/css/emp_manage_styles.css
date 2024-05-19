@@ -90,7 +90,7 @@ th {
 }
 
 .emp_manage_add {
-    right: 120px; /* 위치 조정 */
+    right: 265px; /* 위치 조정 */
 }
 .emp_manage_add::after {
     content: '\002B';
