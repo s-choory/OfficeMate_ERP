@@ -112,7 +112,3 @@ th {
 .e_detail:hover{
   background-color: #dbdbdb;
 }
-.dept-container {
-    margin: 0 auto; /* 좌우 여백을 자동으로 설정하여 가운데 정렬 */
-    width: 80%; /* 원하는 너비 설정 */
-}

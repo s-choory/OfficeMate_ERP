@@ -18,34 +18,38 @@
 		<li><a href="../attendence">출퇴근</a></li>
 		<li><a href="../document" style="background-color:#185066">문서</a></li>
 		<li><a href="../salary">급여지급</a></li>
-		<li><a href="../emp_manage">전체사원관리</a></li>
+		<div sec:authorize="hasRole('ADMIN')">
+			<li><a href="../admin/empManage">전체사원관리</a></li>
+		</div>
 	</ul>
   </div>
+  <div class="login-container">
+    		<button class="login-button">로그인</button>
+    </div>
   
   <div class="content">
     <h2>문서</h2>
 	<div sec:authorize="hasRole('ADMIN')">
-		<button class="" onclick="location.href='/document'">관리자 문서만 보기</button><br>
-	<hr>
+		<button style="right:280px;" onclick="location.href='/document'">내 문서만 보기</button>
+	</div>
+	<button onclick="location.href='documentAdd'">등록</button>
     <br>
-      <button class="docu_add" onclick="location.href='documentAdd'">등록</button>
     <hr>
 	
 	<table>
 		<tr>
 			<th class="dtitle">제목</th>
 			<th class="dwriter">작성자</th>
-			<th class="ddate">작성일자</th>
-			<th class="ddate">수정일자</th>
-			<th class="ddate">공유자</th>
+			<th class="dwdate">작성일자</th>
+			<th class="dedate">수정일자</th>
+			<th class="sharer">공유자</th>
 		</tr>
-		<tr th:each="document : ${documentList}">
-			<td><a th:href="@{'/document/' + ${document.documentId}}" style="color: black;"><span
-						th:text="${document.documentName}"></span></a></td>
-			<td th:text="${document.uploadUser}"></td>
-			<td th:text="${document.uploadDate}"></td>
-			<td th:text="${document.updateDate}"></td>
-			<td th:text="${document.shareUser}"></td>
+		<tr class="document" th:each="document : ${documentList}" style="cursor: pointer;" th:onclick="|location.href='@{'/document/' + ${document.documentId}}'|">
+			<td class="dtitle" th:text="${document.documentName}"></td>
+			<td class="dwriter" th:text="${document.uploadUser}"></td>
+			<td class="dwdate" th:text="${document.uploadDate}"></td>
+			<td class="dedate" th:text="${document.updateDate}"></td>
+			<td class="sharer" th:text="${document.shareUser}"></td>
 		</tr>
 	</table>
 	<div id="pagination">
