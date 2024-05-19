@@ -39,6 +39,11 @@ public class WorkService{
 		return workMapper.getListConfirmUserPage(pageDTO, assignedTo);
 	}
 
+	public void deleteWork(int workId) {
+		workMapper.deleteWork(workId);
+		
+	}
+
 
 
 

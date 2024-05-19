@@ -106,6 +106,16 @@ public class WorkController {
         }
     }
     
+    @PostMapping("/deleteWork")
+    @ResponseBody
+    public ResponseEntity<String> deleteWork(@RequestParam int workId) {
+        try {
+            workService.deleteWork(workId);
+            return ResponseEntity.ok("success");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("error");
+        }
+    }
    
     
 

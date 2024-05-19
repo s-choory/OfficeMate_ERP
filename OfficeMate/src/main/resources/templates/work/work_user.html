@@ -27,19 +27,52 @@
 							'Content-Type': 'application/json'
 						},
 					})
-						.then(response => response.text())
-						.then(status => {
-							if (status === 'success') {
-								console.log(workId);
-								const statusSpan = document.getElementById('status-' + workId);
-								statusSpan.textContent = newStatus;
+						.then(response => response.json())
+						.then(data => {
+							if (data.status === 'success') {
+								const statusSpan = row.querySelector('.work-status');
+								statusSpan.textContent = data.st;
 							} else {
-								console.error('작업 상태 업데이트 실패');
+								console.error(data.message);
 							}
 						})
 						.catch(error => {
 							console.error('작업 상태 업데이트 중 오류 발생:', error);
 						});
+				});
+			});
+
+			const deleteButtons = document.querySelectorAll('.delete-btn');
+
+			// 기존 작업 상태 업데이트 코드...
+
+			deleteButtons.forEach(button => {
+				button.addEventListener('click', () => {
+					const workId = button.dataset.workId;
+					const confirmDelete = confirm('정말 삭제하시겠습니까?');
+
+					if (confirmDelete) {
+						const url = `/deleteWork?workId=${workId}`;
+
+						fetch(url, {
+							method: 'POST',
+							headers: {
+								'X-CSRF-TOKEN': csrfToken
+							}
+						})
+							.then(response => response.text())
+							.then(result => {
+								if (result === 'success') {
+									const row = button.parentNode.parentNode;
+									row.remove();
+								} else {
+									console.error('업무 삭제 실패');
+								}
+							})
+							.catch(error => {
+								console.error('업무 삭제 중 오류 발생:', error);
+							});
+					}
 				});
 			});
 		});
@@ -87,13 +120,14 @@
 				<td th:text="${work.workName}"></td>
 				<td th:text="${work.assignedTo}"></td>
 				<td th:text="${work.dueDate}"></td>
-				<td th:text="${work.status}" th:id="'status-' + ${work.workId}"></td>
+				<td class="work-status" th:text="${work.status}" th:id="'status-' + ${work.workId}"></td>
 				<td>
 					<select class="status-select" th:data-work-id="${work.workId}">
 						<option th:selected="${work.status == 'Pending'}" value="Pending">Pending</option>
 						<option th:selected="${work.status == 'In progress'}" value="In progress">In progress</option>
 						<option th:selected="${work.status == 'Complete'}" value="Complete">Complete</option>
 					</select>
+					<button class="delete-btn" th:data-work-id="${work.workId}">삭제</button>
 				</td>
 			</tr>
 		</table>
