@@ -2,6 +2,7 @@ package com.example.demo.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -30,6 +31,9 @@ public interface WorkMapper {
     
 	@Select("SELECT * from Works where assignedTo=#{assignedTo} and status IN ('Complete') order by dueDate LIMIT #{pageDTO.rowCount} OFFSET #{pageDTO.offset}")
 	List<WorkDTO> getListConfirmUserPage(PageDTO pageDTO, int assignedTo);
+
+	@Delete("Delete from Works where workId = #{workId}")
+	void deleteWork(int workId);
 
     
 	
