@@ -1,51 +1,58 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>OfficeMate</title>
-  <link rel="stylesheet" href="../css/dept_styles.css">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>OfficeMate</title>
+	<link rel="stylesheet" href="../css/dept_styles.css">
 </head>
+
 <body>
 
-  <div class="sidebar">
-    <div class="logo">OfficeMate</div>
-    <div class="padding"></div> <!-- 여백 추가 -->
+	<div class="sidebar">
+		<div class="logo">OfficeMate</div>
+		<div class="padding"></div> <!-- 여백 추가 -->
 
-    <ul class="menu">
-      <li><a href="notice">공지사항</a></li>
-      <li><a href="dept" style="background-color:#185066">부서</a></li>
-      <li><a href="work">업무</a></li>
-      <li><a href="attendence">출퇴근</a></li>
-      <li><a href="document">문서</a></li>
-      <li><a href="salary">급여지급</a></li>
-	  <div sec:authorize="hasRole('ADMIN')">
-	  	<li><a href="admin/empManage">전체사원관리</a></li>
-	  </div>
-    </ul>
-  </div>
+		<ul class="menu">
+			<li><a href="notice">공지사항</a></li>
+			<li><a href="dept" style="background-color:#185066">부서</a></li>
+			<li><a href="work">업무</a></li>
+			<li><a href="attendence">출퇴근</a></li>
+			<li><a href="document">문서</a></li>
+			<li><a href="salary">급여지급</a></li>
+			<div sec:authorize="hasRole('ADMIN')">
+				<li><a href="admin/empManage">전체사원관리</a></li>
+			</div>
+		</ul>
+	</div>
 
-  <div class="content">
-    <h2 th:text="${deptDTO.departmentName}"></h2>
-    <br>
-    <hr>
-    <table>
-      <tr>
-          <th class="e_role">직급</th>
-          <th class="e_name">이름</th>
-          <th class="e_email">이메일</th>
-      </tr>
-	  <tr class="e_detail" th:each="user : ${userList}"	 th:onclick="|location.href='@{/userDetail/{userId}(userId=${user.userId})}'|" >
-	  	<td th:text="${user.userRank}"></td>
-		<td th:text="${user.username}"></td>
-	  	<td th:text="${user.email}"></td>
-		</a>
-	  </tr>
-
-
-    </table>
-  </div>
+	<div class="content">
+		<h2 th:text="${deptDTO.departmentName}"></h2>
+		<br>
+		<hr>
+		<table>
+			<tr>
+				<th class="e_role">직급</th>
+				<th class="e_name">이름</th>
+				<th class="e_email">이메일</th>
+			</tr>
+			<tr th:each="user : ${userList}" th:if="${name == 'admin'}" class="e_detail"
+				th:onclick="|location.href='@{/admin/userDetail/{userId}(userId=${user.userId})}'|">
+				<td th:text="${user.userRank}"></td>
+				<td th:text="${user.username}"></td>
+				<td th:text="${user.email}"></td>
+				</a>
+			</tr>
+			<tr th:each="user : ${userList}" th:if="${name != 'admin'}" class="e_detail">
+				<td th:text="${user.userRank}"></td>
+				<td th:text="${user.username}"></td>
+				<td th:text="${user.email}"></td>
+			</tr>
+		</table>
+	</div>
 
 </body>
+
 </html>

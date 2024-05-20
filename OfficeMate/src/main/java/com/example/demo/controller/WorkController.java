@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.demo.dto.DeptDTO;
 import com.example.demo.dto.PageDTO;
 import com.example.demo.dto.UserDTO;
 import com.example.demo.dto.WorkDTO;
@@ -83,10 +84,31 @@ public class WorkController {
 	}
 
 	@GetMapping("/admin/work")
-	public String workuser() {
-//		DeptDTO deptDTO = deptService.getDeptOne(workList.get(0).getDepartmentsId());
-//		model.addAttribute("departmentName",deptDTO.getDepartmentName());
+	public String workuser(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+		PageDTO pageDTO = new PageDTO(workService.workAllCount(), page);
+		List<WorkDTO> workList = workService.getListWorkAll(pageDTO);
+		List<UserDTO> userList = userService.getUserAll();
+		List<DeptDTO> deptList = deptService.getDeptAll();
+		model.addAttribute("workList", workList);
+		model.addAttribute("page", page);
+		model.addAttribute("pageDTO", pageDTO);
+		model.addAttribute("userList", userList);
+		model.addAttribute("deptList",deptList);
 		return "work/work_admin";
+	}
+	
+	@GetMapping("/admin/workConfirm")
+	public String workAdminConfirm(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+		PageDTO pageDTO = new PageDTO(workService.workAllCountConfirm(), page);
+		List<WorkDTO> workList = workService.getListWorkAllConfirm(pageDTO);
+		List<UserDTO> userList = userService.getUserAll();
+		List<DeptDTO> deptList = deptService.getDeptAll();
+		model.addAttribute("workList", workList);
+		model.addAttribute("page", page);
+		model.addAttribute("pageDTO", pageDTO);
+		model.addAttribute("userList", userList);
+		model.addAttribute("deptList",deptList);
+		return "work/workConfirm_admin";
 	}
 
 	@GetMapping("/workAdd")
