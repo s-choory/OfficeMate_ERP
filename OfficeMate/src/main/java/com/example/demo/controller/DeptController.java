@@ -46,8 +46,10 @@ public class DeptController {
     
     @GetMapping("/deptDetail")
     public String deptDetail(@RequestParam int departmentId, Model model) {
+    	String name = SecurityContextHolder.getContext().getAuthentication().getName();
     	List<UserDTO> userList = deptService.getDeptUser(departmentId);
     	DeptDTO deptDTO = deptService.getDeptOne(departmentId);
+    	model.addAttribute("name", name);
     	model.addAttribute("userList", userList);
     	model.addAttribute("deptDTO", deptDTO);
     	return "dept/dept_detail";
