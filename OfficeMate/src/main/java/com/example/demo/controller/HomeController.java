@@ -11,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.demo.dto.AttendanceDTO;
+import com.example.demo.dto.UserDTO;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -33,10 +36,6 @@ public class HomeController {
 		return "home/start"; // index.html 렌더링
 	}
 
-	@GetMapping("/home")
-	public String home() {
-		return "home/home"; // home.html 렌더링
-	}
 
 	@GetMapping("/login")
 	public String login() {

@@ -1,31 +1,245 @@
-<!-- src/main/resources/static/users.html -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Office Mate</title>
-	<link rel="stylesheet" href="../css/notice_styles.css">
+	<title>Home</title>
+	<link rel="stylesheet" href="../css/attendance.css">
 </head>
 
 <body>
 	<div class="sidebar">
-		<a href="/home" style="text-decoration: none;"><div class="logo">OfficeMate</div></a>
-	  <div class="padding"></div> <!-- 여백 추가 -->
-	<ul class="menu">
-		<li><a href="notice">공지사항</a></li>
-		<li><a href="dept">부서</a></li>
-		<li><a href="work">업무</a></li>
-		<li><a href="attendence">출퇴근</a></li>
-		<li><a href="document">문서</a></li>
-		<li><a href="salary">급여지급</a></li>
-		<div sec:authorize="hasRole('ADMIN')">
-			<li><a href="admin/empManage">전체사원관리</a></li>
+		<a href="/home" style="text-decoration: none;">
+			<div class="logo">OfficeMate</div>
+		</a>
+		<div class="padding"></div>
+		<ul class="menu">
+			<li><a href="notice">공지사항</a></li>
+			<li><a href="dept">부서</a></li>
+			<li><a href="work">업무</a></li>
+			<li><a href="attendance">출퇴근</a></li>
+			<li><a href="document">문서</a></li>
+			<li><a href="salary">급여지급</a></li>
+			<div sec:authorize="hasRole('ADMIN')">
+				<li><a href="admin/empManage">전체사원관리</a></li>
+			</div>
+		</ul>
+	</div>
+	<div class="attendance-container">
+		<div class="timer-container">
+			<div class="timer-circle">
+				<div class="timer-progress"></div>
+				<div class="timer-name">Working</div>
+				<div class="timer-display">00:00</div>
+			</div>
 		</div>
-	</ul>
+		<div class="attendance-buttons">
+			<button type="button" id="startButton" th:disabled="${attendanceDTO.checkIn != null}">출근 시작</button>
+			<input type="hidden" id="attendanceTime" name="attendanceTime" value="">
+			<button type="button" id="endButton" th:disabled="${attendanceDTO.checkIn == null}">퇴근</button>
+			<input type="hidden" name="_csrf" th:value="${_csrf.token}">
+		</div>
 	</div>
 	
 </body>
+
+<script>
+	const startButton = document.getElementById('startButton');
+	const endButton = document.getElementById('endButton');
+	const timerDisplay = document.querySelector('.timer-display');
+	const timerProgress = document.querySelector('.timer-progress');
+	const timerName = document.querySelector('.timer-name');
+	const attendanceTimeInput = document.getElementById('attendanceTime');
+
+	let startTime;
+	let intervalId;
+
+	// 서버에서 전달된 출근 시간
+	const serverCheckInTime = decodeEntities('[[${attendanceDTO.checkIn}]]');
+	console.log('Server Check-In Time:', serverCheckInTime);
+
+	let checkInTime;
+	try {
+		checkInTime = JSON.parse(serverCheckInTime).time;
+	} catch (e) {
+		console.error('Failed to parse check-in time JSON:', e);
+	}
+
+	// HTML 엔터티 디코딩 함수
+	function decodeEntities(encodedString) {
+		const textArea = document.createElement('textarea');
+		textArea.innerHTML = encodedString;
+		return textArea.value;
+	}
+
+	if (checkInTime && checkInTime !== 'null' && checkInTime !== '') {
+		const parts = checkInTime.split(':');
+		if (parts.length === 3) {
+			console.log('Parsed Time Parts:', parts);
+			startTime = new Date();
+			startTime.setHours(parts[0], parts[1], parts[2]);
+			intervalId = setInterval(updateTimer, 1000);
+			startButton.disabled = true;
+			endButton.disabled = false;
+		} else {
+			console.error('Invalid check-in time format:', checkInTime);
+		}
+	}
+
+	// 서버에서 전달된 퇴근 시간
+	const serverCheckOutTime = decodeEntities('[[${attendanceDTO.checkOut}]]');
+	console.log('Server Check-Out Time:', serverCheckOutTime);
+
+	let checkOutTime;
+	try {
+		checkOutTime = JSON.parse(serverCheckOutTime).time;
+	} catch (e) {
+		console.error('Failed to parse check-out time JSON:', e);
+	}
+
+	if (checkOutTime && checkOutTime !== 'null' && checkOutTime !== '') {
+		// 이미 checkOut이 되어 있다면 UI 업데이트
+		clearInterval(intervalId);
+		stopTimerAndFixTime(serverCheckOutTime); // 총 근무 시간으로 고정
+		startButton.disabled = true;
+		endButton.disabled = true;
+	}
+
+	
+	let elapsedTimeInSeconds = 0; // 변수를 블록 밖으로 이동하고 초까지 0으로 초기화
+	
+	try {
+	    const checkInTimeParts = checkInTime.split(':');
+	    const checkOutTimeParts = checkOutTime.split(':');
+	
+	    // 시간을 HH:mm:ss 형식에서 milliseconds로 변환
+	    const checkInTimestamp = (parseInt(checkInTimeParts[0]) * 3600 + parseInt(checkInTimeParts[1]) * 60 + parseInt(checkInTimeParts[2])) * 1000;
+	    const checkOutTimestamp = (parseInt(checkOutTimeParts[0]) * 3600 + parseInt(checkOutTimeParts[1]) * 60 + parseInt(checkOutTimeParts[2])) * 1000;
+	
+	    // 시간 차이 계산
+	    elapsedTimeInSeconds = (checkOutTimestamp - checkInTimestamp) / 1000;
+	} catch (e) {
+	    console.error('Failed to parse check-in or check-out time:', e);
+	}
+	
+	if (checkInTime && checkInTime !== 'null' && checkInTime !== '' && checkOutTime && checkOutTime !== 'null' && checkOutTime !== '') {
+	    const hours = Math.floor(elapsedTimeInSeconds / 3600);
+	    const minutes = Math.floor((elapsedTimeInSeconds % 3600) / 60);
+	    const seconds = elapsedTimeInSeconds % 60;
+	
+	    const formattedElapsedTime = `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
+	    console.log(formattedElapsedTime);
+	    timerDisplay.textContent = formattedElapsedTime;
+	}
+
+
+	
+	startButton.addEventListener('click', () => {
+		startAttendance();
+	});
+
+	endButton.addEventListener('click', () => {
+		endAttendance();
+	});
+
+	function startAttendance() {
+		startTime = new Date();
+		const currentTime = getCurrentTime();
+		fetch('/attendance/checkIn', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'X-CSRF-TOKEN': document.querySelector('input[name="_csrf"]').value
+			},
+			body: JSON.stringify({time: currentTime})
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('Network response was not ok');
+				}
+				// 폼 제출 성공 시 UI 업데이트 등 추가 작업 수행
+				startButton.disabled = true;
+				endButton.disabled = false;
+				intervalId = setInterval(updateTimer, 1000);
+			})
+			.catch(error => {
+				console.error('Failed to submit check-in time:', error);
+			});
+	}
+
+	function endAttendance() {
+		const currentTime = getCurrentTime();
+		fetch('/attendance/checkOut', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'X-CSRF-TOKEN': document.querySelector('input[name="_csrf"]').value
+			},
+			body: JSON.stringify({time: currentTime})
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('Network response was not ok');
+				}
+				// 폼 제출 성공 시 UI 업데이트 등 추가 작업 수행
+				clearInterval(intervalId);
+				endButton.disabled = true;
+			})
+			.catch(error => {
+				console.error('Failed to submit check-out time:', error);
+			});
+	}
+
+	function updateTimer() {
+		const currentTime = new Date().getTime();
+		const elapsedTime = currentTime - startTime.getTime();
+		const elapsedSeconds = Math.floor(elapsedTime / 1000);
+		const hours = Math.floor(elapsedSeconds / 3600);
+		const minutes = Math.floor((elapsedSeconds % 3600) / 60);
+		const seconds = elapsedSeconds % 60;
+
+		const formattedTime = `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
+		timerDisplay.textContent = formattedTime;
+
+		const progress = (elapsedSeconds / 3600) * 360; // 1시간 = 360도 회전
+		timerProgress.style.transform = `rotate(${progress}deg)`;
+
+		// 한 바퀴를 돌았을 때 애니메이션을 멈추도록 설정
+		if (progress >= 360) {
+			clearInterval(intervalId);
+			startButton.disabled = false;
+			endButton.disabled = true;
+			timerProgress.style.animationPlayState = 'paused';
+		}
+	}
+
+	function padZero(value) {
+		return value.toString().padStart(2, '0');
+	}
+
+	function getCurrentTime() {
+		const now = new Date();
+		const hours = padZero(now.getHours());
+		const minutes = padZero(now.getMinutes());
+		const seconds = padZero(now.getSeconds());
+		return `${hours}:${minutes}:${seconds}`;
+	}
+	// 출근 버튼과 퇴근 버튼 비활성화 여부 확인
+	const isAttendanceCompleted = checkInTime && checkOutTime;
+	
+	startButton.disabled = isAttendanceCompleted;
+	endButton.disabled = isAttendanceCompleted;
+	
+	// 출근 시간 고정 함수 호출
+	//stopTimerAndFixTime(serverCheckOutTime); // 이미 퇴근했다면 출근 시간 고정
+	
+	// 타이머 멈추고 시간을 고정하는 함수
+	function stopTimerAndFixTime(totalWorkTime) {
+	    clearInterval(intervalId);
+	    timerDisplay.textContent = JSON.parse(totalWorkTime).time; // 현재 타이머 시간을 총 근무 시간으로 설정
+	}
+
+</script>
 
 </html>
