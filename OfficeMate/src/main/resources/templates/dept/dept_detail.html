@@ -12,14 +12,14 @@
 <body>
 
 	<div class="sidebar">
-		<div class="logo">OfficeMate</div>
+		<a href="/home" style="text-decoration: none;"><div class="logo">OfficeMate</div></a>
 		<div class="padding"></div> <!-- 여백 추가 -->
 
 		<ul class="menu">
 			<li><a href="notice">공지사항</a></li>
 			<li><a href="dept" style="background-color:#185066">부서</a></li>
 			<li><a href="work">업무</a></li>
-			<li><a href="attendence">출퇴근</a></li>
+			<li><a href="attendance">출퇴근</a></li>
 			<li><a href="document">문서</a></li>
 			<li><a href="salary">급여지급</a></li>
 			<div sec:authorize="hasRole('ADMIN')">
