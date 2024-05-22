@@ -52,7 +52,7 @@
 			<td class="sharer" th:text="${document.shareUser}"></td>
 		</tr>
 	</table>
-	<div id="pagination">
+	<div th:if="${pageDTO.totalPageCount > 0}" id="pagination">
 		<!-- 맨 처음 페이지로 이동하는 버튼 -->
 	    <span th:if="${pageDTO.startPage > 1}">
 	        <a th:href="@{'/document?page=1'}" th:text="'처음&emsp;'"></a>

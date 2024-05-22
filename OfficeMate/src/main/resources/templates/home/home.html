@@ -202,7 +202,7 @@
 		const formattedTime = `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
 		timerDisplay.textContent = formattedTime;
 
-		const progress = (elapsedSeconds / 3600) * 360; // 1시간 = 360도 회전
+		const progress = (elapsedSeconds / 3600) * 360; // 1시간 = 360도 회전 / 8시간 28800
 		timerProgress.style.transform = `rotate(${progress}deg)`;
 
 		// 한 바퀴를 돌았을 때 애니메이션을 멈추도록 설정

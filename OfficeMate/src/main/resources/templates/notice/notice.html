@@ -37,8 +37,7 @@
 		<div sec:authorize="hasRole('ADMIN')">
 			<button class="notice_add" onclick="location.href='admin/notice_add'">공지 등록</button>
 		</div>
-		<br>
-		<hr>
+		<br><br><br>
 		<table>
 			<tr>
 				<th class="ttitle">제목</th>
@@ -49,12 +48,12 @@
 			<tr th:each="notice : ${noticeList}" class="notice" style="cursor: pointer;" th:onclick="|location.href='@{'/notice/' + ${notice.noticeId}}'|">
 				<td class="ttitle" th:text="${notice.title}"></td>
 				<td class="twriter">관리자</td>
-				<td class="twdate" th:text="${notice.postDate}"></td>
-				<td class="tedate" th:text="${notice.updateDate}"></td>
+				<td class="twdate" th:text="${#strings.substring(notice.postDate, 0, 16)}"></td>
+				<td class="tedate" th:text="${#strings.substring(notice.updateDate, 0, 16)}"></td>
 			</tr>
 		</table>
 		<!-- 페이징 넘버-->
-		<div id="pagination">
+		<div th:if="${pageDTO.totalPageCount > 0}" id="pagination">
 			<!-- 맨 처음 페이지로 이동하는 버튼 -->
 		    <span th:if="${pageDTO.startPage > 1}">
 		        <a th:href="@{'/notice?page=1'}" th:text="'처음&emsp;'"></a>

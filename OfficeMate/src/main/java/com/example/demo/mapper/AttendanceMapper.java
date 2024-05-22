@@ -1,5 +1,7 @@
 package com.example.demo.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -18,6 +20,9 @@ public interface AttendanceMapper {
 
 	@Update("UPDATE attendance SET checkOut = #{checkOut} WHERE userId = #{userId} AND date_trunc('day', date) = date_trunc('day', now())")
 	int checkOut(AttendanceDTO attendanceDTO);
+
+	@Select("Select * FROM attendance WHERE userId = #{userId} ")
+	List<AttendanceDTO> getAttendanceByUserId(int userId);
 
 
 } 

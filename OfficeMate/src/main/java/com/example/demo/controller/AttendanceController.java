@@ -1,10 +1,13 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,12 +26,16 @@ public class AttendanceController {
 	UserService userService;
 
 	@GetMapping("/attendance")
-	public String commute(Model model) {
+	public String attendance(Model model) {
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
+    	UserDTO userDTO = userService.getUserByName(name);
 
 		if(name.equals("admin")) {
 			return "redirect:/admin/attendance";
 		}
+		
+		List<AttendanceDTO> attendanceList = attendanceService.getAttendanceByUserId(userDTO.getUserId());
+		model.addAttribute("attendanceList", attendanceList);
 		return "attendance/attendance";
 	}	
 
@@ -75,6 +82,19 @@ public class AttendanceController {
     	
     	return "퇴근 시간이 기록되었습니다.";
     }
-
+    
+	@GetMapping("/admin/attendance")
+	public String adminAttendance(Model model) {
+		List<UserDTO> userList = userService.getUserAll();
+		model.addAttribute("userList", userList);
+		return "attendance/attendance_admin";
+	}	
+	
+	@GetMapping("/admin/attendance/{userId}")
+	public String adminDetailAttendance(@PathVariable int userId,Model model) {
+		List<AttendanceDTO> attendanceList = attendanceService.getAttendanceByUserId(userId);
+		model.addAttribute("attendanceList", attendanceList);
+		return "attendance/attendance_admin_detail";
+	}
 
 }
