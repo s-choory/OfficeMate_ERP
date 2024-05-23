@@ -11,20 +11,37 @@ public class MonthSalaryDTO {
     private String paymentDescription;
     private BigDecimal totalAmount;
     private LocalDateTime createdAt;
+    private String paymentState;
     
 	public MonthSalaryDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public MonthSalaryDTO(int monthSalaryId, LocalDate paymentMonth, String paymentDescription, BigDecimal totalAmount,
-			LocalDateTime createdAt) {
+			LocalDateTime createdAt, String paymentState) {
 		super();
 		this.monthSalaryId = monthSalaryId;
 		this.paymentMonth = paymentMonth;
 		this.paymentDescription = paymentDescription;
 		this.totalAmount = totalAmount;
 		this.createdAt = createdAt;
+		this.paymentState = paymentState;
+	}
+
+	public String getPaymentState() {
+		return paymentState;
+	}
+
+	@Override
+	public String toString() {
+		return "MonthSalaryDTO [monthSalaryId=" + monthSalaryId + ", paymentMonth=" + paymentMonth
+				+ ", paymentDescription=" + paymentDescription + ", totalAmount=" + totalAmount + ", createdAt="
+				+ createdAt + ", paymentState=" + paymentState + "]";
+	}
+
+	public void setPaymentState(String paymentState) {
+		this.paymentState = paymentState;
 	}
 
 	public int getMonthSalaryId() {
@@ -67,13 +84,6 @@ public class MonthSalaryDTO {
 		this.createdAt = createdAt;
 	}
 
-	@Override
-	public String toString() {
-		return "MonthSalaryDTO [monthSalaryId=" + monthSalaryId + ", paymentMonth=" + paymentMonth
-				+ ", paymentDescription=" + paymentDescription + ", totalAmount=" + totalAmount + ", createdAt="
-				+ createdAt + "]";
-	}
-    
     
 	
 }

@@ -27,5 +27,17 @@ public class MonthSalaryService{
 	public List<MonthSalaryDTO> getAllMonthSalary() {
 		return monthSalaryMapper.getAllMonthSalary();
 	}
+
+	public MonthSalaryDTO getMonthSalary(int monthSalaryId) {
+		return monthSalaryMapper.getMonthSalary(monthSalaryId);
+	}
+
+	public void salaryPaymentComplete(LocalDate paymentMonth) {
+		monthSalaryMapper.salaryPaymentComplete(paymentMonth);
+	}
+
+	public MonthSalaryDTO getMonthSalaryDTO(LocalDate paymentMonth) {
+		return monthSalaryMapper.findByPaymentMonth(paymentMonth);
+	}
 	
 }

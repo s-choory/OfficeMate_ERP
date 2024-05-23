@@ -8,6 +8,24 @@
 	<link rel="stylesheet" href="../css/salary_styles.css">
 </head>
 
+<style>
+	table {
+		border-collapse: collapse;
+		width: 100%;
+	}
+
+	th,
+	td {
+		padding: 8px;
+		text-align: center;
+		border: 1px solid #ddd;
+	}
+
+	td:hover {
+		background-color: #f5f5f5;
+	}
+</style>
+
 <script th:inline="javascript">
 	var token = /*[[${_csrf.token}]]*/ '';
 
@@ -19,25 +37,36 @@
 				'X-CSRF-TOKEN': token
 			}
 		})
-		.then(response => {
-		    if (response.ok) {
-		        // 성공적으로 처리되었을 때 추가 동작 수행
-		        window.location.href = '/admin/salary';
-		    } else {
-		        return response.text(); // 응답 본문 가져오기
-		    }
-		})
-		.then(body => {
-		    if (body.includes('error=duplicateMonth')) {
-		        alert('현재 월의 데이터가 이미 존재합니다.');
-		    } else {
-		        console.error('월급여 추가 실패');
-		    }
-		})
-		.catch(error => {
-		    console.error('월급여 추가 중 오류 발생:', error);
-		});
+			.then(response => {
+				if (response.ok) {
+					// 성공적으로 처리되었을 때 추가 동작 수행
+					window.location.href = '/admin/salary';
+				} else {
+					return response.text(); // 응답 본문 가져오기
+				}
+			})
+			.then(body => {
+				if (body.includes('error=duplicateMonth')) {
+					alert('이번 달 급여대장이 이미 존재합니다.');
+				} else {
+					console.error('월급여 추가 실패');
+				}
+			})
+			.catch(error => {
+				console.error('월급여 추가 중 오류 발생:', error);
+			});
 	}
+
+	/*<![CDATA[*/
+	function confirmPayment(paymentMonth) {
+	
+	    if (confirm("확정하시겠습니까?")) {
+	        var url = /*[[@{/admin/salaryPaymentComplete}]]*/ '';
+	        url += '?paymentMonth=' + paymentMonth;
+	        window.location.href = url;
+	    }
+	}
+	/*]]>*/
 </script>
 
 <body>
@@ -69,17 +98,21 @@
 		<table>
 			<tr>
 				<th style="width:20%">급여명칭</th>
-				<th style="width:20%">지급년월</th>
+				<th style="width:10%">지급년월</th>
 				<th style="width:20%">지급총액</th>
-				<th style="width:20%">급여대장</th>
-				<th style="width:20%">명세서</th>
+				<th style="width:10%">급여대장</th>
+				<th style="width:10%">명세서</th>
+				<th style="width:10%">상태</th>
 			</tr>
 			<tr th:each="monthSalary : ${monthSalaryList}">
 				<td th:text="${monthSalary.paymentDescription}"></td>
-				<td th:text="${#temporals.format(monthSalary.paymentMonth, 'yy년 M월')}"></td>				
+				<td th:text="${#temporals.format(monthSalary.paymentMonth, 'yy년 M월')}"></td>
 				<td th:text="${#numbers.formatInteger(monthSalary.totalAmount, 3, 'COMMA') + '원'}" />
-				<td><a th:href="@{'salaryLedger?monthSalaryId=' + ${monthSalary.monthSalaryId}}">조회</a></td>
+				<td><a th:href="@{'salaryLedger?monthSalaryId=' + ${monthSalary.monthSalaryId}}">조회</a><br><br>
+					<a href="#" th:onclick="'confirmPayment(\'' + @{${monthSalary.paymentMonth}} + '\');'">지급확정</a>
+				</td>
 				<td><a href="">조회</a></td>
+				<td th:text="${monthSalary.paymentState}"></td>
 			</tr>
 		</table>
 
