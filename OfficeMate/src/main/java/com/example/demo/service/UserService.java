@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,10 @@ public class UserService{
 
 	public int deleteUser(int userId) {
 		return userMapper.deleteUser(userId);
+	}
+
+	public BigDecimal getUserTotalAmount() {
+		return userMapper.getUserTotalAmount();
 	}
 
 	

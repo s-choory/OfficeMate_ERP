@@ -53,6 +53,9 @@
 			<h3>이메일</h3>
 			<input type="text" name="email" th:value="${user.email}" class="detail_input"><br>
 
+			<h3>월급</h3>
+			<input type="text" name="monthSalary" th:value="${user.monthSalary}" class="detail_input"><br>
+			
 			<button type="submit" class="submit-button">수정</button>
 			<input type="hidden" name="userId" th:value="${user.userId}">
 		</form>
