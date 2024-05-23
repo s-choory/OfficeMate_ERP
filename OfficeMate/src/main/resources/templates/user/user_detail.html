@@ -32,16 +32,14 @@
 			<h3>사용자 명</h3>
 			<div class="detail_text" th:text="${user.username}"></div>
 			<h3>부서명</h3>
+			<div th:if="${user.username != 'admin'}">
 			<select name="departmentId" class="detail_select">
-				<option value="0">없음</option>
-				<div th:if="${dept != null}">
-					<option th:each="dept : ${deptList}" th:value="${dept.departmentId}"
-						th:text="${dept.departmentName}" th:selected="${dept.departmentName == deptOne.departmentName}">
-					</option>
-				</div>
-				<option th:each="dept : ${deptList}" th:value="${dept.departmentId}" th:text="${dept.departmentName}">
-				</option>
+			    <option value="0">없음</option>
+			    <option th:each="dept : ${deptList}" th:value="${dept.departmentId}"
+			            th:text="${dept.departmentName}" th:selected="${dept.departmentId == deptOne.departmentId}">
+			    </option>
 			</select><br>
+			</div>
 
 			<h3>직급</h3>
 			<select name="userRank" class="detail_select">
