@@ -1,5 +1,6 @@
 package com.example.demo.mapper;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -32,10 +33,13 @@ public interface UserMapper {
     @Select("SELECT * FROM users order by case when userRank = '사장' then 1 when userRank = '팀장' then 2 when userRank = '사원' then 3 ELSE 4 END")
 	List<UserDTO> getUserAll();
 
-    @Update("Update Users SET departmentId=#{departmentId}, userRank=#{userRank}, email=#{email} where userId = #{userId}")
+    @Update("Update Users SET departmentId=#{departmentId}, userRank=#{userRank}, email=#{email}, monthSalary=#{monthSalary} where userId = #{userId}")
 	int updateUserDetail(UserDTO userDTO);
 
     @Delete("Delete from Users where userId=#{userId}")
 	int deleteUser(int userId);
+
+    @Select("SELECT SUM(monthSalary) AS TotalAmount FROM users;")
+	BigDecimal getUserTotalAmount();
 
 } 

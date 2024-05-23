@@ -9,6 +9,7 @@ public class UserDTO {
 	private int departmentId;
 	private String userRank;
 	private String role;
+	private int monthSalary;
 	
 	
 	public UserDTO() {
@@ -16,8 +17,15 @@ public class UserDTO {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public String toString() {
+		return "UserDTO [userId=" + userId + ", username=" + username + ", email=" + email + ", password=" + password
+				+ ", departmentId=" + departmentId + ", userRank=" + userRank + ", role=" + role + ", monthSalary="
+				+ monthSalary + "]";
+	}
+	
 	public UserDTO(int userId, String username, String email, String password, int departmentId, String userRank,
-			String role) {
+			String role, int monthSalary) {
 		super();
 		this.userId = userId;
 		this.username = username;
@@ -26,12 +34,7 @@ public class UserDTO {
 		this.departmentId = departmentId;
 		this.userRank = userRank;
 		this.role = role;
-	}
-
-	@Override
-	public String toString() {
-		return "UserDTO [userId=" + userId + ", username=" + username + ", email=" + email + ", password=" + password
-				+ ", departmentId=" + departmentId + ", userRank=" + userRank + ", role=" + role + "]";
+		this.monthSalary = monthSalary;
 	}
 
 	public int getUserId() {
@@ -89,6 +92,13 @@ public class UserDTO {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
+	public int getMonthSalary() {
+		return monthSalary;
+	}
 
+	public void setMonthSalary(int monthSalary) {
+		this.monthSalary = monthSalary;
+	}
 	
 }
