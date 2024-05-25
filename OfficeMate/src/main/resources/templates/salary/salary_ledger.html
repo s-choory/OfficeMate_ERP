@@ -85,40 +85,57 @@
 			</thead>
 			<tbody th:each="user : ${userList}" th:if="${user.username} != 'admin'">
 				<tr>
-					<td rowspan="2" th:each="dept : ${deptList}"
-					    th:if="${dept.departmentId} == ${user.departmentId}"
-					    th:text="${dept.departmentName}"></td>
+					<td rowspan="2" th:each="dept : ${deptList}" th:if="${dept.departmentId} == ${user.departmentId}"
+						th:text="${dept.departmentName}"></td>
 					<td rowspan="2" th:text="${user.userRank}"></td>
 					<td rowspan="2" th:text="${user.username}"></td>
-					<td th:text="${#numbers.formatDecimal(user.monthSalary, 0, 'COMMA', 0, 'POINT')}"></td>
+					<!-- salaryList에서 user.userId와 일치하는 항목을 찾음 -->
+					<td th:each="salary : ${salaryList}" th:if="${salary.userId} == ${user.userId}"
+						th:text="${#numbers.formatDecimal(salary.amount, 0, 'COMMA', 0, 'POINT')}"></td>
+
 					<td>0</td>
 					<td>0</td>
-					<td rowspan="2" th:text="${#numbers.formatDecimal(user.monthSalary, 0, 'COMMA', 0, 'POINT')}"></td>
-					<td th:text="${#numbers.formatDecimal(user.monthSalary * 0.03, 0, 'COMMA', 0, 'POINT')}"></td>
-					<td th:text="${#numbers.formatDecimal(user.monthSalary * 0.003, 0, 'COMMA', 0, 'POINT')}"></td>
-					<td rowspan="2" th:text="${#numbers.formatDecimal(user.monthSalary * 0.1, 0, 'COMMA', 0, 'POINT')}">
-						0</td>
-					<td rowspan="2" th:text="${#numbers.formatDecimal(user.monthSalary * 0.9, 0, 'COMMA', 0, 'POINT')}">
-					</td>
+
+					<!-- 지급 합계 -->
+					<td rowspan="2" th:each="salary : ${salaryList}" th:if="${salary.userId} == ${user.userId}"
+						th:text="${#numbers.formatDecimal(salary.amount, 0, 'COMMA', 0, 'POINT')}"></td>
+
+					<!-- 공제 항목 -->
+					<td th:each="salary : ${salaryList}" th:if="${salary.userId} == ${user.userId}"
+						th:text="${#numbers.formatDecimal(salary.amount * 0.03, 0, 'COMMA', 0, 'POINT')}"></td>
+					<td th:each="salary : ${salaryList}" th:if="${salary.userId} == ${user.userId}"
+						th:text="${#numbers.formatDecimal(salary.amount * 0.003, 0, 'COMMA', 0, 'POINT')}"></td>
+
+					<td rowspan="2" th:each="salary : ${salaryList}" th:if="${salary.userId} == ${user.userId}"
+						th:text="${#numbers.formatDecimal(salary.amount * 0.1, 0, 'COMMA', 0, 'POINT')}">0</td>
+
+					<!-- 실지급액 -->
+					<td rowspan="2" th:each="salary : ${salaryList}" th:if="${salary.userId} == ${user.userId}"
+						th:text="${#numbers.formatDecimal(salary.amount * 0.9, 0, 'COMMA', 0, 'POINT')}"></td>
 				</tr>
-				<tr>
+				<tr th:if="${user.username} != 'admin'">
 					<td>0</td>
 					<td>0</td>
 					<td>0</td>
-					<td th:text="${#numbers.formatDecimal(user.monthSalary * 0.06, 0, 'COMMA', 0, 'POINT')}"></td>
-					<td th:text="${#numbers.formatDecimal(user.monthSalary * 0.007, 0, 'COMMA', 0, 'POINT')}"></td>
+					<td th:each="salary : ${salaryList}" th:if="${salary.userId} == ${user.userId}"
+						th:text="${#numbers.formatDecimal(salary.amount * 0.06, 0, 'COMMA', 0, 'POINT')}"></td>
+					<td th:each="salary : ${salaryList}" th:if="${salary.userId} == ${user.userId}"
+						th:text="${#numbers.formatDecimal(salary.amount * 0.007, 0, 'COMMA', 0, 'POINT')}"></td>
 				</tr>
 			</tbody>
 			<tr>
 				<td colspan="3" rowspan="2" style="background-color:#f5f5f5;">합계</td>
-				<td th:text="${#numbers.formatDecimal(totalBasicPay, 0, 'COMMA', 0, 'POINT')}"></td>
+				<td th:text="${#numbers.formatDecimal(totalPay.totalBasicPay, 0, 'COMMA', 0, 'POINT')}"></td>
 				<td>0</td>
 				<td>0</td>
-				<td rowspan="2" th:text="${#numbers.formatDecimal(totalPay.totalBasicPay, 0, 'COMMA', 0, 'POINT')}"></td>
+				<td rowspan="2" th:text="${#numbers.formatDecimal(totalPay.totalBasicPay, 0, 'COMMA', 0, 'POINT')}">
+				</td>
 				<td th:text="${#numbers.formatDecimal(totalPay.totalIncomeTax, 0, 'COMMA', 0, 'POINT')}"></td>
 				<td th:text="${#numbers.formatDecimal(totalPay.totalResidentTax, 0, 'COMMA', 0, 'POINT')}"></td>
-				<td rowspan="2" th:text="${#numbers.formatDecimal(totalPay.totalDeduction, 0, 'COMMA', 0, 'POINT')}"></td>
-				<td rowspan="2" th:text="${#numbers.formatDecimal(totalPay.totalActualPay, 0, 'COMMA', 0, 'POINT')}"></td>
+				<td rowspan="2" th:text="${#numbers.formatDecimal(totalPay.totalDeduction, 0, 'COMMA', 0, 'POINT')}">
+				</td>
+				<td rowspan="2" th:text="${#numbers.formatDecimal(totalPay.totalActualPay, 0, 'COMMA', 0, 'POINT')}">
+				</td>
 			</tr>
 			<tr>
 				<td>0</td>
@@ -129,8 +146,6 @@
 			</tr>
 		</table>
 	</div>
-
-
 
 </body>
 

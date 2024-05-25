@@ -1,5 +1,6 @@
 package com.example.demo.mapper;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
@@ -16,5 +17,8 @@ public interface SalaryMapper {
 
     @Select("Select * from Salary where userId = #{userId}")
 	List<SalaryDTO> getSalaryUser(int userId);
+
+    @Select("SELECT * FROM Salary WHERE EXTRACT(YEAR FROM salaryDate) = EXTRACT(YEAR FROM #{paymentMonth}) AND EXTRACT(MONTH FROM salaryDate) = EXTRACT(MONTH FROM #{paymentMonth})")
+	List<SalaryDTO> getSalary(LocalDate paymentMonth);
 	
 } 

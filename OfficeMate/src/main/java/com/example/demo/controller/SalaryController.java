@@ -86,11 +86,13 @@ public class SalaryController {
 		MonthSalaryDTO monthSalaryDTO = monthSalaryService.getMonthSalary(monthSalaryId);
 		List<UserDTO> userList = userService.getUserAll();
 		List<DeptDTO> deptList = deptService.getDeptAll();
-		TotalPay totalPay = new TotalPay(userList);
+		List<SalaryDTO> salaryList = salaryService.getSalary(monthSalaryDTO.getPaymentMonth());
+		TotalPay totalPay = new TotalPay(salaryList);
 
 		model.addAttribute("monthSalaryDTO", monthSalaryDTO);
 		model.addAttribute("userList", userList);
 		model.addAttribute("deptList", deptList);
+		model.addAttribute("salaryList", salaryList);
 		model.addAttribute("totalPay", totalPay);
 
 		return "salary/salary_ledger";
