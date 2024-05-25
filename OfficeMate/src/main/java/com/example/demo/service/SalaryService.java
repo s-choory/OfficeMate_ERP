@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,11 @@ public class SalaryService{
 
 	public List<SalaryDTO> getSalaryUser(int userId) {
 		return salaryMapper.getSalaryUser(userId);
+	}
+
+
+	public List<SalaryDTO> getSalary(LocalDate paymentMonth) {
+		return salaryMapper.getSalary(paymentMonth);
 	}
 
 

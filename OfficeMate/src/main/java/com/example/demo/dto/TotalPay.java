@@ -17,9 +17,9 @@ public class TotalPay {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TotalPay(List<UserDTO> userList) {
-		for (UserDTO user : userList) {
-            double basicPay = user.getMonthSalary();
+	public TotalPay(List<SalaryDTO> salaryList) {
+		for (SalaryDTO salary : salaryList) {
+            double basicPay = salary.getAmount().doubleValue();
             double incomeTax = basicPay * 0.03;
             double residentTax = basicPay * 0.003;
             double healthInsurance = basicPay * 0.06;
