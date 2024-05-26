@@ -41,7 +41,7 @@
 			<input type="hidden" name="_csrf" th:value="${_csrf.token}">
 		</div>
 	</div>
-	
+
 </body>
 
 <script>
@@ -106,35 +106,35 @@
 		endButton.disabled = true;
 	}
 
-	
+
 	let elapsedTimeInSeconds = 0; // 변수를 블록 밖으로 이동하고 초까지 0으로 초기화
-	
+
 	try {
-	    const checkInTimeParts = checkInTime.split(':');
-	    const checkOutTimeParts = checkOutTime.split(':');
-	
-	    // 시간을 HH:mm:ss 형식에서 milliseconds로 변환
-	    const checkInTimestamp = (parseInt(checkInTimeParts[0]) * 3600 + parseInt(checkInTimeParts[1]) * 60 + parseInt(checkInTimeParts[2])) * 1000;
-	    const checkOutTimestamp = (parseInt(checkOutTimeParts[0]) * 3600 + parseInt(checkOutTimeParts[1]) * 60 + parseInt(checkOutTimeParts[2])) * 1000;
-	
-	    // 시간 차이 계산
-	    elapsedTimeInSeconds = (checkOutTimestamp - checkInTimestamp) / 1000;
+		const checkInTimeParts = checkInTime.split(':');
+		const checkOutTimeParts = checkOutTime.split(':');
+
+		// 시간을 HH:mm:ss 형식에서 milliseconds로 변환
+		const checkInTimestamp = (parseInt(checkInTimeParts[0]) * 3600 + parseInt(checkInTimeParts[1]) * 60 + parseInt(checkInTimeParts[2])) * 1000;
+		const checkOutTimestamp = (parseInt(checkOutTimeParts[0]) * 3600 + parseInt(checkOutTimeParts[1]) * 60 + parseInt(checkOutTimeParts[2])) * 1000;
+
+		// 시간 차이 계산
+		elapsedTimeInSeconds = (checkOutTimestamp - checkInTimestamp) / 1000;
 	} catch (e) {
-	    console.error('Failed to parse check-in or check-out time:', e);
+		console.error('Failed to parse check-in or check-out time:', e);
 	}
-	
+
 	if (checkInTime && checkInTime !== 'null' && checkInTime !== '' && checkOutTime && checkOutTime !== 'null' && checkOutTime !== '') {
-	    const hours = Math.floor(elapsedTimeInSeconds / 3600);
-	    const minutes = Math.floor((elapsedTimeInSeconds % 3600) / 60);
-	    const seconds = elapsedTimeInSeconds % 60;
-	
-	    const formattedElapsedTime = `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
-	    console.log(formattedElapsedTime);
-	    timerDisplay.textContent = formattedElapsedTime;
+		const hours = Math.floor(elapsedTimeInSeconds / 3600);
+		const minutes = Math.floor((elapsedTimeInSeconds % 3600) / 60);
+		const seconds = elapsedTimeInSeconds % 60;
+
+		const formattedElapsedTime = `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
+		console.log(formattedElapsedTime);
+		timerDisplay.textContent = formattedElapsedTime;
 	}
 
 
-	
+
 	startButton.addEventListener('click', () => {
 		startAttendance();
 	});
@@ -227,17 +227,17 @@
 	}
 	// 출근 버튼과 퇴근 버튼 비활성화 여부 확인
 	const isAttendanceCompleted = checkInTime && checkOutTime;
-	
+
 	startButton.disabled = isAttendanceCompleted;
 	endButton.disabled = isAttendanceCompleted;
-	
+
 	// 출근 시간 고정 함수 호출
 	//stopTimerAndFixTime(serverCheckOutTime); // 이미 퇴근했다면 출근 시간 고정
-	
+
 	// 타이머 멈추고 시간을 고정하는 함수
 	function stopTimerAndFixTime(totalWorkTime) {
-	    clearInterval(intervalId);
-	    timerDisplay.textContent = JSON.parse(totalWorkTime).time; // 현재 타이머 시간을 총 근무 시간으로 설정
+		clearInterval(intervalId);
+		timerDisplay.textContent = JSON.parse(totalWorkTime).time; // 현재 타이머 시간을 총 근무 시간으로 설정
 	}
 
 </script>

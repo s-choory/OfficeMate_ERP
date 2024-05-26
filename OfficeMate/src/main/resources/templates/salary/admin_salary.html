@@ -59,12 +59,12 @@
 
 	/*<![CDATA[*/
 	function confirmPayment(paymentMonth) {
-	
-	    if (confirm("확정하시겠습니까?")) {
-	        var url = /*[[@{/admin/salaryPaymentComplete}]]*/ '';
-	        url += '?paymentMonth=' + paymentMonth;
-	        window.location.href = url;
-	    }
+
+		if (confirm("확정하시겠습니까?")) {
+			var url = /*[[@{/admin/salaryPaymentComplete}]]*/ '';
+			url += '?paymentMonth=' + paymentMonth;
+			window.location.href = url;
+		}
 	}
 	/*]]>*/
 </script>

@@ -36,7 +36,6 @@ public class HomeController {
 		return "home/start"; // index.html 렌더링
 	}
 
-
 	@GetMapping("/login")
 	public String login() {
 		return "home/login"; // login.html 렌더링

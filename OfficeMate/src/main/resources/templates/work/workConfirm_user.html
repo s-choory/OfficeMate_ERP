@@ -6,20 +6,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>OfficeMate</title>
 	<link rel="stylesheet" href="css/work_styles.css">
-	
+
 	<script th:inline="javascript">
 		document.addEventListener('DOMContentLoaded', function () {
 			const statusSelects = document.querySelectorAll('.status-select');
 			const csrfToken = document.querySelector('input[name="_csrf"]').value;
-	
+
 			statusSelects.forEach(select => {
 				select.addEventListener('change', () => {
 					const workId = select.dataset.workId;
 					const newStatus = select.value;
 					const row = select.parentNode.parentNode;
-	
+
 					const url = `/updateWorkStatus?workId=${workId}&status=${encodeURIComponent(newStatus)}`;
-	
+
 					fetch(url, {
 						method: 'POST',
 						headers: {
@@ -41,15 +41,17 @@
 						});
 				});
 			});
-	});
+		});
 	</script>
-	
+
 </head>
 
 <body>
 
 	<div class="sidebar">
-		<a href="/home" style="text-decoration: none;"><div class="logo">OfficeMate</div></a>
+		<a href="/home" style="text-decoration: none;">
+			<div class="logo">OfficeMate</div>
+		</a>
 		<div class="padding"></div> <!-- 여백 추가 -->
 		<ul class="menu">
 			<li><a href="notice">공지사항</a></li>
@@ -84,8 +86,10 @@
 				<th style="width:10%">상태변경</th>
 			</tr>
 			<tr th:each="work : ${workList}">
-				<td th:text="${work.workName}" th:onclick="|location.href='@{'/work/' + ${work.workId}}'|" style="cursor: pointer;"></td>
-				<td th:each="user : ${userList}" th:if="${user.userId == work.assignedTo}" th:text="${user.username}"></td>
+				<td th:text="${work.workName}" th:onclick="|location.href='@{'/work/' + ${work.workId}}'|"
+					style="cursor: pointer;"></td>
+				<td th:each="user : ${userList}" th:if="${user.userId == work.assignedTo}" th:text="${user.username}">
+				</td>
 				<td th:text="${work.dueDate}"></td>
 				<td class="work-status" th:text="${work.status}" th:id="'status-' + ${work.workId}"></td>
 				<td>
@@ -98,32 +102,32 @@
 			</tr>
 		</table>
 		<input type="hidden" name="_csrf" th:value="${_csrf.token}">
-		
+
 		<div th:if="${pageDTO.totalPageCount > 0}" id="pagination">
 			<!-- 맨 처음 페이지로 이동하는 버튼 -->
-		    <span th:if="${pageDTO.startPage > 1}">
-		        <a th:href="@{'/work?page=1'}" th:text="'처음&emsp;'"></a>
-		    </span>
-		
+			<span th:if="${pageDTO.startPage > 1}">
+				<a th:href="@{'/work?page=1'}" th:text="'처음&emsp;'"></a>
+			</span>
+
 			<!-- 이전 블록으로 이동하는 버튼 -->
-		    <span th:if="${pageDTO.isPrev == true}">
-		    	<a th:href="@{'/work?page='+${pageDTO.startPage - 1}}" th:text="'이전'"></a>
-		    </span>
-		
-		    <!-- 시퀀스 보여주는 값을 변경. -->
-		    <span th:each="pageNum : ${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
-		        <a class="div2" th:href="@{'/work?page='+${pageNum}}" th:text="|&emsp;${pageNum}&emsp;|"></a>
-		    </span>
-			
-		    <!-- 다음 블록으로 이동하는 버튼 -->
-		    <span th:if="${pageDTO.isNext == true}">
-			<a th:href="@{'/work?page='+|${pageDTO.endPage + 1}|}" th:text="'다음'"></a>
-		    </span>
-			
-		    <!-- 맨 뒷 페이지로 이동하는 버튼 -->
-		    <span th:if="${pageDTO.endPage < pageDTO.totalPageCount}">
-			<a th:href="@{'/work?page='+${pageDTO.totalPageCount}}" th:text="|&emsp;끝|"></a>
-		    </span>
+			<span th:if="${pageDTO.isPrev == true}">
+				<a th:href="@{'/work?page='+${pageDTO.startPage - 1}}" th:text="'이전'"></a>
+			</span>
+
+			<!-- 시퀀스 보여주는 값을 변경. -->
+			<span th:each="pageNum : ${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
+				<a class="div2" th:href="@{'/work?page='+${pageNum}}" th:text="|&emsp;${pageNum}&emsp;|"></a>
+			</span>
+
+			<!-- 다음 블록으로 이동하는 버튼 -->
+			<span th:if="${pageDTO.isNext == true}">
+				<a th:href="@{'/work?page='+|${pageDTO.endPage + 1}|}" th:text="'다음'"></a>
+			</span>
+
+			<!-- 맨 뒷 페이지로 이동하는 버튼 -->
+			<span th:if="${pageDTO.endPage < pageDTO.totalPageCount}">
+				<a th:href="@{'/work?page='+${pageDTO.totalPageCount}}" th:text="|&emsp;끝|"></a>
+			</span>
 		</div>
 	</div>
 

@@ -11,7 +11,9 @@
 
 <body>
 	<div class="sidebar">
-		<a href="/home" style="text-decoration: none;"><div class="logo">OfficeMate</div></a>
+		<a href="/home" style="text-decoration: none;">
+			<div class="logo">OfficeMate</div>
+		</a>
 		<div class="padding"></div> <!-- 여백 추가 -->
 		<ul class="menu">
 			<li><a href="../notice">공지사항</a></li>
@@ -31,10 +33,11 @@
 	<div class="content">
 		<h2>부서 정보</h2>
 		<br>
-		
+
 		<div class="dept-container" th:each="dept : ${deptList}">
-			<a th:href="@{'/deptDetail?departmentId=' + ${dept.departmentId}}" style="color:black; text-decoration: none;">
-			<span th:text="${dept.departmentName}"></span>
+			<a th:href="@{'/deptDetail?departmentId=' + ${dept.departmentId}}"
+				style="color:black; text-decoration: none;">
+				<span th:text="${dept.departmentName}"></span>
 			</a>
 			<i class="fas fa-edit" th:data-dept-id="${dept.departmentId}" title="수정" style="cursor: pointer;"></i>
 			<i class="fas fa-trash-alt" th:data-dept-id="${dept.departmentId}" title="삭제" style="cursor: pointer;"></i>
@@ -52,7 +55,7 @@
 		</div>
 		<button id="deptManageBtn">부서 추가</button>
 		<input type="hidden" name="_csrf" th:value="${_csrf.token}">
-	
+
 	</div>
 	<script>
 		const deptManageBtn = document.getElementById('deptManageBtn');
@@ -71,12 +74,12 @@
 				const parent = icon.parentElement;
 				const editMode = parent.querySelector('.edit-mode');
 				const normalMode = parent.querySelector('span:not(.edit-mode)');
-				
+
 				editMode.style.display = 'inline-block';
 				normalMode.style.display = 'none';
 			});
 		});
-		
+
 		// 취소 버튼 클릭 시 편집 모드 종료하는 이벤트 핸들러
 		const cancelButtons = document.querySelectorAll('.cancel-edit');
 		cancelButtons.forEach(button => {
@@ -84,46 +87,46 @@
 				const parent = button.parentElement.parentElement;
 				const editMode = parent.querySelector('.edit-mode');
 				const normalMode = parent.querySelector('span:not(.edit-mode)');
-				
+
 				editMode.style.display = 'none';
 				normalMode.style.display = 'inline-block';
 			});
 		});
-		
+
 		const confirmButtons = document.querySelectorAll('.confirm-edit');
-		        confirmButtons.forEach(button => {
-		            button.addEventListener('click', () => {
-		                const parent = button.parentElement.parentElement;
-		                const deptId = button.parentElement.previousElementSibling.dataset.deptId;
-		                const newDeptName = button.parentElement.querySelector('.edit-input').value;
-		
-		                const url = `/deptUpdate?departmentId=${deptId}&departmentName=${encodeURIComponent(newDeptName)}`;
-		                const csrfToken = document.querySelector('input[name="_csrf"]').value;
-		
-		                fetch(url, {
-		                        method: 'POST',
-		                        headers: {
-		                            'X-CSRF-TOKEN': csrfToken
-		                        }
-		                    })
-		                    .then(response => response.json())
-		                    .then(data => {
-		                        console.log(data.message);
-		                        // 성공적으로 업데이트되면 편집 모드를 종료하고 화면에 업데이트된 내용을 반영합니다.
-								if (data.status === 'success') {
-								    const normalMode = parent.querySelector('span:not(.edit-mode)');
-								    normalMode.textContent = newDeptName; // 이 부분을 수정
-								
-								    const editMode = parent.querySelector('.edit-mode');
-								    editMode.style.display = 'none';
-								    normalMode.style.display = 'inline-block';
-								}
-		                    })
-		                    .catch(error => {
-		                        console.error('부서명 업데이트 중 오류 발생:', error);
-		                    });
-		            });
-		        });
+		confirmButtons.forEach(button => {
+			button.addEventListener('click', () => {
+				const parent = button.parentElement.parentElement;
+				const deptId = button.parentElement.previousElementSibling.dataset.deptId;
+				const newDeptName = button.parentElement.querySelector('.edit-input').value;
+
+				const url = `/deptUpdate?departmentId=${deptId}&departmentName=${encodeURIComponent(newDeptName)}`;
+				const csrfToken = document.querySelector('input[name="_csrf"]').value;
+
+				fetch(url, {
+					method: 'POST',
+					headers: {
+						'X-CSRF-TOKEN': csrfToken
+					}
+				})
+					.then(response => response.json())
+					.then(data => {
+						console.log(data.message);
+						// 성공적으로 업데이트되면 편집 모드를 종료하고 화면에 업데이트된 내용을 반영합니다.
+						if (data.status === 'success') {
+							const normalMode = parent.querySelector('span:not(.edit-mode)');
+							normalMode.textContent = newDeptName; // 이 부분을 수정
+
+							const editMode = parent.querySelector('.edit-mode');
+							editMode.style.display = 'none';
+							normalMode.style.display = 'inline-block';
+						}
+					})
+					.catch(error => {
+						console.error('부서명 업데이트 중 오류 발생:', error);
+					});
+			});
+		});
 
 		deleteIcons.forEach(icon => {
 			icon.addEventListener('click', () => {
@@ -160,13 +163,13 @@
 					.then(data => {
 						console.log(data.message);
 						if (data.status === 'success') {
-						    const editedName = parent.querySelector('span:not(.edit-mode)'); // 수정
+							const editedName = parent.querySelector('span:not(.edit-mode)'); // 수정
 							console.log(editedName);
-						    editedName.textContent = newDeptName;
-						
-						    const editMode = parent.querySelector('.edit-mode');
-						    editMode.style.display = 'none';
-						    editedName.style.display = 'inline-block'; // 수정
+							editedName.textContent = newDeptName;
+
+							const editMode = parent.querySelector('.edit-mode');
+							editMode.style.display = 'none';
+							editedName.style.display = 'inline-block'; // 수정
 						}
 
 					})

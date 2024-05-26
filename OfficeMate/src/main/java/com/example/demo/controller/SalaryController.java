@@ -44,7 +44,7 @@ public class SalaryController {
 		}
 		UserDTO userDTO = userService.getUserByName(name);
 		List<SalaryDTO> salaryList = salaryService.getSalaryUser(userDTO.getUserId());
-		model.addAttribute("salaryList",salaryList);
+		model.addAttribute("salaryList", salaryList);
 		return "salary/salary";
 	}
 
@@ -101,7 +101,7 @@ public class SalaryController {
 	@GetMapping("/admin/salaryPaymentComplete")
 	public String salaryPaymentComplete(LocalDate paymentMonth) {
 		MonthSalaryDTO monthSalaryDTO = monthSalaryService.getMonthSalaryDTO(paymentMonth);
-		if(monthSalaryDTO.getPaymentState().equals("지급 완료")) {
+		if (monthSalaryDTO.getPaymentState().equals("지급 완료")) {
 			return "redirect:/admin/salary";
 		}
 		String paymentDescription = paymentMonth.toString().substring(6, 7) + "월급여대장";
@@ -109,7 +109,7 @@ public class SalaryController {
 		monthSalaryService.salaryPaymentComplete(paymentMonth);
 		List<UserDTO> userList = userService.getUserAll();
 		for (UserDTO user : userList) {
-			if(!user.getUsername().equals("admin")) {
+			if (!user.getUsername().equals("admin")) {
 				String monthSalaryString = String.valueOf(user.getMonthSalary());
 				BigDecimal monthSalary = new BigDecimal(monthSalaryString);
 				SalaryDTO salaryDTO = new SalaryDTO(user.getUserId(), monthSalary, "계좌이체", paymentDescription);
