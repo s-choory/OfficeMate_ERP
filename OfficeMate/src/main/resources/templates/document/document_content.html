@@ -10,17 +10,19 @@
 </head>
 
 <script th:inline="javascript">
-   function confirmDelete(url) {
-       if (confirm("정말 삭제하시겠습니까?")) {
-           window.location.href = url;
-       }
-   }
+	function confirmDelete(url) {
+		if (confirm("정말 삭제하시겠습니까?")) {
+			window.location.href = url;
+		}
+	}
 </script>
 
 <body>
 
 	<div class="sidebar">
-		<a href="/home" style="text-decoration: none;"><div class="logo">OfficeMate</div></a>
+		<a href="/home" style="text-decoration: none;">
+			<div class="logo">OfficeMate</div>
+		</a>
 		<div class="padding"></div> <!-- 여백 추가 -->
 
 		<ul class="menu">
@@ -35,18 +37,22 @@
 			</div>
 		</ul>
 	</div>
-	
+
 	<div class="login-container">
-	  		<button class="login-button">로그인</button>
-	  </div>
+		<button class="login-button">로그인</button>
+	</div>
 
 	<div class="content">
 		<h2 th:text="${document.documentName}"></h2>
 		<br>
 		<a th:href="@{'/documentEdit/' + ${document.documentId}}"><button class="docu_edit">수정</button></a>
-		<button class="docu_delete" th:onclick="|confirmDelete('@{/documentDelete(documentId=${document.documentId})}')|">삭제</button>
-		<button class="docu_share" th:onclick="'window.open(\'/userSearch?userName=&documentId='+${document.documentId}+'\',\'blank\', \'resizable=yes scrollbars=no width=790 height=450 left=100 top=200\');'">공유</button>		<hr>
-		<a th:href="@{/document/download/{documentId}(documentId=${document.documentId})}" th:text="${document.fileName}">파일 다운로드</a>
+		<button class="docu_delete"
+			th:onclick="|confirmDelete('@{/documentDelete(documentId=${document.documentId})}')|">삭제</button>
+		<button class="docu_share"
+			th:onclick="'window.open(\'/userSearch?userName=&documentId='+${document.documentId}+'\',\'blank\', \'resizable=yes scrollbars=no width=790 height=450 left=100 top=200\');'">공유</button>
+		<hr>
+		<a th:href="@{/document/download/{documentId}(documentId=${document.documentId})}"
+			th:text="${document.fileName}">파일 다운로드</a>
 
 		<form class="docu_form">
 

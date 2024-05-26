@@ -21,7 +21,9 @@
 <body>
 
 	<div class="sidebar">
-		<a href="/home" style="text-decoration: none;"><div class="logo">OfficeMate</div></a>
+		<a href="/home" style="text-decoration: none;">
+			<div class="logo">OfficeMate</div>
+		</a>
 		<div class="padding"></div> <!-- 여백 추가 -->
 
 		<ul class="menu">
@@ -55,7 +57,8 @@
 
 			<div>
 				<span class="notice_details">작성자: </span><span th:text="${notice.postedBy}"></span>
-				<span class="notice_details">작성일: </span><span th:text="${#strings.substring(notice.postDate, 0, 16)}"></span>
+				<span class="notice_details">작성일: </span><span
+					th:text="${#strings.substring(notice.postDate, 0, 16)}"></span>
 				<hr>
 			</div>
 			<div th:if="${base64EncodedFile != null}">

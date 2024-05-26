@@ -12,7 +12,9 @@
 <body>
 
 	<div class="sidebar">
-		<a href="/home" style="text-decoration: none;"><div class="logo">OfficeMate</div></a>
+		<a href="/home" style="text-decoration: none;">
+			<div class="logo">OfficeMate</div>
+		</a>
 		<div class="padding"></div> <!-- 여백 추가 -->
 
 		<ul class="menu">
@@ -32,14 +34,15 @@
 		<h2>문서 수정</h2>
 		<br>
 		<form class="docu_form" action="/documentEditConfirm" method="post" enctype="multipart/form-data">
-		<button class="docu_edit" type="submit">완료</button>
-		<hr>
+			<button class="docu_edit" type="submit">완료</button>
+			<hr>
 			<textarea class="docu_name" name="documentName" th:text="${document.documentName}"></textarea>
 			<hr>
-			현재 파일:	<a th:href="@{/document/download/{documentId}(documentId=${document.documentId})}" th:text="${document.fileName}">파일 다운로드</a>
+			현재 파일: <a th:href="@{/document/download/{documentId}(documentId=${document.documentId})}"
+				th:text="${document.fileName}">파일 다운로드</a>
 			<br><br>
 			다른 파일로 변경:<input type="file" name="file" accept=".pdf,.doc,.docx,.txt"><br>
-						<span style="font-size: 10px; color: lightgray;">(1MB 이하의 문서만 업로드하세요)</span>
+			<span style="font-size: 10px; color: lightgray;">(1MB 이하의 문서만 업로드하세요)</span>
 			<textarea class="docu_text" name=description th:text="${document.description}"></textarea>
 			<input type="hidden" name="documentId" th:value="${document.documentId}">
 			<input type="hidden" name="uploadUser" th:value="${document.uploadUser}">

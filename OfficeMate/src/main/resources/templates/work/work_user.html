@@ -83,7 +83,9 @@
 <body>
 
 	<div class="sidebar">
-		<a href="/home" style="text-decoration: none;"><div class="logo">OfficeMate</div></a>
+		<a href="/home" style="text-decoration: none;">
+			<div class="logo">OfficeMate</div>
+		</a>
 		<div class="padding"></div> <!-- 여백 추가 -->
 		<ul class="menu">
 			<li><a href="notice">공지사항</a></li>
@@ -125,7 +127,8 @@
 			</tr>
 			<tr th:each="work : ${workList}" style="cursor: pointer;">
 				<td th:text="${work.workName}"></td>
-				<td th:each="user : ${userList}" th:if="${user.userId == work.assignedTo}" th:text="${user.username}"></td>
+				<td th:each="user : ${userList}" th:if="${user.userId == work.assignedTo}" th:text="${user.username}">
+				</td>
 				<td th:text="${work.dueDate}"></td>
 				<td class="work-status" th:text="${work.status}" th:id="'status-' + ${work.workId}"></td>
 				<td>
@@ -136,9 +139,10 @@
 					</select>
 					<button class="delete-btn" th:data-work-id="${work.workId}">삭제</button>
 				</td>
-				<td style = "display: none;">
+				<td style="display: none;">
 					<button class="edit-btn" th:data-work-id="${work.workId}">업무 설명 수정</button>
-					<td class="work-description" th:text="${work.description}" th:data-work-id="${work.workId}" style="display:none;"></td> <!-- 업무 설명 숨김 -->
+				<td class="work-description" th:text="${work.description}" th:data-work-id="${work.workId}"
+					style="display:none;"></td> <!-- 업무 설명 숨김 -->
 				</td>
 			</tr>
 		</table>
@@ -171,17 +175,17 @@
 			</span>
 		</div>
 	</div>
-	
+
 	<div id="editModal" class="modal">
-	    <div class="modal-content">
-	        <span class="close">&times;</span>
-	        <h2>업무 상세</h2>
-	        <form id="editForm">
-	            <input type="hidden" id="editWorkId">
-	            <textarea id="editDescription" placeholder="업무 상세"></textarea>
-	            <button type="button" onclick="saveDescription()">저장</button>
-	        </form>
-	    </div>
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h2>업무 상세</h2>
+			<form id="editForm">
+				<input type="hidden" id="editWorkId">
+				<textarea id="editDescription" placeholder="업무 상세"></textarea>
+				<button type="button" onclick="saveDescription()">저장</button>
+			</form>
+		</div>
 	</div>
 
 </body>
@@ -190,73 +194,73 @@
 	document.addEventListener('DOMContentLoaded', function () {
 		const rows = document.querySelectorAll('tr');
 		const now = new Date();
-		
+
 		rows.forEach(row => {
-		    const dueDateText = row.children[2].textContent; // 마감 날짜가 있는 열의 인덱스에 따라 조정
-		    const dueDate = new Date(dueDateText);
-		    const timeDiff = dueDate.getTime() - now.getTime();
-		    const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-		
-		    if (daysDiff <= 0) {
-		        row.style.backgroundColor = 'red'; // 남은 일자가 하루 이하일 때 배경색 변경
-		    } else if (daysDiff <= 3) {
-		        row.style.backgroundColor = 'yellow'; // 남은 일자가 하루 이하일 때 배경색 변경
-		    }
-		
-		    row.addEventListener('click', function (event) {
-		        if (event.target.classList.contains('status-select') || event.target.classList.contains('delete-btn')) {
-		            return;
-		        }
-		
-		        const workId = row.querySelector('.status-select').dataset.workId;
-		        const description = row.querySelector('.work-description').textContent;
-		
-		        document.getElementById('editWorkId').value = workId;
-		        document.getElementById('editDescription').value = description;
-		        document.getElementById('editModal').style.display = 'block';
-		    });
+			const dueDateText = row.children[2].textContent; // 마감 날짜가 있는 열의 인덱스에 따라 조정
+			const dueDate = new Date(dueDateText);
+			const timeDiff = dueDate.getTime() - now.getTime();
+			const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+			if (daysDiff <= 0) {
+				row.style.backgroundColor = 'red'; // 남은 일자가 하루 이하일 때 배경색 변경
+			} else if (daysDiff <= 3) {
+				row.style.backgroundColor = 'yellow'; // 남은 일자가 하루 이하일 때 배경색 변경
+			}
+
+			row.addEventListener('click', function (event) {
+				if (event.target.classList.contains('status-select') || event.target.classList.contains('delete-btn')) {
+					return;
+				}
+
+				const workId = row.querySelector('.status-select').dataset.workId;
+				const description = row.querySelector('.work-description').textContent;
+
+				document.getElementById('editWorkId').value = workId;
+				document.getElementById('editDescription').value = description;
+				document.getElementById('editModal').style.display = 'block';
+			});
 		});
-		
+
 		// 모달 닫기
 		const modal = document.getElementById('editModal');
 		const span = document.getElementsByClassName('close')[0];
-		
+
 		span.onclick = function () {
-		    modal.style.display = 'none';
+			modal.style.display = 'none';
 		}
-		
+
 		window.onclick = function (event) {
-		    if (event.target == modal) {
-		        modal.style.display = 'none';
-		    }
+			if (event.target == modal) {
+				modal.style.display = 'none';
+			}
 		}
 	});
-	
+
 	function saveDescription() {
-	    const workId = document.getElementById('editWorkId').value;
-	    const newDescription = document.getElementById('editDescription').value;
-	    const csrfToken = document.querySelector('input[name="_csrf"]').value;
-	
-	    fetch(`/updateWorkDescription?workId=${workId}`, {
-	        method: 'POST',
-	        headers: {
-	            'X-CSRF-TOKEN': csrfToken,
-	            'Content-Type': 'application/json'
-	        },
-	        body: JSON.stringify({ description: newDescription })
-	    })
-	        .then(response => response.json())
-	        .then(data => {
-	            if (data.status === 'success') {
-	                document.querySelector(`.work-description[data-work-id="${workId}"]`).textContent = newDescription;
-	                document.getElementById('editModal').style.display = 'none';
-	            } else {
-	                console.error(data.message);
-	            }
-	        })
-	        .catch(error => {
-	            console.error('업무 설명 업데이트 중 오류 발생:', error);
-	        });
+		const workId = document.getElementById('editWorkId').value;
+		const newDescription = document.getElementById('editDescription').value;
+		const csrfToken = document.querySelector('input[name="_csrf"]').value;
+
+		fetch(`/updateWorkDescription?workId=${workId}`, {
+			method: 'POST',
+			headers: {
+				'X-CSRF-TOKEN': csrfToken,
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({description: newDescription})
+		})
+			.then(response => response.json())
+			.then(data => {
+				if (data.status === 'success') {
+					document.querySelector(`.work-description[data-work-id="${workId}"]`).textContent = newDescription;
+					document.getElementById('editModal').style.display = 'none';
+				} else {
+					console.error(data.message);
+				}
+			})
+			.catch(error => {
+				console.error('업무 설명 업데이트 중 오류 발생:', error);
+			});
 	}
 </script>
 

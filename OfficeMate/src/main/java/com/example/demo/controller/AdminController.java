@@ -46,20 +46,19 @@ public class AdminController {
 		}
 		return "user/user_detail";
 	}
-	
+
 	@PostMapping("/admin/userDetailUpdate")
 	public String userDetailUpdate(UserDTO userDTO) {
 		int n = userService.updateUserDetail(userDTO);
 		System.out.println(n);
 		return "redirect:/admin/empManage";
 	}
-	
+
 	@PostMapping("/admin/userDelete")
 	public String userDelete(UserDTO userDTO) {
 		int n = userService.deleteUser(userDTO.getUserId());
 		System.out.println(n);
 		return "redirect:/admin/empManage";
 	}
-	
 
 }

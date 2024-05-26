@@ -12,7 +12,9 @@
 <body>
 
 	<div class="sidebar">
-		<a href="/home" style="text-decoration: none;"><div class="logo">OfficeMate</div></a>
+		<a href="/home" style="text-decoration: none;">
+			<div class="logo">OfficeMate</div>
+		</a>
 		<div class="padding"></div> <!-- 여백 추가 -->
 
 		<ul class="menu">
@@ -35,16 +37,16 @@
 		<h2>공지사항 등록</h2>
 		<br>
 		<form class="notice_form" action="/admin/noticeAddConfirm" method="post" enctype="multipart/form-data">
-		    <button class="notice_edit" style="right:120px" type="submit">등록 완료</button>
-		    <hr>
-		    <textarea class="notice_name" name="title" placeholder="Title"></textarea>
-		    <hr>
-		    <!-- 이미지 파일 업로드 -->
+			<button class="notice_edit" style="right:120px" type="submit">등록 완료</button>
+			<hr>
+			<textarea class="notice_name" name="title" placeholder="Title"></textarea>
+			<hr>
+			<!-- 이미지 파일 업로드 -->
 			<div>
-			    <label for="imageFile" class="form-label">이미지 파일</label>
-			    <input type="file" class="form-control" id="imageFile" name="files">
+				<label for="imageFile" class="form-label">이미지 파일</label>
+				<input type="file" class="form-control" id="imageFile" name="files">
 			</div>
-		    <textarea class="notice_text" name="content" placeholder="Contents"></textarea>
+			<textarea class="notice_text" name="content" placeholder="Contents"></textarea>
 			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 		</form>
 	</div>

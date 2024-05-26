@@ -1,44 +1,48 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OfficeMate</title>
-    <link rel="stylesheet" href="../css/search_styles.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>OfficeMate</title>
+	<link rel="stylesheet" href="../css/search_styles.css">
 </head>
 <script th:inline="javascript">
-    function updateDocument(row) {
-        var username = row.getAttribute('data-username');
-        var documentId = row.getAttribute('data-documentId');
-        var url = '/updateDocumentShareUser?username=' + username + '&documentId=' + documentId;
-        window.opener.location.href = url;
-        window.close();
-    }
+	function updateDocument(row) {
+		var username = row.getAttribute('data-username');
+		var documentId = row.getAttribute('data-documentId');
+		var url = '/updateDocumentShareUser?username=' + username + '&documentId=' + documentId;
+		window.opener.location.href = url;
+		window.close();
+	}
 </script>
+
 <body>
-<div class="content">
-    <h2>사용자 검색</h2>
-    <hr>
-    <h3>사용자 이름 입력</h3>
-    <form th:action="@{/userSearch}" method="get">
-        <input type="text" name="userName" class="user_name">
-        <input type="submit" value="검색" class="submit_bt">
-		<input type="hidden" name="documentId" th:value="${documentId}">
-    </form>
-    <br><br>
-    <hr>
-    <table>
-        <tr>
-            <th style="width:20%">부서</th>
-            <th style="width:20%">이름</th>
-            <th style="width:60%">이메일</th>
-        </tr>
-		<tr th:each="user : ${userList}" class="user_info" th:data-username="${user.username}" th:data-documentId="${documentId}" onclick="updateDocument(this)">
-		    <td th:text="${user.departmentId}"></td>
-		    <td th:text="${user.username}"></td>
-		    <td th:text="${user.email}"></td>
-		</tr>
-    </table>
-</div>
+	<div class="content">
+		<h2>사용자 검색</h2>
+		<hr>
+		<h3>사용자 이름 입력</h3>
+		<form th:action="@{/userSearch}" method="get">
+			<input type="text" name="userName" class="user_name">
+			<input type="submit" value="검색" class="submit_bt">
+			<input type="hidden" name="documentId" th:value="${documentId}">
+		</form>
+		<br><br>
+		<hr>
+		<table>
+			<tr>
+				<th style="width:20%">부서</th>
+				<th style="width:20%">이름</th>
+				<th style="width:60%">이메일</th>
+			</tr>
+			<tr th:each="user : ${userList}" class="user_info" th:data-username="${user.username}"
+				th:data-documentId="${documentId}" onclick="updateDocument(this)">
+				<td th:text="${user.departmentId}"></td>
+				<td th:text="${user.username}"></td>
+				<td th:text="${user.email}"></td>
+			</tr>
+		</table>
+	</div>
 </body>
+
 </html>

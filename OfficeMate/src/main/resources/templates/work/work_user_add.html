@@ -7,30 +7,32 @@
 
 	<title>OfficeMate</title>
 	<link rel="stylesheet" href="css/work_styles.css">
-    <script>
-        function validateForm() {
-            var workName = document.querySelector('textarea[name="workName"]').value;
-            if (workName.trim() === "") {
-                alert("업무명을 입력해주세요.");
-                return false;
-            }
-            return true;
-        }
-		
-		window.onload = function() {
-		    var datetimeInput = document.getElementById('datetime');
-		    var today = new Date().toISOString().slice(0, 16); // 시간까지 포함
-		    datetimeInput.value = today;
+	<script>
+		function validateForm() {
+			var workName = document.querySelector('textarea[name="workName"]').value;
+			if (workName.trim() === "") {
+				alert("업무명을 입력해주세요.");
+				return false;
+			}
+			return true;
 		}
 
-		
-    </script>
+		window.onload = function () {
+			var datetimeInput = document.getElementById('datetime');
+			var today = new Date().toISOString().slice(0, 16); // 시간까지 포함
+			datetimeInput.value = today;
+		}
+
+
+	</script>
 </head>
 
 <body>
 
 	<div class="sidebar">
-			<a href="/home" style="text-decoration: none;"><div class="logo">OfficeMate</div></a>
+		<a href="/home" style="text-decoration: none;">
+			<div class="logo">OfficeMate</div>
+		</a>
 		<div class="padding"></div> <!-- 여백 추가 -->
 
 		<ul class="menu">
@@ -50,15 +52,11 @@
 		<h2>업무 등록</h2>
 		<form th:action="@{/workAddConfirm}" method="post" onsubmit="return validateForm()">
 			<label for="datetime">기한:
-			  <input type="datetime-local"
-			         id="datetime"
-			         name="dueDate"
-			         max="2077-06-20T23:59"
-			         min="2010-06-05T00:00">
+				<input type="datetime-local" id="datetime" name="dueDate" max="2077-06-20T23:59" min="2010-06-05T00:00">
 			</label>(까지)
-		    <button class="docu_add" style="right:120px" type="submit">완료</button>
-		    <br>
-		    <hr>
+			<button class="docu_add" style="right:120px" type="submit">완료</button>
+			<br>
+			<hr>
 			<textarea class="docu_name" name="workName" placeholder="업무명"></textarea>
 			<hr>
 			<textarea class="docu_text" name="description" placeholder="업무 상세 설명"></textarea>
