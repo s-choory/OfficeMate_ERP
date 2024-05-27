@@ -7,24 +7,6 @@
 	<title>OfficeMate</title>
 	<link rel="stylesheet" href="css/salary_styles.css">
 </head>
-<style>
-	table {
-		border-collapse: collapse;
-		width: 100%;
-	}
-
-	th,
-	td {
-		padding: 8px;
-		text-align: center;
-		border: 1px solid #ddd;
-	}
-
-	td:hover {
-		background-color: #f5f5f5;
-	}
-</style>
-
 <body>
 
 	<div class="sidebar">
@@ -45,9 +27,6 @@
 		</ul>
 	</div>
 
-	<div class="login-container">
-		<button class="login-button">로그인</button>
-	</div>
 	<div class="content">
 		<h2>급여 지급 내역</h2>
 
@@ -69,7 +48,7 @@
 				<td th:text="${salary.description}"></td>
 				<td th:text="${#numbers.formatDecimal(salary.amount, 0, 'COMMA', 0, 'POINT')}"></td>
 				<td th:text="${salary.paymentMethod}"></td>
-				<td><a href="">조회</a></td>
+				<td><a href="statement">조회</a></td>
 			</tr>
 
 		</table>
