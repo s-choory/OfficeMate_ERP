@@ -119,5 +119,10 @@ public class SalaryController {
 
 		return "redirect:/admin/salary";
 	}
+	
+	@GetMapping("/statement")
+	public String statement() {
+		return "salary/statement";
+	}
 
 }
