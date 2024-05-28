@@ -48,7 +48,7 @@
 				<td th:text="${salary.description}"></td>
 				<td th:text="${#numbers.formatDecimal(salary.amount, 0, 'COMMA', 0, 'POINT')}"></td>
 				<td th:text="${salary.paymentMethod}"></td>
-				<td><a href="statement">조회</a></td>
+				<td><a th:href="@{'/statement?salaryId=' + ${salary.salaryId}}">조회</a></td>
 			</tr>
 
 		</table>

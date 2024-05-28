@@ -38,8 +38,7 @@
 			<button style="right:280px;" onclick="location.href='admin/document'">전체 문서 보기</button>
 		</div>
 		<button onclick="location.href='documentAdd'">등록</button>
-		<br>
-		<hr>
+		<br><br>
 
 		<table>
 			<tr>
@@ -53,8 +52,9 @@
 				th:onclick="|location.href='@{'/document/' + ${document.documentId}}'|" style="cursor: pointer;">
 				<td class="dtitle" th:text="${document.documentName}"></td>
 				<td class="dwriter" th:text="${document.uploadUser}"></td>
-				<td class="dwdate" th:text="${document.uploadDate}"></td>
-				<td class="dedate" th:text="${document.updateDate}"></td>
+				<td class="dwdate" th:text="${#strings.substring(document.uploadDate.toString(), 0, 19)}"></td>
+				<td class="dedate" th:if="${document.updateDate} != null" th:text="${#strings.substring(document.updateDate.toString(), 0, 19)}"></td>
+				<td class="dedate" th:if="${document.updateDate} == null"></td>
 				<td class="sharer" th:text="${document.shareUser}"></td>
 			</tr>
 		</table>

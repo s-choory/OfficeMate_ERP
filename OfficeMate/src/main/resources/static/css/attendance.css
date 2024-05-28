@@ -52,8 +52,9 @@ body {
     background-color: #185066;
 }
 
+
 .attendance-container {
-	margin-top: 200px;
+	margin-top: 50px;
     margin-left: 220px;
     padding: 20px;
     display: flex;
@@ -137,4 +138,8 @@ body {
     100% {
         transform: rotate(360deg);
     }
+}
+
+.logout{
+	color: red;
 }

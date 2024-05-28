@@ -5,124 +5,105 @@
 	<link rel="stylesheet" href="css/salary_styles.css">
 </head>
 <body>
-	<div class="sidebar">
-		<a href="/home" style="text-decoration: none;">
-			<div class="logo">OfficeMate</div>
-		</a>
-		<div class="padding"></div> <!-- 여백 추가 -->
-		<ul class="menu">
-			<li><a href="notice">공지사항</a></li>
-			<li><a href="dept">부서</a></li>
-			<li><a href="work">업무</a></li>
-			<li><a href="attendance">출퇴근</a></li>
-			<li><a href="document">문서</a></li>
-			<li><a href="salary" style="background-color:#185066">급여지급</a></li>
-			<div sec:authorize="hasRole('ADMIN')">
-				<li><a href="admin/empManage">전체사원관리</a></li>
-			</div>
-		</ul>
-	</div>
-	<div class="content">
-    <h2>2023/06 1차수 (급여)</h2>
+
+	<div class="content" style="	margin-left: 100px;">
+		<h2 th:text="${#strings.substring(salary.salaryDate.toString(), 0, 7) + ' (급여)'}"></h2>
+		<input type="button" value="인쇄" onclick="window.print()"/>
+		<button onclick="location.href='/salary'">뒤로가기</button>
+		<br><br>
     <table>
         <tr>
             <th>사원번호</th>
-            <td>2023-06</td>
+            <td th:text="${user.userId}"></td>
             <th>성명</th>
-            <td>직급</td>
-            <th>김민혁</th>
-            <td>선임(수습)</td>
+            <td th:text="${user.username}"></td>
+            <th>직급</th>
+            <td th:text="${user.userRank}"></td>
         </tr>
         <tr>
+            <th>부서번호</th>
+            <td th:text="${dept.departmentId}"></td>
             <th>부서</th>
-            <td>영업 1팀</td>
-            <th>입사일</th>
-            <td>지급일자</td>
-            <td>2023/06/20</td>
+            <td th:text="${dept.departmentName}"></td>
+            <th>지급일</th>
+			<td th:text="${salary.salaryDate}"></td>
         </tr>
         <tr>
             <th>지급총액</th>
-            <td>2,340,000</td>
+            <td th:text="${#numbers.formatDecimal(salary.amount, 0, 'COMMA', 0, 'POINT')}"></td>
             <th>공제총액</th>
-            <td>235,470</td>
+			<td th:text="${#numbers.formatDecimal(salary.amount*0.1, 0, 'COMMA', 0, 'POINT')}"></td>
             <th>실지급액</th>
-            <td>2,104,530</td>
+			<td th:text="${#numbers.formatDecimal(salary.amount*0.9, 0, 'COMMA', 0, 'POINT')}"></td>
         </tr>
     </table>
     <table>
         <tr>
-            <th colspan="2">수당항목명</th>
+            <th>수당항목명</th>
             <th>지급유형</th>
             <th>근무기록</th>
             <th>수당금액</th>
             <th>배율</th>
             <th>금액</th>
+            <th>산출방법</th>
         </tr>
         <tr>
-            <td rowspan="3">급여</td>
-            <td>지급유형</td>
+            <td>급여</td>
+            <td th:text="${salary.paymentMethod}"></td>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td>2,160,000</td>
+			<td th:text="${#numbers.formatDecimal(salary.amount-180000, 0, 'COMMA', 0, 'POINT')}"></td>
+			<td></td>
         </tr>
         <tr>
-            <td>시데</td>
+            <td>식대</td>
             <td>지급유형</td>
             <td></td>
             <td></td>
             <td></td>
             <td>180,000</td>
+			<td></td>
         </tr>
-        <tr>
-            <td>지급유형</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>2,340,000</td>
-        </tr>
+		<tr>
+			<th colspan="2">지급유형</th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th th:text="${#numbers.formatDecimal(salary.amount, 0, 'COMMA', 0, 'POINT')}"></th>
+			<th></th>
+		</tr>
     </table>
     <table>
         <tr>
-            <th colspan="2">공제항목명</th>
+            <th>공제항목명</th>
             <th>금액</th>
+            <th>산출방법</th>
         </tr>
         <tr>
-            <td>소득세</td>
+            <td style="text-align: left;">소득세</td>
+			<td th:text="${#numbers.formatDecimal(salary.amount*0.03, 0, 'COMMA', 0, 'POINT')}" style="text-align: right;"></td>
             <td></td>
-            <td>24,660</td>
         </tr>
         <tr>
-            <td>지방소득세</td>
+            <td			style="text-align: left;">주민세</td>
+			<td th:text="${#numbers.formatDecimal(salary.amount*0.003, 0, 'COMMA', 0, 'POINT')}"style="text-align: right;"></td>
             <td></td>
-            <td>2,460</td>
         </tr>
         <tr>
-            <td>국민연금</td>
+            <td			style="text-align: left;">건강보험</td>
+			<td th:text="${#numbers.formatDecimal(salary.amount*0.06, 0, 'COMMA', 0, 'POINT')}"style="text-align: right;"></td>
             <td></td>
-            <td>82,450</td>
         </tr>
         <tr>
-            <td>건강보험</td>
+            <td			style="text-align: left;">고용보험</td>
+			<td th:text="${#numbers.formatDecimal(salary.amount*0.007, 0, 'COMMA', 0, 'POINT')}"style="text-align: right;"></td>
             <td></td>
-            <td>100,500</td>
-        </tr>
-        <tr>
-            <td>고용보험</td>
-            <td></td>
-            <td>15,200</td>
-        </tr>
-        <tr>
-            <td>장기요양보험</td>
-            <td></td>
-            <td>10,200</td>
         </tr>
         <tr>
             <th>합계</th>
-            <td></td>
-            <th>235,470</th>
+			<th th:text="${#numbers.formatDecimal(salary.amount*0.1, 0, 'COMMA', 0, 'POINT')}"style="text-align: right;"></th>
+            <th></th>
         </tr>
     </table>
 	</div>

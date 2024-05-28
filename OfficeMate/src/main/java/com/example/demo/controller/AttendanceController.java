@@ -48,7 +48,7 @@ public class AttendanceController {
 		AttendanceDTO attendanceDTO = attendanceService.getTodayAttendanceByUserId(userDTO.getUserId());
 
 		model.addAttribute("attendanceDTO", attendanceDTO != null ? attendanceDTO : new AttendanceDTO());
-
+		model.addAttribute("username",name);
 		return "home/home";
 	}
 

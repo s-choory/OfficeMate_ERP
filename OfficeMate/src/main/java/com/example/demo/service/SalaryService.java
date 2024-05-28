@@ -33,4 +33,9 @@ public class SalaryService{
 	}
 
 
+	public SalaryDTO getSalaryOne(int salaryId) {
+		return salaryMapper.getSalaryOne(salaryId);
+	}
+
+
 }

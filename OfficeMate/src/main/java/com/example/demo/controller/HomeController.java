@@ -29,7 +29,7 @@ public class HomeController {
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		Iterator<? extends GrantedAuthority> iter = authorities.iterator();
 		GrantedAuthority auth = iter.next();
-		String role = auth.getAuthority();
+		String role = auth.getAuthority(); 
 
 		model.addAttribute("name", name);
 		model.addAttribute("role", role);

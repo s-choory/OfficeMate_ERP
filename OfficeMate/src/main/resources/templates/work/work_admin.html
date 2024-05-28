@@ -110,7 +110,7 @@
 		<button class="work_button work_add" onclick="location.href='workConfirm'">완료된 업무 확인</button>
 		<!--<button class="work_button work_edit" onclick="location.href='admin/work_edit'">업무 수정</button>-->
 
-		<hr>
+		<br><br>
 		<table>
 			<tr>
 				<th style="width:15%">부서</th>
@@ -126,7 +126,7 @@
 				<td th:text="${work.workName}"></td>
 				<td th:each="user : ${userList}" th:if="${user.userId == work.assignedTo}" th:text="${user.username}">
 				</td>
-				<td th:text="${work.dueDate}"></td>
+				<td class="state" th:text="${work.dueDate}"></td>
 				<td class="work-status" th:text="${work.status}" th:id="'status-' + ${work.workId}"></td>
 				<td>
 					<div style="display: none;">
@@ -201,9 +201,9 @@
 			const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
 			if (daysDiff <= 0) {
-				row.style.backgroundColor = 'red'; // 남은 일자가 하루 이하일 때 배경색 변경
+				row.style.backgroundColor = '#FF6347'; // 남은 일자가 하루 이하일 때 배경색 변경
 			} else if (daysDiff <= 3) {
-				row.style.backgroundColor = 'yellow'; // 남은 일자가 하루 이하일 때 배경색 변경
+				row.style.backgroundColor = '#FFFACD'; // 남은 일자가 하루 이하일 때 배경색 변경
 			}
 
 			row.addEventListener('click', function (event) {
