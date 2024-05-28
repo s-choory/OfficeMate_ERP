@@ -74,7 +74,7 @@
 					<td rowspan="2" th:text="${user.username}"></td>
 					<!-- salaryList에서 user.userId와 일치하는 항목을 찾음 -->
 					<td th:each="salary : ${salaryList}" th:if="${salary.userId} == ${user.userId}"
-						th:text="${#numbers.formatDecimal(salary.amount, 0, 'COMMA', 0, 'POINT')}"></td>
+						th:text="${#numbers.formatDecimal(salary.amount-180000, 0, 'COMMA', 0, 'POINT')}"></td>
 
 					<td>0</td>
 					<td>0</td>
@@ -97,7 +97,7 @@
 						th:text="${#numbers.formatDecimal(salary.amount * 0.9, 0, 'COMMA', 0, 'POINT')}"></td>
 				</tr>
 				<tr th:if="${user.username} != 'admin'">
-					<td>0</td>
+					<td>180,000</td>
 					<td>0</td>
 					<td>0</td>
 					<td th:each="salary : ${salaryList}" th:if="${salary.userId} == ${user.userId}"

@@ -119,9 +119,17 @@ public class SalaryController {
 
 		return "redirect:/admin/salary";
 	}
-	
+
 	@GetMapping("/statement")
-	public String statement() {
+	public String statement(int salaryId, Model model) {
+		SalaryDTO salaryDTO = salaryService.getSalaryOne(salaryId);
+		String name = SecurityContextHolder.getContext().getAuthentication().getName();
+		UserDTO userDTO = userService.getUserByName(name);
+		DeptDTO deptDTO = deptService.getDeptOne(userDTO.getDepartmentId());
+		
+		model.addAttribute("salary", salaryDTO);
+		model.addAttribute("user", userDTO);
+		model.addAttribute("dept", deptDTO);
 		return "salary/statement";
 	}
 

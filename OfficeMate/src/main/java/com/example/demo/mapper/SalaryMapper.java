@@ -20,5 +20,8 @@ public interface SalaryMapper {
 
     @Select("SELECT * FROM Salary WHERE EXTRACT(YEAR FROM salaryDate) = EXTRACT(YEAR FROM #{paymentMonth}) AND EXTRACT(MONTH FROM salaryDate) = EXTRACT(MONTH FROM #{paymentMonth})")
 	List<SalaryDTO> getSalary(LocalDate paymentMonth);
+
+    @Select("SELECT * FROM Salary WHERE salaryId = #{salaryId}")
+	SalaryDTO getSalaryOne(int salaryId);
 	
 } 
