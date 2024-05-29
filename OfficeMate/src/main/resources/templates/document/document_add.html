@@ -4,13 +4,29 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 	<title>OfficeMate</title>
 	<link rel="stylesheet" href="css/docu_styles.css">
+	<script>
+		function validateForm() {
+			const documentName = document.querySelector('textarea[name="documentName"]').value.trim();
+			const description = document.querySelector('textarea[name="description"]').value.trim();
+
+			if (!documentName) {
+				alert("문서 제목을 입력해 주세요.");
+				return false;
+			}
+
+			if (!description) {
+				alert("문서 설명을 입력해 주세요.");
+				return false;
+			}
+
+			return true;
+		}
+	</script>
 </head>
 
 <body>
-
 	<div class="sidebar">
 		<a href="/home" style="text-decoration: none;">
 			<div class="logo">OfficeMate</div>
@@ -36,19 +52,17 @@
 
 	<div class="content">
 		<h2>문서 등록</h2>
-		<form th:action="@{/documentAddConfirm}" method="post" enctype="multipart/form-data">
+		<form th:action="@{/documentAddConfirm}" method="post" enctype="multipart/form-data" onsubmit="return validateForm();">
 			<br>
 			<button class="docu_edit" style="right:120px" type="submit">완료</button>
 			<hr>
-			<textarea class="docu_name" name="documentName"></textarea>
+			<textarea class="docu_name" name="documentName" placeholder="문서 제목을 입력하세요"></textarea>
 			<hr>
 			<input type="file" name="file" accept=".pdf,.doc,.docx,.txt"><br>
 			<span style="font-size: 10px; color: lightgray;">(1MB 이하의 문서만 업로드하세요)</span>
-			<textarea class="docu_text" name="description"></textarea>
+			<textarea class="docu_text" name="description" placeholder="문서 설명을 입력하세요"></textarea>
 		</form>
 	</div>
-
-
 </body>
 
 </html>
