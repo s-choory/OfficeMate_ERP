@@ -100,10 +100,6 @@
 		</ul>
 	</div>
 
-	<div class="login-container">
-		<button class="login-button">로그인</button>
-	</div>
-
 	<div class="content">
 		<div th:if="${userDTO.userRank == '팀장'}">
 			<h2>부서원 전체 업무</h2>
@@ -111,12 +107,10 @@
 		<div th:if="${userDTO.userRank != '팀장'}">
 			<h2>업무</h2>
 		</div>
-		<br>
-		<button class="work_button work_add docu_add" onclick="location.href='workAdd'">업무 등록</button>
+		<button class="work_button work_add docu_add" onclick="location.href='workAdd'" style="right:280px">업무 등록</button>
 		<button class="work_button work_add" onclick="location.href='workConfirm'">완료된 업무 확인</button>
 		<!--<button class="work_button work_edit" onclick="location.href='admin/work_edit'">업무 수정</button>-->
-
-		<hr>
+		<br><br>
 		<table>
 			<tr>
 				<th style="width:20%">업무명</th>
@@ -147,11 +141,11 @@
 			</tr>
 		</table>
 		<input type="hidden" name="_csrf" th:value="${_csrf.token}">
-
-		<div th:if="${pageDTO.totalPageCount > 0}" id="pagination">
+<br>
+		<div th:if="${pageDTO.totalPageCount > 0}" id="pagination" class="pagination">
 			<!-- 맨 처음 페이지로 이동하는 버튼 -->
 			<span th:if="${pageDTO.startPage > 1}">
-				<a th:href="@{'/work?page=1'}" th:text="'처음&emsp;'"></a>
+				<a th:href="@{'/work?page=1'}" th:text="'처음'"></a>
 			</span>
 
 			<!-- 이전 블록으로 이동하는 버튼 -->
@@ -171,7 +165,7 @@
 
 			<!-- 맨 뒷 페이지로 이동하는 버튼 -->
 			<span th:if="${pageDTO.endPage < pageDTO.totalPageCount}">
-				<a th:href="@{'/work?page='+${pageDTO.totalPageCount}}" th:text="|&emsp;끝|"></a>
+				<a th:href="@{'/work?page='+${pageDTO.totalPageCount}}" th:text="'끝'"></a>
 			</span>
 		</div>
 	</div>
@@ -202,9 +196,9 @@
 			const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
 			if (daysDiff <= 0) {
-				row.style.backgroundColor = 'red'; // 남은 일자가 하루 이하일 때 배경색 변경
+				row.style.backgroundColor = '#feb5b5'; // 남은 일자가 하루 이하일 때 배경색 변경
 			} else if (daysDiff <= 3) {
-				row.style.backgroundColor = 'yellow'; // 남은 일자가 하루 이하일 때 배경색 변경
+				row.style.backgroundColor = '#fcf885'; // 남은 일자가 하루 이하일 때 배경색 변경
 			}
 
 			row.addEventListener('click', function (event) {

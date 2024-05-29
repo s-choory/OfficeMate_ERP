@@ -27,12 +27,8 @@
 			</div>
 		</ul>
 	</div>
-	<div class="login-container">
-		<button class="login-button">로그인</button>
-	</div>
 	<div class="content">
 		<h2>부서 정보</h2>
-		<br>
 
 		<div class="dept-container" th:each="dept : ${deptList}">
 			<a th:href="@{'/deptDetail?departmentId=' + ${dept.departmentId}}"

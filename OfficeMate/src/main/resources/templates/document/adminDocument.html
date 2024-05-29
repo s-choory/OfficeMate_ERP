@@ -27,18 +27,15 @@
 			</div>
 		</ul>
 	</div>
-	<div class="login-container">
-		<button class="login-button">로그인</button>
-	</div>
+
 
 	<div class="content">
 		<h2>문서</h2>
 		<div sec:authorize="hasRole('ADMIN')">
-			<button style="right:280px;" onclick="location.href='/document'">내 문서만 보기</button>
+			<button style="right:300px;" onclick="location.href='/document'">내 문서만 보기</button>
 		</div>
 		<button onclick="location.href='documentAdd'">등록</button>
-		<br>
-		<hr>
+		<br><br>
 
 		<table>
 			<tr>
@@ -57,10 +54,11 @@
 				<td class="sharer" th:text="${document.shareUser}"></td>
 			</tr>
 		</table>
-		<div th:if="${pageDTO.totalPageCount > 0}" id="pagination">
+		<br>
+		<div th:if="${pageDTO.totalPageCount > 0}" id="pagination" class="pagination">
 			<!-- 맨 처음 페이지로 이동하는 버튼 -->
 			<span th:if="${pageDTO.startPage > 1}">
-				<a th:href="@{'/document?page=1'}" th:text="'처음&emsp;'"></a>
+				<a th:href="@{'/document?page=1'}" th:text="'처음'"></a>
 			</span>
 
 			<!-- 이전 블록으로 이동하는 버튼 -->
@@ -80,7 +78,7 @@
 
 			<!-- 맨 뒷 페이지로 이동하는 버튼 -->
 			<span th:if="${pageDTO.endPage < pageDTO.totalPageCount}">
-				<a th:href="@{'/document?page='+${pageDTO.totalPageCount}}" th:text="|&emsp;끝|"></a>
+				<a th:href="@{'/document?page='+${pageDTO.totalPageCount}}" th:text="'끝'"></a>
 			</span>
 		</div>
 	</div>
