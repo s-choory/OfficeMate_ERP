@@ -44,7 +44,10 @@
 			<h3>직급</h3>
 			<select name="userRank" class="detail_select">
 				<option value="사장" th:selected="${user.userRank == '사장'}">사장</option>
-				<option value="팀장" th:selected="${user.userRank == '팀장'}">팀장</option>
+				<option value="부사장" th:selected="${user.userRank == '부사장'}">부사장</option>
+				<option value="팀장" th:selected="${user.userRank == '팀장'}">팀장(부장)</option>
+				<option value="과장" th:selected="${user.userRank == '과장'}">과장</option>
+				<option value="대리" th:selected="${user.userRank == '대리'}">대리</option>
 				<option value="사원" th:selected="${user.userRank == null || user.userRank == '사원'}">사원</option>
 			</select><br>
 

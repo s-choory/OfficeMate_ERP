@@ -44,28 +44,28 @@
 
 	<div class="content">
 		<h2 th:text="${document.documentName}"></h2>
-		<br>
-		<a th:href="@{'/documentEdit/' + ${document.documentId}}"><button class="docu_edit">수정</button></a>
-		<button class="docu_delete"
-			th:onclick="|confirmDelete('@{/documentDelete(documentId=${document.documentId})}')|">삭제</button>
-		<button class="docu_share"
-			th:onclick="'window.open(\'/userSearch?userName=&documentId='+${document.documentId}+'\',\'blank\', \'resizable=yes scrollbars=no width=790 height=450 left=100 top=200\');'">공유</button>
-		<hr>
-		<a th:href="@{/document/download/{documentId}(documentId=${document.documentId})}"
-			th:text="${document.fileName}">파일 다운로드</a>
-
+		<div class="button-container">
+			<a th:href="@{'/documentEdit/' + ${document.documentId}}"><button class="docu_edit">수정</button></a>
+			<button class="docu_delete"
+				th:onclick="|confirmDelete('@{/documentDelete(documentId=${document.documentId})}')|">삭제</button>
+			<button class="docu_share"
+				th:onclick="'window.open(\'/userSearch?userName=&documentId='+${document.documentId}+'\',\'blank\', \'resizable=yes scrollbars=no width=790 height=450 left=100 top=200\');'">공유</button>
+		</div>
 		<form class="docu_form">
 
 			<div>
 				<span class="docu_details">작성자: </span><span th:text="${document.uploadUser}"></span>
-				<span class="docu_details">작성일: </span><span th:text="${document.uploadDate}"></span>
-				<span class="docu_details">공유자: </span><span th:text="${document.shareUser}"></span>
+				<span class="docu_details">작성일: </span><span th:text="${#strings.substring(document.uploadDate.toString(),0,19)}"></span>
+
+				<span class="docu_details">공유자: </span><span th:text="${document.shareUser}"></span><br>
+				<span class="docu_details">첨부파일: </span>
+				<a th:href="@{/document/download/{documentId}(documentId=${document.documentId})}"
+					th:text="${document.fileName}">파일 다운로드</a>
 				<hr>
 			</div>
 			<span th:text="${document.description}"></span>
 		</form>
 	</div>
-
 
 </body>
 

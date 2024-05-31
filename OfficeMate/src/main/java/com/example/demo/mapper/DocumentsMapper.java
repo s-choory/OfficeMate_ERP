@@ -42,6 +42,9 @@ public interface DocumentsMapper {
 	@Update("Update Documents Set shareUser = #{userName} where documentId = #{documentId}")
 	int documentEditShareUser(String userName, int documentId);
 
+	@Select("SELECT count(*) from Documents where uploadUser=#{name} or shareUser=#{name}")
+	int documentgetCount(String name);
+
 
     
 	

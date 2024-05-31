@@ -52,6 +52,10 @@ public class DocumentsService{
 		return documentsMapper.documentEditShareUser(userName, documentId);
 	}
 
+	public int documentgetCount(String name) {
+		return documentsMapper.documentgetCount(name);
+	}
+
 
 }
 	
