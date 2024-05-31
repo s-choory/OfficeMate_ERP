@@ -45,7 +45,7 @@ public class DocumentsController {
 	@GetMapping("/document")
 	public String document(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
-		PageDTO pageDTO = new PageDTO(documentsService.documentsGetCount(), page);
+		PageDTO pageDTO = new PageDTO(documentsService.documentgetCount(name), page);
 		List<DocumentDTO> list = documentsService.getListPage(pageDTO, name);
 		model.addAttribute("documentList", list);
 		model.addAttribute("page", page);

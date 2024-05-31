@@ -34,12 +34,13 @@
 
 	<div class="content">
 		<h2>문서</h2>
-		<div sec:authorize="hasRole('ADMIN')">
-			<button style="right:280px;" onclick="location.href='admin/document'">전체 문서 보기</button>
+		<div class="button-container">
+			<span sec:authorize="hasRole('ADMIN')">
+				<button onclick="location.href='admin/document'">전체 문서 보기</button>
+			</span>
+			<button class="docu_add" onclick="location.href='documentAdd'">등록</button>
 		</div>
-		<button onclick="location.href='documentAdd'">등록</button>
-		<br><br>
-
+		
 		<table>
 			<tr>
 				<th class="dtitle">제목</th>

@@ -60,196 +60,68 @@ body {
 	/* 더 짙은 하늘색 */
 }
 
-  .content {
-    border-radius: 5px; /* 박스 테두리를 둥글게 만듦 */
-    margin-bottom: 20px; /* 박스와 다음 내용 간격 조정 */
+.content {
+	border-radius: 5px; /* 박스 테두리를 둥글게 만듦 */
+	margin-bottom: 20px; /* 박스와 다음 내용 간격 조정 */
 	box-shadow: 0 0 5px;
-    margin-left: 220px; /* 사이드바와 겹치지 않도록 왼쪽 여백 추가 */
-    margin-right: 100px;
-    margin-top: 60px;
-    padding: 20px; /* 내용 주변에 패딩 추가 */
-  }
+	margin-left: 220px; /* 사이드바와 겹치지 않도록 왼쪽 여백 추가 */
+	margin-right: 100px;
+	margin-top: 60px;
+	padding: 20px; /* 내용 주변에 패딩 추가 */
+}
 
-.content button {
-	position: absolute;
-	top: 135px;
-	right: 120px;
-	width: 9%;
-	padding: 10px 20px;
+.button-container {
+	text-align: right; /* 버튼 컨테이너를 오른쪽 정렬 */
+	margin-top: 10px; /* 컨테이너 상단 여백 추가 */
+	margin-bottom: 10px; /* 컨테이너 하단 여백 추가 */
+}
+
+.button-container button {
+	margin-left: 10px; /* 버튼 간격 조정 */
+}
+
+button {
 	font-size: 1rem;
 	background-color: #0073a0;
-	/* 로그인 버튼 배경색 */
 	color: white;
 	border: none;
 	cursor: pointer;
 	font-family: Arial, sans-serif;
-	border: 1px solid #ccc;
-	/* 박스 테두리 스타일 */
+	font-weight: 500;
 	border-radius: 5px;
-	/* 박스 테두리를 둥글게 만듦 */
 	padding: 10px;
-	/* 내부 여백 */
 	margin-bottom: 10px;
-	/* 공지사항 항목 간격 조정 */
-	margin-top: 25px;
 }
 
-.content button:hover {
+button:hover {
 	background-color: #13446b;
 }
 
-table {
-	width: 100%;
-	border-collapse: collapse;
+.docu_edit {
+	background-color: seagreen;
+}
+.docu_edit::before {
+	content: '\270F';
+	margin-right: 5px;
+}
+.docu_edit:hover{
+	background-color: darkgreen;
 }
 
-table,
-th,
-td {
-	border: 1px solid black;
+.docu_delete{
+	background-color: red;
 }
-
-tr {
-	height: 40px;
+.docu_delete::before {
+	content: '\1F5D1';
+	margin-right: 5px;
 }
-
-tr {
-	height: 40px;
-}
-
-th,
-td {
-	padding: 8px;
-	text-align: middle;
-}
-
-th {
-	background-color: #f2f2f2;
-}
-
-.dtitle {
-	width: 40%;
-}
-
-.dwriter {
-	width: 10%;
-	text-align: center;
-}
-
-.dwdate {
-	width: 20%;
-	text-align: center;
-}
-
-.dedate {
-	width: 20%;
-	text-align: center;
-}
-
-.sharer {
-	width: 10%;
-	text-align: center;
-}
-
-.document:hover {
-	background-color: #dbdbdb;
-}
-
-.docu_add {
-	position: absolute;
-	top: 135px;
-	right: 120px;
-	padding: 10px 20px;
-	font-size: 1rem;
-	background-color: #0073a0;
-	/* 로그인 버튼 배경색 */
-	color: white;
-	border: none;
-	cursor: pointer;
-	font-family: Arial, sans-serif;
-	border: 1px solid #ccc;
-	/* 박스 테두리 스타일 */
-	border-radius: 5px;
-	/* 박스 테두리를 둥글게 만듦 */
-	padding: 10px;
-	/* 내부 여백 */
-	margin-bottom: 10px;
-	/* 공지사항 항목 간격 조정 */
+.docu_delete:hover{
+	background-color: darkred;
 }
 
 .docu_add::after {
 	content: '\002B';
-	/* "+"의 유니코드 */
 	margin-left: 5px;
-	/* 이모지와 텍스트 사이 여백 조정 */
-}
-
-a .docu_edit {
-	position: absolute;
-	top: 135px;
-	right: 300px;
-	padding: 10px 20px;
-	font-size: 1rem;
-	background-color: #0073a0;
-	/* 로그인 버튼 배경색 */
-	color: white;
-	border: none;
-	cursor: pointer;
-	font-family: Arial, sans-serif;
-	border: 1px solid #ccc;
-	/* 박스 테두리 스타일 */
-	border-radius: 5px;
-	/* 박스 테두리를 둥글게 만듦 */
-	padding: 10px;
-	/* 내부 여백 */
-	margin-bottom: 10px;
-	/* 공지사항 항목 간격 조정 */
-}
-
-.docu_edit:hover {
-	background-color: #13446b;
-	/* 로그인 버튼 hover 시 배경색 */
-}
-
-.docu_edit::before {
-	content: '\270F';
-	/* 연필(✏️) 이모지 */
-	margin-right: 5px;
-	/* 이모지와 텍스트 사이 여백 조정 */
-}
-
-.docu_delete::before {
-	content: '\1F5D1';
-	/* 휴지통(🗑️) 이모지 */
-	margin-right: 5px;
-	/* 이모지와 텍스트 사이 여백 조정 */
-}
-
-.docu_delete {
-	position: absolute;
-	top: 135px;
-	right: 330px;
-	padding: 10px 20px;
-	font-size: 1rem;
-	background-color: #0073a0;
-	/* 로그인 버튼 배경색 */
-	color: white;
-	border: none;
-	cursor: pointer;
-	font-family: Arial, sans-serif;
-	border: 1px solid #ccc;
-	/* 박스 테두리 스타일 */
-	border-radius: 5px;
-	/* 박스 테두리를 둥글게 만듦 */
-	padding: 10px;
-	/* 내부 여백 */
-	margin-bottom: 10px;
-	/* 공지사항 항목 간격 조정 */
-}
-
-.docu_delete:hover {
-	background-color: #13446b;
-	/* 로그인 버튼 hover 시 배경색 */
 }
 
 .docu_details {
@@ -261,7 +133,7 @@ a .docu_edit {
 	height: 50px;
 	padding: 10px;
 	box-sizing: border-box;
-	border: solid 2px;
+	box-shadow: 0 0 3px;
 	border-radius: 5px;
 	font-size: 20px;
 	resize: none;
@@ -272,70 +144,18 @@ a .docu_edit {
 	height: 600px;
 	padding: 10px;
 	box-sizing: border-box;
-	border: solid 2px;
+	box-shadow: 0 0 3px;
 	border-radius: 5px;
 	font-size: 16px;
 	resize: both;
 }
 
-
-.docu_share {
-	position: absolute;
-	top: 135px;
-	right: 250px;
-	padding: 10px 20px;
-	font-size: 1rem;
-	background-color: #0073a0;
-	/* 로그인 버튼 배경색 */
-	color: white;
-	border: none;
-	cursor: pointer;
-	font-family: Arial, sans-serif;
-	border: 1px solid #ccc;
-	/* 박스 테두리 스타일 */
-	border-radius: 5px;
-	/* 박스 테두리를 둥글게 만듦 */
-	padding: 10px;
-	/* 내부 여백 */
-	margin-bottom: 10px;
-	/* 공지사항 항목 간격 조정 */
+table {
+	width: 100%;
+	border-collapse: collapse;
 }
 
-.docu_share:hover {
-	background-color: #13446b;
-	/* 로그인 버튼 hover 시 배경색 */
-}
-
-
-.docu_dload {
-	position: absolute;
-	top: 135px;
-	right: 120px;
-	padding: 10px 20px;
-	font-size: 1rem;
-	background-color: #0073a0;
-	/* 로그인 버튼 배경색 */
-	color: white;
-	border: none;
-	cursor: pointer;
-	font-family: Arial, sans-serif;
-	border: 1px solid #ccc;
-	/* 박스 테두리 스타일 */
-	border-radius: 5px;
-	/* 박스 테두리를 둥글게 만듦 */
-	padding: 10px;
-	/* 내부 여백 */
-	margin-bottom: 10px;
-	/* 공지사항 항목 간격 조정 */
-}
-
-.docu_dload:hover {
-	background-color: #13446b;
-	/* 로그인 버튼 hover 시 배경색 */
-}
-table,
-th,
-td {
+th, td {
 	padding: 8px;
 	border: 0.5px solid gray;
 	text-align: center;
@@ -343,5 +163,41 @@ td {
 
 th {
 	background-color: #f2f2f2;
+}
+
+tr:hover {
+	background-color: #f5f5f5;
+}
+
+#pagination {
+	text-align: center;
+	margin-top: 20px;
+}
+
+#pagination span, #pagination a {
+	display: inline-block;
+	padding: 3px 0px;
+	margin: 0 5px;
+	background-color: #0073a0;
+	color: white;
+	border-radius: 5px;
+	text-decoration: none;
+	font-family: Arial, sans-serif;
+}
+
+#pagination a:hover {
+	background-color: #13446b;
+}
+
+.page-number {
+	background-color: #0073a0;
+	color: white;
+	padding: 10px 15px;
+	border-radius: 5px;
+	text-decoration: none;
+}
+
+.page-number:hover {
+	background-color: #13446b;
 }
 

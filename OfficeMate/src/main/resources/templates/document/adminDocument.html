@@ -33,12 +33,12 @@
 
 	<div class="content">
 		<h2>문서</h2>
-		<div sec:authorize="hasRole('ADMIN')">
+		<div class="button-container">
+		<span sec:authorize="hasRole('ADMIN')">
 			<button style="right:280px;" onclick="location.href='/document'">내 문서만 보기</button>
+		</span>
+		<button onclick="location.href='../documentAdd'">등록 +</button>
 		</div>
-		<button onclick="location.href='documentAdd'">등록</button>
-		<br>
-		<hr>
 
 		<table>
 			<tr>
@@ -52,35 +52,36 @@
 				th:onclick="|location.href='@{'/document/' + ${document.documentId}}'|">
 				<td class="dtitle" th:text="${document.documentName}"></td>
 				<td class="dwriter" th:text="${document.uploadUser}"></td>
-				<td class="dwdate" th:text="${document.uploadDate}"></td>
-				<td class="dedate" th:text="${document.updateDate}"></td>
+				<td class="dwdate" th:text="${#strings.substring(document.uploadDate.toString(), 0, 19)}"></td>
+				<td class="dedate" th:if="${document.updateDate} != null" th:text="${#strings.substring(document.updateDate.toString(), 0, 19)}"></td>
+				<td class="dedate" th:if="${document.updateDate} == null"></td>
 				<td class="sharer" th:text="${document.shareUser}"></td>
 			</tr>
 		</table>
 		<div th:if="${pageDTO.totalPageCount > 0}" id="pagination">
 			<!-- 맨 처음 페이지로 이동하는 버튼 -->
 			<span th:if="${pageDTO.startPage > 1}">
-				<a th:href="@{'/document?page=1'}" th:text="'처음&emsp;'"></a>
+				<a th:href="@{'/admin/document?page=1'}" th:text="'처음&emsp;'"></a>
 			</span>
 
 			<!-- 이전 블록으로 이동하는 버튼 -->
 			<span th:if="${pageDTO.isPrev == true}">
-				<a th:href="@{'/document?page='+${pageDTO.startPage - 1}}" th:text="'이전'"></a>
+				<a th:href="@{'/admin/document?page='+${pageDTO.startPage - 1}}" th:text="'이전'"></a>
 			</span>
 
 			<!-- 시퀀스 보여주는 값을 변경. -->
 			<span th:each="pageNum : ${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
-				<a class="div2" th:href="@{'/document?page='+${pageNum}}" th:text="|&emsp;${pageNum}&emsp;|"></a>
+				<a class="div2" th:href="@{'/admin/document?page='+${pageNum}}" th:text="|&emsp;${pageNum}&emsp;|"></a>
 			</span>
 
 			<!-- 다음 블록으로 이동하는 버튼 -->
 			<span th:if="${pageDTO.isNext == true}">
-				<a th:href="@{'/document?page='+|${pageDTO.endPage + 1}|}" th:text="'다음'"></a>
+				<a th:href="@{'/admin/document?page='+|${pageDTO.endPage + 1}|}" th:text="'다음'"></a>
 			</span>
 
 			<!-- 맨 뒷 페이지로 이동하는 버튼 -->
 			<span th:if="${pageDTO.endPage < pageDTO.totalPageCount}">
-				<a th:href="@{'/document?page='+${pageDTO.totalPageCount}}" th:text="|&emsp;끝|"></a>
+				<a th:href="@{'/admin/document?page='+${pageDTO.totalPageCount}}" th:text="|&emsp;끝|"></a>
 			</span>
 		</div>
 	</div>
