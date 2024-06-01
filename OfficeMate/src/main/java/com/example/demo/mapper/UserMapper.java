@@ -24,13 +24,13 @@ public interface UserMapper {
     @Insert("INSERT INTO Users (username, email, password, departmentId, role) VALUES \n (#{username}, 'example@example.com', #{password}, 0, 'ROLE_USER')")
     int JoinMember(@Param("username") String username, @Param("password") String password);
 
-    @Select("SELECT * FROM users WHERE departmentId = #{departmentId} order by case when userRank = '사장' then 1 when userRank = '팀장' then 2 when userRank = '사원' then 3 ELSE 4 END" )
+    @Select("SELECT * FROM users WHERE departmentId = #{departmentId} order by case when userRank = '사장' then 1 when userRank = '부사장' then 2 when userRank = '팀장' then 3 when userRank = '과장' then 4 when userRank = '대리' then 5 ELSE 6 END" )
 	List<UserDTO> getDeptUser(int departmentId);
 
     @Select("SELECT * FROM users WHERE username LIKE CONCAT('%', #{username}, '%')")
     List<UserDTO> findByUsernameIncluded(String userName);
 
-    @Select("SELECT * FROM users order by case when userRank = '사장' then 1 when userRank = '팀장' then 2 when userRank = '사원' then 3 ELSE 4 END")
+    @Select("SELECT * FROM users order by case when userRank = '사장' then 1 when userRank = '부사장' then 2 when userRank = '팀장' then 3 when userRank = '과장' then 4 when userRank = '대리' then 5 ELSE 6 END")
 	List<UserDTO> getUserAll();
 
     @Update("Update Users SET departmentId=#{departmentId}, userRank=#{userRank}, email=#{email}, monthSalary=#{monthSalary} where userId = #{userId}")

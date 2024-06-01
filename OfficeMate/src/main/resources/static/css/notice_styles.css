@@ -211,4 +211,11 @@ td {
 th {
 	background-color: #f2f2f2;
 }
+.logo2 {
+	text-align: right;
+	margin-right: 100px;	
+	font-size: 30px;
+	font-weight: bold;
+    color: #0073a0;
+}
 
