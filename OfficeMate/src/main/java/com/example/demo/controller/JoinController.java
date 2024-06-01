@@ -29,7 +29,7 @@ public class JoinController {
 			return "/home/join";
 		}
 
-		return "redirect:/login";
+		return "redirect:/admin/empManage";
 	}
 
 }
