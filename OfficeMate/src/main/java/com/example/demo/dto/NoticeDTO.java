@@ -91,7 +91,4 @@ public class NoticeDTO {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-
-	
-	
 }

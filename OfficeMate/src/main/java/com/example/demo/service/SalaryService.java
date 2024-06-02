@@ -11,8 +11,8 @@ import com.example.demo.mapper.MonthSalaryMapper;
 import com.example.demo.mapper.SalaryMapper;
 
 @Service
-public class SalaryService{
-	
+public class SalaryService {
+
 	@Autowired
 	MonthSalaryMapper monthSalaryMapper;
 	@Autowired
@@ -21,21 +21,17 @@ public class SalaryService{
 	public void userSalaryPayment(SalaryDTO salaryDTO) {
 		salaryMapper.userSalaryPayment(salaryDTO);
 	}
-
-
+	
 	public List<SalaryDTO> getSalaryUser(int userId) {
 		return salaryMapper.getSalaryUser(userId);
 	}
-
 
 	public List<SalaryDTO> getSalary(LocalDate paymentMonth) {
 		return salaryMapper.getSalary(paymentMonth);
 	}
 
-
 	public SalaryDTO getSalaryOne(int salaryId) {
 		return salaryMapper.getSalaryOne(salaryId);
 	}
-
 
 }

@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.example.demo.dto.AttendanceDTO;
-	
+
 @Mapper
 public interface AttendanceMapper {
 
@@ -24,5 +24,4 @@ public interface AttendanceMapper {
 	@Select("Select * FROM attendance WHERE userId = #{userId} ")
 	List<AttendanceDTO> getAttendanceByUserId(int userId);
 
-
-} 
+}

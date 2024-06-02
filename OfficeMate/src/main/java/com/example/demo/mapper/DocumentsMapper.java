@@ -10,21 +10,21 @@ import org.apache.ibatis.annotations.Update;
 
 import com.example.demo.dto.DocumentDTO;
 import com.example.demo.dto.PageDTO;
-	
+
 @Mapper
 public interface DocumentsMapper {
 
 	@Select("Select count(*) from documents")
 	int documentsGetCount();
-    
+
 	@Select("SELECT * from Documents where uploadUser=#{name} or shareUser=#{name} order by documentId desc LIMIT #{pageDTO.rowCount} OFFSET #{pageDTO.offset}")
 	List<DocumentDTO> getListPage(PageDTO pageDTO, String name);
-	
+
 	@Select("SELECT * from Documents order by documentId desc LIMIT #{rowCount} OFFSET #{offset}")
 	List<DocumentDTO> getListAdminPage(PageDTO pageDTO);
-	
-	@Insert("INSERT INTO Documents (documentName, description, uploadedBy, uploadDate, files, fileName, uploadUser) VALUES " +
-	        "(#{documentName}, #{description}, #{uploadedBy}, now(), #{files}, #{fileName}, #{uploadUser})")
+
+	@Insert("INSERT INTO Documents (documentName, description, uploadedBy, uploadDate, files, fileName, uploadUser) VALUES "
+			+ "(#{documentName}, #{description}, #{uploadedBy}, now(), #{files}, #{fileName}, #{uploadUser})")
 	int documentAdd(DocumentDTO documentDTO);
 
 	@Select("Select * from Documents WHERE documentId = #{documentId}")
@@ -45,7 +45,4 @@ public interface DocumentsMapper {
 	@Select("SELECT count(*) from Documents where uploadUser=#{name} or shareUser=#{name}")
 	int documentgetCount(String name);
 
-
-    
-	
-} 
+}

@@ -9,7 +9,7 @@ import com.example.demo.dto.AttendanceDTO;
 import com.example.demo.mapper.AttendanceMapper;
 
 @Service
-public class AttendanceService{
+public class AttendanceService {
 
 	@Autowired
 	AttendanceMapper attendanceMapper;
@@ -31,5 +31,3 @@ public class AttendanceService{
 	}
 
 }
-	
-
