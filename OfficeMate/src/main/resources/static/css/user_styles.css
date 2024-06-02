@@ -38,6 +38,10 @@ h1 {
 	text-align: center;
 }
 
+h3 {
+	margin-left: 10%;
+}
+
 .input_t {
 	font-size: 20px;
 	text-align: center;
@@ -58,8 +62,7 @@ h1 {
 	text-align: center;
 	border-radius: 5px;
 	/* 박스 테두리를 둥글게 만듦 */
-	margin-top: 5px;
-	padding-top: 10px;
+	padding-top: 15px;
 	padding-bottom: 4%;
 	width: 100%;
 	color: white;
@@ -78,7 +81,6 @@ h1 {
 	border-radius: 5px;
 	/* 박스 테두리를 둥글게 만듦 */
 	margin-left: 10%;
-	margin-right: 10%;
 	margin-bottom: 15px;
 	padding: 10px;
 	/* 입력 내용 주변에 패딩 추가 */

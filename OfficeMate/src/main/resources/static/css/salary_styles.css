@@ -71,26 +71,24 @@ body {
 	padding: 20px; /* 내용 주변에 패딩 추가 */
 }
 
-.content button {
-	position: absolute;
-	font-size: 1rem;
-	right:120px;
-	
-	background-color: #979797;
-	/* 로그인 버튼 배경색 */
-	color: white;
-	border: none;
-	cursor: pointer;
-	font-family: Arial, sans-serif;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	padding: 7px 7px;
+.button-container {
+	text-align: right;
+	margin-bottom: 20px;
 }
 
+.back-button {
+	background: linear-gradient(135deg, gray, lightgray);
+	color: white;
+	padding: 8px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 1rem;
+	transition: background 0.3s;
+}
 
-.content button:hover {
-	background-color: #13446b;
-	/* 로그인 버튼 hover 시 배경색 */
+.back-button:hover {
+	background: linear-gradient(135deg, lightgray, gray);
 }
 
 .content input {
@@ -99,7 +97,7 @@ body {
 
 	right:200px;
 	
-	background-color: #979797;
+	background: linear-gradient(135deg, gray, lightgray);
 	/* 로그인 버튼 배경색 */
 	color: white;
 	border: none;
@@ -110,7 +108,7 @@ body {
 	padding: 7px 7px;
 }
 .content input:hover {
-	background-color: #13446b;
+	background: linear-gradient(135deg, lightgray, gray);
 	/* 로그인 버튼 hover 시 배경색 */
 }
 

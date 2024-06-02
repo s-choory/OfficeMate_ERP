@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Home</title>
 	<link rel="stylesheet" href="../css/attendance.css">
+	<link rel="stylesheet" href="../css/total_styles.css">
 </head>
 
 <body>
@@ -46,14 +47,18 @@
 		<div class="attendance-buttons">
 			<button type="button" id="startButton" th:disabled="${attendanceDTO.checkIn != null}">출근 시작</button>
 			<input type="hidden" id="attendanceTime" name="attendanceTime" value="">
-			<button type="button" id="endButton" th:disabled="${attendanceDTO.checkIn == null}">퇴근</button>
+			<button type="button" id="endButton" th:disabled="${attendanceDTO.checkOut != null}">퇴근</button>
 			<input type="hidden" name="_csrf" th:value="${_csrf.token}">
 		</div>
 		<div class="logo2">
 			OfficeMate
 		</div>
 	</div>
-
+	<footer class="footer">
+	    <a href="/contact">Contact</a>
+	    <a href="/about">About</a>
+	    <a href="/privacy">Privacy Policy</a>
+	</footer>
 </body>
 
 <script>
@@ -96,6 +101,7 @@
 			endButton.disabled = false;
 		} else {
 			console.error('Invalid check-in time format:', checkInTime);
+			
 		}
 	}
 
@@ -237,11 +243,7 @@
 		const seconds = padZero(now.getSeconds());
 		return `${hours}:${minutes}:${seconds}`;
 	}
-	// 출근 버튼과 퇴근 버튼 비활성화 여부 확인
-	const isAttendanceCompleted = checkInTime && checkOutTime;
 
-	startButton.disabled = isAttendanceCompleted;
-	endButton.disabled = isAttendanceCompleted;
 
 	// 출근 시간 고정 함수 호출
 	//stopTimerAndFixTime(serverCheckOutTime); // 이미 퇴근했다면 출근 시간 고정

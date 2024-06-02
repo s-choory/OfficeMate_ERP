@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -84,9 +85,9 @@ public class SalaryController {
 	@GetMapping("/admin/salaryLedger")
 	public String salaryLedger(Model model, int monthSalaryId) {
 		MonthSalaryDTO monthSalaryDTO = monthSalaryService.getMonthSalary(monthSalaryId);
-		List<UserDTO> userList = userService.getUserAll();
 		List<DeptDTO> deptList = deptService.getDeptAll();
 		List<SalaryDTO> salaryList = salaryService.getSalary(monthSalaryDTO.getPaymentMonth());
+		List<UserDTO> userList = userService.getMonthSalaryUser(salaryList);
 		TotalPay totalPay = new TotalPay(salaryList);
 
 		model.addAttribute("monthSalaryDTO", monthSalaryDTO);

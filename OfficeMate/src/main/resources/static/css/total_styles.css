@@ -1,0 +1,182 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: aliceblue;
+}
+
+.sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 250px;
+	height: 100%;
+	background: linear-gradient(135deg, #0073a0, #005f80);
+	padding-top: 50px;
+}
+
+.sidebar a {
+	display: block;
+	padding: 15px;
+	color: white;
+	text-decoration: none;
+}
+.sidebar a:hover {
+	background-color: #005f80;
+}
+.padding{
+	background-color: #0073a0;
+}
+
+.action-container {
+	margin-top: 30px;
+	text-align: center;
+}
+
+.usernameCss{
+	color: #12c2e9;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.usernameCss2{
+	font-size: 14px;
+	font-weight: bold;
+	color: white;
+}
+.logout {
+	display: inline-block;
+	padding: 6px 12px;
+	margin: 10px;
+	color: white;
+	background-color: indianred;
+	text-decoration: none;
+	border-radius: 5px;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.logout:hover {
+	background-color: #123a49;
+	color: #ffffff;
+}
+
+.myProfile {
+	display: inline-block;
+	padding: 6px 12px;
+	margin: 10px;
+	color: white;
+	background-color: #12c2e9;
+	text-decoration: none;
+	border-radius: 5px;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.myProfile:hover {
+	background-color: #123a49;
+	color: #ffffff;
+}
+
+.logo {
+	font-size: 1.5rem;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 20px;
+	color: white;
+}
+
+.content {
+	margin-left: 300px;
+	padding: 20px;
+	background-color: #fff;
+	min-height: 70vh;
+	margin-bottom: 100px;
+}
+
+header h1 {
+	color: #0073a0;
+	margin-bottom: 20px;
+}
+
+.button-container {
+	text-align: right;
+	margin-bottom: 20px;
+}
+
+
+.emp_manage_button {
+	background: linear-gradient(135deg, #0073a0, #005f80);
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 1rem;
+	transition: background 0.3s;
+}
+
+.emp_manage_button:hover {
+	background: linear-gradient(135deg, #005f80, #003f5f);
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+	padding: 12px;
+	border-bottom: 1px solid #ddd;
+	text-align: left;
+}
+
+th {
+	background: linear-gradient(135deg, #0073a0, #005f80);
+	color: white;
+}
+
+tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+
+tr:hover {
+	background-color: #f1f1f1;
+}
+
+.logo2 {
+	position: fixed;
+	bottom: 20px;
+	left: 20px;
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #0073a0;
+}
+
+.footer {
+	background: linear-gradient(135deg, #005f80, #0073a0);
+	color: white;
+	text-align: center;
+	padding: 10px 0;
+	position: fixed;
+	bottom: 0;
+	width: calc(100% - 250px);
+	left: 250px;
+}
+
+.footer a {
+	color: white;
+	text-decoration: none;
+	margin: 0 10px;
+}
+
+.footer a:hover {
+	text-decoration: underline;
+}

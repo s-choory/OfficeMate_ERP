@@ -144,11 +144,6 @@ button:hover {
 	background-color: darkred;
 }
 
-.docu_add::after {
-	content: '\002B';
-	margin-left: 5px;
-}
-
 .docu_details {
 	font-weight: bold;
 }

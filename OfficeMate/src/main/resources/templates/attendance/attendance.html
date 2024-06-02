@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OfficeMate</title>
     <link rel="stylesheet" href="css/attendence_styles.css">
+	<link rel="stylesheet" href="../css/total_styles.css">
 	<script>
 	    function formatTime(timeString) {
 	        if (!timeString) {
@@ -58,12 +59,18 @@
 	            checkInElement.textContent = formatTime(checkInTime);
 	            checkOutElement.textContent = formatTime(checkOutTime);
 	
-	            const workHours = calculateWorkHours(checkInTime, checkOutTime);
-	            if (workHours >= 8) {
-	                statusElement.textContent = "출근";
-	            } else {
-	                statusElement.textContent = "8시간 미만";
-	            }
+				if (checkOutTime) { // check if checkOutTime is not null
+				    const workHours = calculateWorkHours(checkInTime, checkOutTime);
+				    if (workHours >= 8) {
+				  
+						      statusElement.textContent = "출근";
+				    } else {
+				        statusElement.textContent = "8시간 미만";
+				    }
+				} else {
+				    statusElement.textContent = "퇴근 미처리";
+				}
+				
 	        });
 	    });
 	</script>
@@ -87,11 +94,17 @@
                 <li><a href="admin/empManage">전체사원관리</a></li>
             </div>
         </ul>
+		<div class="action-container">
+			<span class="usernameCss" th:text="${username}"></span><span class="usernameCss2"> 님 환영합니다!</span><br>
+			<a class="logout" href="/logout">로그아웃</a>
+			<a class="myProfile" href="userDetailDefault">내 정보</a>
+		</div>
     </div>
 
     <div class="content">
-        <h2>출퇴근 내역</h2>
-        <br>
+        <header>
+			<h1>출퇴근 내역</h1>
+		</header>
 
         <div sec:authorize="hasRole('ADMIN')">
             <button class="user_search"
@@ -112,6 +125,11 @@
             </tr>
         </table>
     </div>
+	<footer class="footer">
+	    <a href="/contact">Contact</a>
+	    <a href="/about">About</a>
+	    <a href="/privacy">Privacy Policy</a>
+	</footer>
 	<div class="logo2">
 			OfficeMate
 	</div>

@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.example.demo.dto.SalaryDTO;
 import com.example.demo.dto.UserDTO;
 	
 @Mapper
@@ -41,5 +42,6 @@ public interface UserMapper {
 
     @Select("SELECT SUM(monthSalary) AS TotalAmount FROM users;")
 	BigDecimal getUserTotalAmount();
+
 
 } 

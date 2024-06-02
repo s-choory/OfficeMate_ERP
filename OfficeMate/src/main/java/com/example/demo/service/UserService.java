@@ -1,11 +1,13 @@
 package com.example.demo.service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.SalaryDTO;
 import com.example.demo.dto.UserDTO;
 import com.example.demo.mapper.UserMapper;
 
@@ -41,6 +43,14 @@ public class UserService{
 
 	public BigDecimal getUserTotalAmount() {
 		return userMapper.getUserTotalAmount();
+	}
+
+	public List<UserDTO> getMonthSalaryUser(List<SalaryDTO> salaryList) {
+		List<UserDTO> userList = new ArrayList<>();
+		for (SalaryDTO salaryDTO : salaryList) {
+			userList.add(userMapper.getUserById(salaryDTO.getUserId()));
+		}
+		return userList;
 	}
 
 	
