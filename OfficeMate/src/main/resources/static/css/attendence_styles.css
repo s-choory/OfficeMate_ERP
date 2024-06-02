@@ -1,158 +1,200 @@
 /* styles.css */
 
 body {
-    margin: 0;
-    padding: 0;
-  }
-  .sidebar {
-    width: 200px;
-    height: 100%;
-    background-color: #0073a0; /* 하늘색 */
-    position: fixed;
-    left: 0;
-    top: 0;
-    padding-top: 20px;
-    border-radius:px;
-  }
-  
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .padding {
-    background-color: #0073a0; /* 남색의 배경색 */
-    height: 30px; /* 원하는 높이 */
-    border-bottom: 1px solid #0c3252;
-  }
-  
-  .menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .menu li {
-    margin-bottom: 0; /* 기존의 마진 제거 */
-  }
-  
-  .menu li a {
-    display: block;
-    padding: 20px;
-    text-decoration: none;
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    border-bottom: 1px solid #0c3252; /* 메뉴 버튼 간의 경계선 */
-  }
-  
-  .menu li a:hover {
-    background-color: #185066; /* 더 짙은 하늘색 */
-  }
-  
-  .content {
-    border-radius: 5px; /* 박스 테두리를 둥글게 만듦 */
-    margin-bottom: 20px; /* 박스와 다음 내용 간격 조정 */
-	box-shadow: 0 0 5px;
-    margin-left: 220px; /* 사이드바와 겹치지 않도록 왼쪽 여백 추가 */
-    margin-right: 100px;
-    margin-top: 60px;
-    padding: 20px; /* 내용 주변에 패딩 추가 */
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-table, th, td {
-    border: 1px solid black;
-  }
-tr {
-    height:40px;
-  }
-tr {
-  height:40px;
-  }
+	margin: 0;
+	padding: 0;
+	background-color: aliceblue;
+}
 
-th, td {
-    padding: 8px;
-    text-align: middle;
-  }
+.sidebar {
+	width: 200px;
+	height: 100%;
+	background-color: #0073a0;
+	/* 하늘색 */
+	position: fixed;
+	left: 0;
+	top: 0;
+	padding-top: 20px;
+	border-radius: px;
+}
+
+.logo {
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: white;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.padding {
+	background-color: #0073a0;
+	/* 남색의 배경색 */
+	height: 30px;
+	/* 원하는 높이 */
+	border-bottom: 1px solid #0c3252;
+}
+
+.menu {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.menu li {
+	margin-bottom: 0;
+	/* 기존의 마진 제거 */
+}
+
+.menu li a {
+	display: block;
+	padding: 20px;
+	text-decoration: none;
+	font-weight: bold;
+	color: white;
+	text-align: center;
+	border-bottom: 1px solid #0c3252;
+	/* 메뉴 버튼 간의 경계선 */
+}
+
+.menu li a:hover {
+	background-color: #185066;
+	/* 더 짙은 하늘색 */
+}
+
+.content {
+	border-radius: 5px;
+	/* 박스 테두리를 둥글게 만듦 */
+	margin-bottom: 20px;
+	/* 박스와 다음 내용 간격 조정 */
+	box-shadow: 0 0 5px;
+	margin-left: 280px;
+	/* 사이드바와 겹치지 않도록 왼쪽 여백 추가 */
+	margin-right: 100px;
+	margin-top: 60px;
+	padding: 20px;
+	/* 내용 주변에 패딩 추가 */
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+table,
+th,
+td {
+	border: 1px solid black;
+}
+
+tr {
+	height: 40px;
+}
+
+tr {
+	height: 40px;
+}
+
+th,
+td {
+	padding: 8px;
+	text-align: middle;
+}
+
 th {
-    background-color: #f2f2f2;
+	background-color: #f2f2f2;
 }
 
 .check_out {
-  position:absolute;
-  top: 135px;
-  right: 120px;
-  width:7%;
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #0073a0; /* 로그인 버튼 배경색 */
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-family: Arial, sans-serif;
-  border: 1px solid #ccc; /* 박스 테두리 스타일 */
-  border-radius: 5px; /* 박스 테두리를 둥글게 만듦 */
-  padding: 10px; /* 내부 여백 */
-  margin-bottom: 10px; /* 공지사항 항목 간격 조정 */
-  margin-top:25px;
+	position: absolute;
+	top: 135px;
+	right: 120px;
+	width: 7%;
+	padding: 10px 20px;
+	font-size: 1rem;
+	background-color: #0073a0;
+	/* 로그인 버튼 배경색 */
+	color: white;
+	border: none;
+	cursor: pointer;
+	font-family: Arial, sans-serif;
+	border: 1px solid #ccc;
+	/* 박스 테두리 스타일 */
+	border-radius: 5px;
+	/* 박스 테두리를 둥글게 만듦 */
+	padding: 10px;
+	/* 내부 여백 */
+	margin-bottom: 10px;
+	/* 공지사항 항목 간격 조정 */
+	margin-top: 25px;
 }
+
 .check_out:hover {
- background-color: #13446b; /* 로그인 버튼 hover 시 배경색 */
+	background-color: #13446b;
+	/* 로그인 버튼 hover 시 배경색 */
 }
 
 .check_in {
-  position: absolute;
-  top: 135px;
-  right: 240px;
-  width:7%;
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #0073a0; /* 로그인 버튼 배경색 */
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-family: Arial, sans-serif;
-  border: 1px solid #ccc; /* 박스 테두리 스타일 */
-  border-radius: 5px; /* 박스 테두리를 둥글게 만듦 */
-  padding: 10px; /* 내부 여백 */
-  margin-bottom: 10px; /* 공지사항 항목 간격 조정 */
-  margin-top:25px;
+	position: absolute;
+	top: 135px;
+	right: 240px;
+	width: 7%;
+	padding: 10px 20px;
+	font-size: 1rem;
+	background-color: #0073a0;
+	/* 로그인 버튼 배경색 */
+	color: white;
+	border: none;
+	cursor: pointer;
+	font-family: Arial, sans-serif;
+	border: 1px solid #ccc;
+	/* 박스 테두리 스타일 */
+	border-radius: 5px;
+	/* 박스 테두리를 둥글게 만듦 */
+	padding: 10px;
+	/* 내부 여백 */
+	margin-bottom: 10px;
+	/* 공지사항 항목 간격 조정 */
+	margin-top: 25px;
 }
+
 .check_in:hover {
-  background-color: #13446b; /* 로그인 버튼 hover 시 배경색 */
+	background-color: #13446b;
+	/* 로그인 버튼 hover 시 배경색 */
 }
 
 .user_search {
-  position: absolute;
-  top: 135px;
-  right: 360px;
-  width:7%;
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #0073a0; /* 로그인 버튼 배경색 */
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-family: Arial, sans-serif;
-  border: 1px solid #ccc; /* 박스 테두리 스타일 */
-  border-radius: 5px; /* 박스 테두리를 둥글게 만듦 */
-  padding: 10px; /* 내부 여백 */
-  margin-bottom: 10px; /* 공지사항 항목 간격 조정 */
-  margin-top:25px;
+	position: absolute;
+	top: 135px;
+	right: 360px;
+	width: 7%;
+	padding: 10px 20px;
+	font-size: 1rem;
+	background-color: #0073a0;
+	/* 로그인 버튼 배경색 */
+	color: white;
+	border: none;
+	cursor: pointer;
+	font-family: Arial, sans-serif;
+	border: 1px solid #ccc;
+	/* 박스 테두리 스타일 */
+	border-radius: 5px;
+	/* 박스 테두리를 둥글게 만듦 */
+	padding: 10px;
+	/* 내부 여백 */
+	margin-bottom: 10px;
+	/* 공지사항 항목 간격 조정 */
+	margin-top: 25px;
 }
+
 .notice_delete:hover {
-  background-color: #13446b; /* 로그인 버튼 hover 시 배경색 */
+	background-color: #13446b;
+	/* 로그인 버튼 hover 시 배경색 */
 }
 
 .notice_details {
- font-weight: bold;
+	font-weight: bold;
 }
+
 table,
 th,
 td {
@@ -169,4 +211,10 @@ td:hover {
 	background-color: #f5f5f5;
 }
 
-
+.logo2 {
+	text-align: right;
+	margin-right: 100px;
+	font-size: 30px;
+	font-weight: bold;
+	color: #0073a0;
+}

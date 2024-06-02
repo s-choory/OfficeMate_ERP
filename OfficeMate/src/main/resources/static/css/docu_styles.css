@@ -3,6 +3,7 @@
 body {
 	margin: 0;
 	padding: 0;
+	background-color: aliceblue;
 }
 
 .sidebar {
@@ -61,23 +62,43 @@ body {
 }
 
 .content {
-	border-radius: 5px; /* 박스 테두리를 둥글게 만듦 */
-	margin-bottom: 20px; /* 박스와 다음 내용 간격 조정 */
+	border-radius: 5px;
+	/* 박스 테두리를 둥글게 만듦 */
+	margin-bottom: 20px;
+	/* 박스와 다음 내용 간격 조정 */
 	box-shadow: 0 0 5px;
-	margin-left: 280px; /* 사이드바와 겹치지 않도록 왼쪽 여백 추가 */
+	margin-left: 280px;
+	/* 사이드바와 겹치지 않도록 왼쪽 여백 추가 */
 	margin-right: 100px;
 	margin-top: 60px;
-	padding: 20px; /* 내용 주변에 패딩 추가 */
+	padding: 20px;
+	/* 내용 주변에 패딩 추가 */
 }
 
 .button-container {
-	text-align: right; /* 버튼 컨테이너를 오른쪽 정렬 */
-	margin-top: 10px; /* 컨테이너 상단 여백 추가 */
-	margin-bottom: 10px; /* 컨테이너 하단 여백 추가 */
+	text-align: right;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .button-container button {
-	margin-left: 10px; /* 버튼 간격 조정 */
+	margin-left: 10px;
+}
+
+.work_button{
+	padding: 10px 20px;
+  font-size: 1rem;
+  background-color: seagreen; /* 로그인 버튼 배경색 */
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  border: 1px solid #ccc; /* 박스 테두리 스타일 */
+  border-radius: 5px; /* 박스 테두리를 둥글게 만듦 */
+  padding: 10px; /* 내부 여백 */
+}
+.work_button:hover {
+  background-color: #13446b; /* 로그인 버튼 hover 시 배경색 */
 }
 
 button {
@@ -100,22 +121,26 @@ button:hover {
 .docu_edit {
 	background-color: seagreen;
 }
+
 .docu_edit::before {
 	content: '\270F';
 	margin-right: 5px;
 }
-.docu_edit:hover{
+
+.docu_edit:hover {
 	background-color: darkgreen;
 }
 
-.docu_delete{
+.docu_delete {
 	background-color: red;
 }
+
 .docu_delete::before {
 	content: '\1F5D1';
 	margin-right: 5px;
 }
-.docu_delete:hover{
+
+.docu_delete:hover {
 	background-color: darkred;
 }
 
@@ -155,7 +180,8 @@ table {
 	border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
 	padding: 8px;
 	border: 0.5px solid gray;
 	text-align: center;
@@ -174,7 +200,8 @@ tr:hover {
 	margin-top: 20px;
 }
 
-#pagination span, #pagination a {
+#pagination span,
+#pagination a {
 	display: inline-block;
 	padding: 3px 0px;
 	margin: 0 5px;
@@ -201,3 +228,10 @@ tr:hover {
 	background-color: #13446b;
 }
 
+.logo2 {
+	text-align: right;
+	margin-right: 100px;
+	font-size: 30px;
+	font-weight: bold;
+	color: #0073a0;
+}

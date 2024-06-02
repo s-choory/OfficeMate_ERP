@@ -6,63 +6,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OfficeMate</title>
     <link rel="stylesheet" href="css/attendence_styles.css">
-    <script>
-        function formatTime(timeString) {
-			// 정규식으로 시간 부분만 추출
-			const timeMatch = timeString.match(/(\d{2}):(\d{2}):(\d{2})/);
-			if (timeMatch) {
-			    const [_, hour, minute, second] = timeMatch;
-			    return `${hour}시 ${minute}분 ${second}초`;
-			}
-			return '';
-        }
+	<script>
+	    function formatTime(timeString) {
+	        if (!timeString) {
+	            return ''; // timeString이 null이거나 undefined인 경우 빈 문자열 반환
+	        }
+	
+	        // 정규식으로 시간 부분만 추출
+	        const timeMatch = timeString.match(/(\d{2}):(\d{2}):(\d{2})/);
+	        if (timeMatch) {
+	            const [_, hour, minute, second] = timeMatch;
+	            return `${hour}시 ${minute}분 ${second}초`;
+	        }
+	        return '';
+	    }
+	
+	    function calculateWorkHours(checkInTime, checkOutTime) {
+	        if (!checkInTime || !checkOutTime) {
+	            return 0; // checkInTime이나 checkOutTime이 null이거나 undefined인 경우 0시간 반환
+	        }
+	
+	        // 시간 문자열을 시, 분, 초로 분리
+	        const [checkInHour, checkInMinute, checkInSecond] = checkInTime.split(':').map(Number);
+	        const [checkOutHour, checkOutMinute, checkOutSecond] = checkOutTime.split(':').map(Number);
+	
+	        // 출근 시간과 퇴근 시간을 밀리초로 변환
+	        const checkInMilliseconds = checkInHour * 3600000 + checkInMinute * 60000 + checkInSecond * 1000;
+	        const checkOutMilliseconds = checkOutHour * 3600000 + checkOutMinute * 60000 + checkOutSecond * 1000;
+	
+	        // 시간 차이 계산
+	        const timeDiff = checkOutMilliseconds - checkInMilliseconds;
+	
+	        // 밀리초를 시간 단위로 변환하여 반환
+	        return timeDiff / 3600000;
+	    }
+	
+	    document.addEventListener("DOMContentLoaded", function() {
+	        const attendanceRows = document.querySelectorAll('.attendance-row');
+	
+	        attendanceRows.forEach(row => {
+	            const checkInElement = row.querySelector('.check-in');
+	            const checkOutElement = row.querySelector('.check-out');
+	            const statusElement = row.querySelector('.status');
+	
+	            const checkInTime = checkInElement.getAttribute('data-time');
+	            const checkOutTime = checkOutElement.getAttribute('data-time');
+	
+	            console.log('Check-in time:', checkInTime);
+	            console.log('Check-out time:', checkOutTime);
+	
+	            checkInElement.textContent = formatTime(checkInTime);
+	            checkOutElement.textContent = formatTime(checkOutTime);
+	
+	            const workHours = calculateWorkHours(checkInTime, checkOutTime);
+	            if (workHours >= 8) {
+	                statusElement.textContent = "출근";
+	            } else {
+	                statusElement.textContent = "8시간 미만";
+	            }
+	        });
+	    });
+	</script>
 
-		function calculateWorkHours(checkInTime, checkOutTime) {
-		    // 시간 문자열을 시, 분, 초로 분리
-		    const [checkInHour, checkInMinute, checkInSecond] = checkInTime.split(':').map(Number);
-		    const [checkOutHour, checkOutMinute, checkOutSecond] = checkOutTime.split(':').map(Number);
-		
-		    // 출근 시간과 퇴근 시간을 밀리초로 변환
-		    const checkInMilliseconds = checkInHour * 3600000 + checkInMinute * 60000 + checkInSecond * 1000;
-		    const checkOutMilliseconds = checkOutHour * 3600000 + checkOutMinute * 60000 + checkOutSecond * 1000;
-		
-		    // 시간 차이 계산
-		    const timeDiff = checkOutMilliseconds - checkInMilliseconds;
-		
-		    // 밀리초를 시간 단위로 변환하여 반환
-		    return timeDiff / 3600000;
-		}
-		
-		document.addEventListener("DOMContentLoaded", function() {
-		    const attendanceRows = document.querySelectorAll('.attendance-row');
-		
-		    attendanceRows.forEach(row => {
-		        const checkInElement = row.querySelector('.check-in');
-		        const checkOutElement = row.querySelector('.check-out');
-		        const statusElement = row.querySelector('.status');
-		
-		        const checkInTime = checkInElement.getAttribute('data-time');
-		        const checkOutTime = checkOutElement.getAttribute('data-time');
-		
-		        console.log('Check-in time:', checkInTime);
-		        console.log('Check-out time:', checkOutTime);
-		
-		        checkInElement.textContent = formatTime(checkInTime);
-		        checkOutElement.textContent = formatTime(checkOutTime);
-		
-		        const workHours = calculateWorkHours(checkInTime, checkOutTime);
-		        if (workHours >= 8) {
-		            statusElement.textContent = "출근";
-		        } else {
-		            statusElement.textContent = "8시간 미만";
-		        }
-		    });
-		});
-
-		
-
-
-    </script>
 </head>
 
 <body>
@@ -82,10 +87,6 @@
                 <li><a href="admin/empManage">전체사원관리</a></li>
             </div>
         </ul>
-    </div>
-
-    <div class="login-container">
-        <button class="login-button">로그인</button>
     </div>
 
     <div class="content">
@@ -111,6 +112,9 @@
             </tr>
         </table>
     </div>
+	<div class="logo2">
+			OfficeMate
+	</div>
 </body>
 
 </html>

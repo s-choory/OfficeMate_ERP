@@ -34,7 +34,7 @@
 		<form th:action="@{/admin/userDetailUpdate}" method="post" onsubmit="confirmUpdate(event)">
 			<div class="detail_text" th:text="${user.username}"></div>
 			<h3>부서명</h3>
-			<div th:if="${user.username != 'admin'}">
+			<div>
 			    <select name="departmentId" class="detail_select">
 			        <option value="0">없음</option>
 			        <option th:each="dept : ${deptList}" th:value="${dept.departmentId}"
@@ -60,16 +60,10 @@
 			<h3>월급</h3>
 			<input type="text" name="monthSalary" th:value="${user.monthSalary}" class="detail_input"><br>
 
-			<button type="submit" class="submit-button">수정</button>
 			<input type="hidden" name="userId" th:value="${user.userId}">
 		</form>
 
-		<form th:action="@{/admin/userDelete}" method="post" onsubmit="confirmDelete(event)">
-			<input type="hidden" name="userId" th:value="${user.userId}">
-			<button type="submit" class="back-button" style="background-color:red;">삭제</button>
-		</form>
-
-		<button onclick="location.href='/admin/empManage'" class="back-button" 		style="background-color:gray;">돌아가기</button>
+		<button onclick="location.href='/home'" class="back-button" 		style="background-color:gray;">돌아가기</button>
 	</div>
 
 </body>

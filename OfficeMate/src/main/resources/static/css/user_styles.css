@@ -1,93 +1,104 @@
 body {
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
+	background-color: aliceblue;
+
 }
 
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #0073a0;
-    text-align: center;
-    margin-bottom: 20px;
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #0073a0;
+	text-align: center;
+	margin-bottom: 20px;
 }
 
 .content {
-    border-radius: 5px; /* 박스 테두리를 둥글게 만듦 */
-   	box-shadow: 0 0 5px;
-    margin-bottom: 20px; /* 박스와 다음 내용 간격 조정 */
-    height: 80%;
-    background-color: #f2f2f2;
-    margin-left: 35%;
-    margin-right: 35%;
-    padding: 20px; /* 내용 주변에 패딩 추가 */
+	border-radius: 5px;
+	/* 박스 테두리를 둥글게 만듦 */
+	box-shadow: 0 0 5px;
+	margin-bottom: 20px;
+	/* 박스와 다음 내용 간격 조정 */
+	height: 80%;
+	background-color: #f2f2f2;
+	margin-left: 35%;
+	margin-right: 35%;
+	padding: 20px;
+	/* 내용 주변에 패딩 추가 */
 }
 
-.detail_text{
+.detail_text {
 	font-size: 20px;
 	font-weight: bold;
 	text-align: center;
 }
 
 h1 {
-    text-align: center;
+	text-align: center;
 }
 
 .input_t {
-    font-size: 20px;
-    text-align: center;
-    border-radius: 5px; /* 박스 테두리를 둥글게 만듦 */
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 20px;
-    padding-top: 4%;
-    padding-bottom: 4%;
-    width: 80%;
+	font-size: 20px;
+	text-align: center;
+	border-radius: 5px;
+	/* 박스 테두리를 둥글게 만듦 */
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 20px;
+	padding-top: 4%;
+	padding-bottom: 4%;
+	width: 80%;
 }
 
 
 .content button {
-    font-size: 18px;
-    font-weight: 500;
-    text-align: center;
-    border-radius: 5px; /* 박스 테두리를 둥글게 만듦 */
-    margin-top: 5px;
-    padding-top: 10px;
-    padding-bottom: 4%;
-    width: 100%;
-    color: white;
-    background-color: #0073a0;
-    cursor: pointer;
-    border: 1px solid white;
+	font-size: 18px;
+	font-weight: 500;
+	text-align: center;
+	border-radius: 5px;
+	/* 박스 테두리를 둥글게 만듦 */
+	margin-top: 5px;
+	padding-top: 10px;
+	padding-bottom: 4%;
+	width: 100%;
+	color: white;
+	background-color: #0073a0;
+	cursor: pointer;
+	border: 1px solid white;
 	margin-top: 10px;
 }
 
 /* 새로운 클래스 스타일 추가 */
-.detail_input, .detail_select {
-    font-size: 14px;
-    text-align: center;
+.detail_input,
+.detail_select {
+	font-size: 14px;
+	text-align: center;
 	box-shadow: 0 0 2px;
-    border-radius: 5px; /* 박스 테두리를 둥글게 만듦 */
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-bottom: 15px;
-    padding: 10px; /* 입력 내용 주변에 패딩 추가 */
-    width: 80%;
-    border: 1px solid white;
+	border-radius: 5px;
+	/* 박스 테두리를 둥글게 만듦 */
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 15px;
+	padding: 10px;
+	/* 입력 내용 주변에 패딩 추가 */
+	width: 80%;
+	border: 1px solid white;
 }
 
 .detail_select {
-    -webkit-appearance: none; /* 크로스 브라우저 일관성 */
-    -moz-appearance: none;
-    appearance: none;
-    background-color: white;
+	-webkit-appearance: none;
+	/* 크로스 브라우저 일관성 */
+	-moz-appearance: none;
+	appearance: none;
+	background-color: white;
 }
 
-.logo2{
+.logo2 {
 	margin-top: 50px;
 	margin-bottom: 30px;
 	text-align: center;
 	font-size: 30px;
 	font-weight: bold;
-    color: #0073a0;
+	color: #0073a0;
 }

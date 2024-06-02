@@ -66,10 +66,6 @@
 		</ul>
 	</div>
 
-	<div class="login-container">
-		<button class="login-button">로그인</button>
-	</div>
-
 	<div class="content">
 		<h2>완료된 업무</h2>
 		<button class="work_button work_add" onclick="location.href='work'">진행중인 업무 확인</button>
@@ -92,7 +88,7 @@
 				<td th:text="${work.dueDate}"></td>
 				<td class="work-status" th:text="${work.status}" th:id="'status-' + ${work.workId}"></td>
 				<td>
-					<select class="status-select" th:data-work-id="${work.workId}">
+					<select class="status-select detail_select" th:data-work-id="${work.workId}">
 						<option th:selected="${work.status == 'Pending'}" value="Pending">Pending</option>
 						<option th:selected="${work.status == 'In progress'}" value="In progress">In progress</option>
 						<option th:selected="${work.status == 'Complete'}" value="Complete">Complete</option>
@@ -128,6 +124,9 @@
 				<a th:href="@{'/work?page='+${pageDTO.totalPageCount}}" th:text="|&emsp;끝|"></a>
 			</span>
 		</div>
+	</div>
+	<div class="logo2">
+			OfficeMate
 	</div>
 
 </body>
