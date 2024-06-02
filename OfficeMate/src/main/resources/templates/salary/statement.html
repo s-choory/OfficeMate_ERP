@@ -6,10 +6,12 @@
 </head>
 <body>
 
-	<div class="content" style="	margin-left: 100px;">
+	<div class="content" style="	margin-left: 100px; background-color: #fff;" >
 		<h2 th:text="${#strings.substring(salary.salaryDate.toString(), 0, 7) + ' (급여)'}"></h2>
-		<input type="button" value="인쇄" onclick="window.print()"/>
-		<button onclick="location.href='/salary'">뒤로가기</button>
+		<div class="button-container">
+			<input type="button" value="인쇄" onclick="window.print()"/>
+		<button class="back-button" onclick="location.href='/salary'">뒤로가기</button>
+		</div>
 		<br><br>
     <table>
         <tr>

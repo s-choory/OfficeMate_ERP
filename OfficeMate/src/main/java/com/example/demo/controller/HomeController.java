@@ -51,5 +51,19 @@ public class HomeController {
 
 		return "redirect:/";
 	}
-
+	
+	@GetMapping("/contact")
+	public String contact() {
+		return "redirect:/home";
+	}
+	
+	@GetMapping("/about")
+	public String about() {
+		return "redirect:/home";
+	}
+	
+	@GetMapping("/privacy")
+	public String privacy() {
+		return "redirect:/home";
+	}
 }

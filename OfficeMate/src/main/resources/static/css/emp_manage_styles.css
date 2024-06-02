@@ -46,7 +46,7 @@ body {
 	margin-bottom: 20px; /* 박스와 다음 내용 간격 조정 */
 	box-shadow: 0 0 5px;
 	margin-left: 280px; /* 사이드바와 겹치지 않도록 왼쪽 여백 추가 */
-	margin-right: 100px;
+	margin-right: 50px;
 	margin-top: 60px;
 	padding: 20px; /* 내용 주변에 패딩 추가 */
 }
@@ -86,10 +86,6 @@ button {
 
 button:hover {
 	background-color: #13446b;
-}
-.emp_manage_add::after {
-    content: '\002B';
-    margin-left: 5px;
 }
 
 .emp_manage_edit {

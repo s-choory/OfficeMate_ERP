@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>OfficeMate</title>
 	<link rel="stylesheet" href="../css/salary_styles.css">
+
 </head>
 
 <body>
@@ -27,9 +28,14 @@
 				<li><a href="../admin/empManage">전체사원관리</a></li>
 			</div>
 		</ul>
+		<div class="action-container">
+			<span class="usernameCss" th:text="${username}"></span><span class="usernameCss2"> 님 환영합니다!</span><br>
+			<a class="logout" href="/logout">로그아웃</a>
+			<a class="myProfile" href="userDetailDefault">내 정보</a>
+		</div>
 	</div>
 
-	<div class="content">
+	<div class="content" style="background-color: #fff;">
 		<h1>월 급여 대장</h1>
 		<h2 th:text="${#temporals.format(monthSalaryDTO.paymentMonth, 'yyyy년 M월')}">현재 월</h2>
 		<p>총 급여 금액: <span th:text="${#numbers.formatDecimal(monthSalaryDTO.totalAmount, 0, 'COMMA', 0, 'POINT')}">총 급여
@@ -108,7 +114,7 @@
 			</tbody>
 			<tr>
 				<td colspan="3" rowspan="2" style="background-color:#f5f5f5;">합계</td>
-				<td th:text="${#numbers.formatDecimal(totalPay.totalBasicPay, 0, 'COMMA', 0, 'POINT')}"></td>
+				<td th:text="${#numbers.formatDecimal(totalPay.totalBasicPay-180000*userList.size(), 0, 'COMMA', 0, 'POINT')}"></td>
 				<td>0</td>
 				<td>0</td>
 				<td rowspan="2" th:text="${#numbers.formatDecimal(totalPay.totalBasicPay, 0, 'COMMA', 0, 'POINT')}">
@@ -121,7 +127,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>0</td>
+				<td th:text="${#numbers.formatDecimal(180000*userList.size(), 0, 'COMMA', 0, 'POINT')}"></td>
 				<td>0</td>
 				<td>0</td>
 				<td th:text="${#numbers.formatDecimal(totalPay.totalHealthInsurance, 0, 'COMMA', 0, 'POINT')}"></td>

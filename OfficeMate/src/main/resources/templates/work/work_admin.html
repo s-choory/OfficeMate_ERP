@@ -6,6 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>OfficeMate</title>
 	<link rel="stylesheet" href="../css/work_styles.css">
+	<link rel="stylesheet" href="../css/total_styles.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	<script th:inline="javascript">
 		document.addEventListener('DOMContentLoaded', function () {
 			const statusSelects = document.querySelectorAll('.status-select');
@@ -97,15 +99,22 @@
 				<li><a href="../admin/empManage">전체사원관리</a></li>
 			</div>
 		</ul>
+		<div class="action-container">
+			<span class="usernameCss" th:text="${username}"></span><span class="usernameCss2"> 님 환영합니다!</span><br>
+			<a class="logout" href="/logout">로그아웃</a>
+			<a class="myProfile" href="userDetailDefault">내 정보</a>
+		</div>
 	</div>
 
 	<div class="content">
-		<h2>전체 업무</h2>
-		<br>
-		<button class="work_button" onclick="location.href='workConfirm'">완료된 업무 확인</button>
-		<!--<button class="work_button work_edit" onclick="location.href='admin/work_edit'">업무 수정</button>-->
-
-		<br><br>
+		<header>
+			<h1>전체 업무</h1>
+		</header>
+		<div class="button-container">
+			<button class="work_button" onclick="location.href='workConfirm'">
+				<i class="fas fa-check-circle"></i> 완료된 업무 확인
+			</button>
+		</div>
 		<table>
 			<tr>
 				<th style="width:15%">부서</th>
@@ -170,6 +179,11 @@
 			</span>
 		</div>
 	</div>
+	<footer class="footer">
+	    <a href="/contact">Contact</a>
+	    <a href="/about">About</a>
+	    <a href="/privacy">Privacy Policy</a>
+	</footer>
 	<div class="logo2">
 			OfficeMate
 	</div>
@@ -181,6 +195,7 @@
 			<form id="editForm">
 				<input type="hidden" id="editWorkId">
 				<textarea id="editDescription" placeholder="업무 상세"></textarea>
+				<button type="button" onclick="saveDescription()">저장</button>
 			</form>
 		</div>
 	</div>
@@ -242,28 +257,29 @@
 		const workId = document.getElementById('editWorkId').value;
 		const newDescription = document.getElementById('editDescription').value;
 		const csrfToken = document.querySelector('input[name="_csrf"]').value;
-
+	
 		fetch(`/updateWorkDescription?workId=${workId}`, {
 			method: 'POST',
 			headers: {
 				'X-CSRF-TOKEN': csrfToken,
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({description: newDescription})
+			body: JSON.stringify({ description: newDescription })
 		})
-			.then(response => response.json())
-			.then(data => {
-				if (data.status === 'success') {
-					document.querySelector(`.work-description[data-work-id="${workId}"]`).textContent = newDescription;
-					document.getElementById('editModal').style.display = 'none';
-				} else {
-					console.error(data.message);
-				}
-			})
-			.catch(error => {
-				console.error('업무 설명 업데이트 중 오류 발생:', error);
-			});
+		.then(response => response.json())
+		.then(data => {
+			if (data.status === 'success') {
+				document.querySelector(`.work-description[data-work-id="${workId}"]`).textContent = newDescription;
+				document.getElementById('editModal').style.display = 'none';
+			} else {
+				console.error(data.message);
+			}
+		})
+		.catch(error => {
+			console.error('업무 설명 업데이트 중 오류 발생:', error);
+		});
 	}
+
 </script>
 
 </html>

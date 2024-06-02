@@ -6,6 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>OfficeMate</title>
 	<link rel="stylesheet" href="../css/salary_styles.css">
+	<link rel="stylesheet" href="../css/total_styles.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <script th:inline="javascript">
@@ -70,13 +72,23 @@
 				<li><a href="../admin/empManage">전체사원관리</a></li>
 			</div>
 		</ul>
+		<div class="action-container">
+			<span class="usernameCss" th:text="${username}"></span><span class="usernameCss2"> 님 환영합니다!</span><br>
+			<a class="logout" href="/logout">로그아웃</a>
+			<a class="myProfile" href="userDetailDefault">내 정보</a>
+		</div>
 	</div>
 
 	<div class="content">
-		<h2>급여계산/대장</h2>
+		<header>
+		<h1>급여계산/대장</h1>
+		</header>
 		<br>
-		<button onclick="addMonthSalary()">신규</button>
-		<br><br>
+		<div class="button-container">
+			<button class="emp_manage_button emp_manage_add" onclick="addMonthSalary()">
+				<i class="fas fa-plus-circle"></i> 신규
+			</button>
+		</div>
 		<table>
 			<tr>
 				<th style="width:20%">급여명칭</th>
@@ -90,10 +102,10 @@
 				<td th:text="${monthSalary.paymentDescription}"></td>
 				<td th:text="${#temporals.format(monthSalary.paymentMonth, 'yy년 M월')}"></td>
 				<td th:text="${#numbers.formatInteger(monthSalary.totalAmount, 3, 'COMMA') + '원'}" />
-				<td><a th:href="@{'salaryLedger?monthSalaryId=' + ${monthSalary.monthSalaryId}}">조회</a><br><br>
+				<td				style="text-align: center;"><a th:href="@{'salaryLedger?monthSalaryId=' + ${monthSalary.monthSalaryId}}">조회</a><br><br>
 					<a href="#" th:onclick="'confirmPayment(\'' + @{${monthSalary.paymentMonth}} + '\');'">지급확정</a>
 				</td>
-				<td><a href="">조회</a></td>
+				<td style="text-align: center;"><a href="">조회</a></td>
 				<td th:text="${monthSalary.paymentState}"></td>
 			</tr>
 		</table>
@@ -101,6 +113,11 @@
 	<div class="logo2">
 			OfficeMate
 	</div>
+	<footer class="footer">
+	    <a href="/contact">Contact</a>
+	    <a href="/about">About</a>
+	    <a href="/privacy">Privacy Policy</a>
+	</footer>
 
 
 </body>
