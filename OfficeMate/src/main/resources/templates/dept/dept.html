@@ -27,11 +27,8 @@
 			</div>
 		</ul>
 	</div>
-	<div class="login-container">
-		<button class="login-button">로그인</button>
-	</div>
-	<div class="content">
-		<h2>부서 정보</h2>
+	<div class="content"	style="	box-shadow: none;">
+		<h2 style="text-align: center;">부서목록</h2>
 		<br>
 
 		<div class="dept-container" th:each="dept : ${deptList}">
@@ -48,12 +45,15 @@
 			</span>
 		</div>
 		<br>
-		<div id="deptManageDiv" style="display: none;">
-			<h3>부서 추가</h3>
-			<input type="text" id="newDeptInput" placeholder="새 부서명 입력">
-			<button id="addDeptBtn">추가</button>
-		</div>
-		<button id="deptManageBtn">부서 추가</button>
+		<span class="deptAdd-container">
+			<div id="deptManageDiv" class="centered-div" style="display: none;">
+				<h3>부서 추가</h3>
+				<input type="text" id="newDeptInput" placeholder="새 부서명 입력">
+				<button id="addDeptBtn">추가</button>
+				<button id="closeDeptManageDiv">창닫기</button>
+			</div>
+			<button id="deptManageBtn">부서 추가</button>
+		</span>
 		<input type="hidden" name="_csrf" th:value="${_csrf.token}">
 
 	</div>
@@ -61,12 +61,20 @@
 			OfficeMate
 	</div>
 </body>
-	<script>
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
 		const deptManageBtn = document.getElementById('deptManageBtn');
 		const deptManageDiv = document.getElementById('deptManageDiv');
+		const addDeptBtn = document.getElementById('addDeptBtn');
+		const newDeptInput = document.getElementById('newDeptInput');
+		const closeDeptManageDivBtn = document.getElementById('closeDeptManageDiv');
+
 
 		deptManageBtn.addEventListener('click', () => {
 			deptManageDiv.style.display = deptManageDiv.style.display === 'none' ? 'block' : 'none';
+		});
+		closeDeptManageDivBtn.addEventListener('click', () => {
+		    deptManageDiv.style.display = 'none';
 		});
 
 		const editIcons = document.querySelectorAll('.fa-edit');
@@ -88,7 +96,7 @@
 		const cancelButtons = document.querySelectorAll('.cancel-edit');
 		cancelButtons.forEach(button => {
 			button.addEventListener('click', () => {
-				const parent = button.parentElement.parentElement;
+				const parent = button.closest('.dept-container');
 				const editMode = parent.querySelector('.edit-mode');
 				const normalMode = parent.querySelector('span:not(.edit-mode)');
 
@@ -100,9 +108,9 @@
 		const confirmButtons = document.querySelectorAll('.confirm-edit');
 		confirmButtons.forEach(button => {
 			button.addEventListener('click', () => {
-				const parent = button.parentElement.parentElement;
-				const deptId = button.parentElement.previousElementSibling.dataset.deptId;
-				const newDeptName = button.parentElement.querySelector('.edit-input').value;
+				const parent = button.closest('.dept-container');
+				const deptId = parent.querySelector('.fa-edit').dataset.deptId;
+				const newDeptName = parent.querySelector('.edit-input').value;
 
 				const url = `/deptUpdate?departmentId=${deptId}&departmentName=${encodeURIComponent(newDeptName)}`;
 				const csrfToken = document.querySelector('input[name="_csrf"]').value;
@@ -119,7 +127,7 @@
 						// 성공적으로 업데이트되면 편집 모드를 종료하고 화면에 업데이트된 내용을 반영합니다.
 						if (data.status === 'success') {
 							const normalMode = parent.querySelector('span:not(.edit-mode)');
-							normalMode.textContent = newDeptName; // 이 부분을 수정
+							normalMode.textContent = newDeptName;
 
 							const editMode = parent.querySelector('.edit-mode');
 							editMode.style.display = 'none';
@@ -147,10 +155,8 @@
 			const newDeptName = newDeptInput.value.trim();
 			if (newDeptName) {
 				const url = `/deptAdd?departmentName=${encodeURIComponent(newDeptName)}`;
-				// JavaScript에서 CSRF 토큰 가져오기
 				const csrfToken = document.querySelector('input[name="_csrf"]').value;
 
-				// fetch 요청 시 CSRF 토큰 포함
 				fetch(url, {
 					method: 'POST',
 					headers: {
@@ -167,22 +173,89 @@
 					.then(data => {
 						console.log(data.message);
 						if (data.status === 'success') {
-							const editedName = parent.querySelector('span:not(.edit-mode)'); // 수정
-							console.log(editedName);
-							editedName.textContent = newDeptName;
+							// 부서 목록에 새 항목을 추가
+							const newDeptDiv = document.createElement('div');
+							newDeptDiv.classList.add('dept-container');
+							newDeptDiv.innerHTML = `
+								<a href="/deptDetail?departmentId=${data.departmentId}" style="color:black; text-decoration: none;">
+									<span>${newDeptName}</span>
+								</a>
+								<i class="fas fa-edit" data-dept-id="${data.departmentId}" title="수정" style="cursor: pointer;"></i>
+								<i class="fas fa-trash-alt" data-dept-id="${data.departmentId}" title="삭제" style="cursor: pointer;"></i>
+								<span class="edit-mode" style="display: none;">
+									<input type="text" class="edit-input" value="${newDeptName}">
+									<button class="confirm-edit">확인</button>
+									<button class="cancel-edit">취소</button>
+								</span>
+							`;
 
-							const editMode = parent.querySelector('.edit-mode');
-							editMode.style.display = 'none';
-							editedName.style.display = 'inline-block'; // 수정
+							document.querySelector('.content').appendChild(newDeptDiv);
+
+							// 새로 추가한 부서의 수정 및 삭제 버튼에 이벤트 리스너 추가
+							newDeptDiv.querySelector('.fa-edit').addEventListener('click', () => {
+								const parent = newDeptDiv;
+								const editMode = parent.querySelector('.edit-mode');
+								const normalMode = parent.querySelector('span:not(.edit-mode)');
+
+								editMode.style.display = 'inline-block';
+								normalMode.style.display = 'none';
+							});
+
+							newDeptDiv.querySelector('.cancel-edit').addEventListener('click', () => {
+								const parent = newDeptDiv;
+								const editMode = parent.querySelector('.edit-mode');
+								const normalMode = parent.querySelector('span:not(.edit-mode)');
+
+								editMode.style.display = 'none';
+								normalMode.style.display = 'inline-block';
+							});
+
+							newDeptDiv.querySelector('.confirm-edit').addEventListener('click', () => {
+								const parent = newDeptDiv;
+								const deptId = parent.querySelector('.fa-edit').dataset.deptId;
+								const newDeptName = parent.querySelector('.edit-input').value;
+
+								const url = `/deptUpdate?departmentId=${deptId}&departmentName=${encodeURIComponent(newDeptName)}`;
+								const csrfToken = document.querySelector('input[name="_csrf"]').value;
+
+								fetch(url, {
+									method: 'POST',
+									headers: {
+										'X-CSRF-TOKEN': csrfToken
+									}
+								})
+									.then(response => response.json())
+									.then(data => {
+										console.log(data.message);
+										if (data.status === 'success') {
+											const normalMode = parent.querySelector('span:not(.edit-mode)');
+											normalMode.textContent = newDeptName;
+
+											const editMode = parent.querySelector('.edit-mode');
+											editMode.style.display = 'none';
+											normalMode.style.display = 'inline-block';
+										}
+									})
+									.catch(error => {
+										console.error('부서명 업데이트 중 오류 발생:', error);
+									});
+							});
+
+							newDeptDiv.querySelector('.fa-trash-alt').addEventListener('click', () => {
+								const deptId = newDeptDiv.querySelector('.fa-trash-alt').dataset.deptId;
+								if (confirm("정말 삭제하시겠습니까?")) {
+									window.location.href = `deptDelete?departmentId=${deptId}`;
+								}
+								console.log(`삭제 버튼 클릭: 부서 ID ${deptId}`);
+							});
 						}
-
 					})
 					.catch(error => {
 						console.error('부서 추가 요청 중 오류 발생:', error);
 					});
 			}
 		});
-
-	</script>
+	});
+</script>
 
 </html>

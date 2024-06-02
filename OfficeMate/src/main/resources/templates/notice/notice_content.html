@@ -19,7 +19,7 @@
 	}
 </script>
 
-<body>
+<body style="background-color: aliceblue;">
 
 	<div class="sidebar">
 		<a href="/home" style="text-decoration: none;">
@@ -40,13 +40,10 @@
 		</ul>
 	</div>
 
-	<div class="login-container">
-		<button class="login-button">로그인</button>
-	</div>
 
 	<div class="content">
 		<h2 th:text="${notice.title}"></h2>
-		<div sec:authorize="hasRole('ADMIN')">
+		<div class="button-container" sec:authorize="hasRole('ADMIN')">
 			<br>
 			<a th:href="@{'/admin/noticeEdit/' + ${notice.noticeId}}"><button class="notice_edit">공지 수정</button></a>
 
@@ -63,7 +60,7 @@
 			</div>
 			<div th:if="${base64EncodedFile != null}">
 				<!-- 이미지를 base64 인코딩된 문자열로 표시 -->
-				<img th:src="'data:image/*;base64,' + ${base64EncodedFile}" class="rounded mx-auto d-block" alt="Notice Image" width="200" height="200">
+				<img th:src="'data:image/*;base64,' + ${base64EncodedFile}" class="rounded mx-auto d-block" alt="Notice Image" width="300" height="300">
 			</div>
 			<br>
 			<span th:text="${notice.content}"></span>

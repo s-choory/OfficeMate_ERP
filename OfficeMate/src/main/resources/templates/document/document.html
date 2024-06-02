@@ -28,15 +28,12 @@
 			</div>
 		</ul>
 	</div>
-	<div class="login-container">
-		<button class="login-button">로그인</button>
-	</div>
 
 	<div class="content">
 		<h2>문서</h2>
 		<div class="button-container">
 			<span sec:authorize="hasRole('ADMIN')">
-				<button onclick="location.href='admin/document'">전체 문서 보기</button>
+				<button class="work_button" onclick="location.href='admin/document'">전체 문서 보기</button>
 			</span>
 			<button class="docu_add" onclick="location.href='documentAdd'">등록</button>
 		</div>
@@ -86,7 +83,9 @@
 			</span>
 		</div>
 	</div>
-
+	<div class="logo2">
+			OfficeMate
+	</div>
 </body>
 
 </html>

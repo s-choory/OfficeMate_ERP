@@ -45,20 +45,16 @@
 			</div>
 		</ul>
 	</div>
-	<div class="login-container">
-		<button class="login-button">로그인</button>
-	</div>
 
 	<div class="content">
 		<h2>공지사항 등록</h2>
 		<br>
 		<form class="notice_form" action="/admin/noticeAddConfirm" method="post" enctype="multipart/form-data" onsubmit="return validateForm();">
 			<button class="notice_edit" style="right:120px" type="submit">등록 완료</button>
-			<hr>
 			<textarea class="notice_name" name="title" placeholder="Title"></textarea>
 			<hr>
 			<!-- 이미지 파일 업로드 -->
-			<div>
+			<div style="margin-bottom: 3px;">
 				<label for="imageFile" class="form-label">이미지 파일</label>
 				<input type="file" class="form-control" id="imageFile" name="files">
 			</div>

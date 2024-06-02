@@ -99,14 +99,10 @@
 		</ul>
 	</div>
 
-	<div class="login-container">
-		<button class="login-button">로그인</button>
-	</div>
-
 	<div class="content">
 		<h2>전체 업무</h2>
 		<br>
-		<button class="work_button work_add" onclick="location.href='workConfirm'">완료된 업무 확인</button>
+		<button class="work_button" onclick="location.href='workConfirm'">완료된 업무 확인</button>
 		<!--<button class="work_button work_edit" onclick="location.href='admin/work_edit'">업무 수정</button>-->
 
 		<br><br>
@@ -174,6 +170,9 @@
 			</span>
 		</div>
 	</div>
+	<div class="logo2">
+			OfficeMate
+	</div>
 
 	<div id="editModal" class="modal">
 		<div class="modal-content">
@@ -201,11 +200,13 @@
 		        const timeDiff = dueDate.getTime() - now.getTime();
 		        const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
 		
-		        if (daysDiff <= 0) {
-		            dueDateCell.style.backgroundColor = '#FF6347'; // 남은 일자가 0일 이하일 때 배경색 변경
-		        } else if (daysDiff <= 3) {
-		            dueDateCell.style.backgroundColor = '#FFFACD'; // 남은 일자가 3일 이하일 때 배경색 변경
-		        }
+				if (daysDiff <= 0) {
+				    dueDateCell.style.color = '#FF6347'; // 남은 일자가 0일 이하일 때 배경색 변경
+					dueDateCell.style.fontWeight = 'bolder'; // 폰트 두껍게 설정
+				} else if (daysDiff <= 3) {
+				    dueDateCell.style.color = 'goldenrod'; // 남은 일자가 3일 이하일 때 배경색 변경
+					dueDateCell.style.fontWeight = 'bolder'; // 폰트 두껍게 설정
+				}
 		    }
 
 			row.addEventListener('click', function (event) {

@@ -46,10 +46,6 @@
 		</ul>
 	</div>
 
-	<div class="login-container">
-		<button class="login-button">로그인</button>
-	</div>
-
 	<div class="content">
 		<h2>문서 등록</h2>
 		<form th:action="@{/documentAddConfirm}" method="post" enctype="multipart/form-data" onsubmit="return validateForm();">
@@ -62,6 +58,9 @@
 			<span style="font-size: 10px; color: lightgray;">(1MB 이하의 문서만 업로드하세요)</span>
 			<textarea class="docu_text" name="description" placeholder="문서 설명을 입력하세요"></textarea>
 		</form>
+	</div>
+	<div class="logo2">
+			OfficeMate
 	</div>
 </body>
 
