@@ -12,18 +12,17 @@ import com.example.demo.dto.PageDTO;
 import com.example.demo.mapper.NoticeMapper;
 
 @Service
-public class NoticeService{
+public class NoticeService {
 
 	@Autowired
 	NoticeMapper noticeMapper;
 
-
 	public int noticeGetCount() {
 		return noticeMapper.noticeGetCount();
-		
+
 	}
-	
-	public int noticeAdd(NoticeDTO noticeDTO) { 
+
+	public int noticeAdd(NoticeDTO noticeDTO) {
 		return noticeMapper.AddNotice(noticeDTO);
 	}
 
@@ -44,10 +43,7 @@ public class NoticeService{
 	}
 
 	public void uploadImage(String fileName, MultipartFile file) {
-		
-		
+
 	}
 
 }
-	
-

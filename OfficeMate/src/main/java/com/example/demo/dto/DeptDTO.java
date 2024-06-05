@@ -1,10 +1,10 @@
 package com.example.demo.dto;
 
 public class DeptDTO {
-	
+
 	private int departmentId;
 	private String departmentName;
-	
+
 	public DeptDTO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -37,5 +37,4 @@ public class DeptDTO {
 		this.departmentName = departmentName;
 	}
 
-	
 }

@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.example.demo.dto.DeptDTO;
-	
+
 @Mapper
 public interface DeptMapper {
 
@@ -30,6 +30,5 @@ public interface DeptMapper {
 
 	@Delete("Delete from departments where departmentId = #{departmentId}")
 	int deptDelete(int departmentId);
-    
-	
-} 
+
+}

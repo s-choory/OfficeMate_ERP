@@ -11,7 +11,7 @@ import com.example.demo.mapper.DeptMapper;
 import com.example.demo.mapper.UserMapper;
 
 @Service
-public class DeptService{
+public class DeptService {
 
 	@Autowired
 	private DeptMapper deptMapper;
@@ -25,7 +25,7 @@ public class DeptService{
 	public DeptDTO getDeptOne(int departmentId) {
 		return deptMapper.getDeptOne(departmentId);
 	}
-	
+
 	public List<UserDTO> getDeptUser(int departmentId) {
 		return userMapper.getDeptUser(departmentId);
 	}
@@ -50,6 +50,4 @@ public class DeptService{
 		return deptMapper.deptDelete(departmentId);
 	}
 
-
-	
 }

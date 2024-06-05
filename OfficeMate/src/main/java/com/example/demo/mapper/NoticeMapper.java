@@ -30,8 +30,5 @@ public interface NoticeMapper {
 	int noticeEdit(int noticeId, String title, String content);
 
     @Delete("Delete FROM Notices WHERE noticeId=#{noticeId}")
-	int noticeDelete(Integer noticeId);
-
-
-	
+	int noticeDelete(Integer noticeId);	
 } 

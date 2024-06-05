@@ -8,6 +8,62 @@
 	<link rel="stylesheet" href="../css/salary_styles.css">
 
 </head>
+<style>
+	.action-container {
+		margin-top: 30px;
+		text-align: center;
+	}
+	
+	.usernameCss{
+		color: #12c2e9;
+		font-size: 20px;
+		font-weight: bold;
+	}
+	
+	.usernameCss2{
+		font-size: 14px;
+		font-weight: bold;
+		color: white;
+	}
+	.logout {
+		display: inline-block;
+		padding: 6px 12px;
+		margin: 10px;
+		color: white;
+		background-color: indianred;
+		text-decoration: none;
+		border-radius: 5px;
+		font-size: 14px;
+		font-weight: bold;
+		text-align: center;
+		transition: background-color 0.3s, color 0.3s;
+	}
+	
+	.logout:hover {
+		background-color: #123a49;
+		color: #ffffff;
+	}
+	
+	.myProfile {
+		display: inline-block;
+		padding: 6px 12px;
+		margin: 10px;
+		color: white;
+		background-color: #12c2e9;
+		text-decoration: none;
+		border-radius: 5px;
+		font-size: 14px;
+		font-weight: bold;
+		text-align: center;
+		transition: background-color 0.3s, color 0.3s;
+	}
+	
+	.myProfile:hover {
+		background-color: #123a49;
+		color: #ffffff;
+	}
+	
+</style>
 
 <body>
 	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />

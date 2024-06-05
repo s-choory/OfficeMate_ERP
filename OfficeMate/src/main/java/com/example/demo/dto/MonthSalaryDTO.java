@@ -5,14 +5,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class MonthSalaryDTO {
-	
+
 	private int monthSalaryId;
 	private LocalDate paymentMonth;
-    private String paymentDescription;
-    private BigDecimal totalAmount;
-    private LocalDateTime createdAt;
-    private String paymentState;
-    
+	private String paymentDescription;
+	private BigDecimal totalAmount;
+	private LocalDateTime createdAt;
+	private String paymentState;
+
 	public MonthSalaryDTO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -84,6 +84,4 @@ public class MonthSalaryDTO {
 		this.createdAt = createdAt;
 	}
 
-    
-	
 }

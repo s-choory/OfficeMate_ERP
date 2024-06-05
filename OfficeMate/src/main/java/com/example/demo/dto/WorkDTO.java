@@ -1,7 +1,7 @@
 package com.example.demo.dto;
 
 public class WorkDTO {
-	
+
 	private int workId;
 	private String workName;
 	private String description;
@@ -9,7 +9,7 @@ public class WorkDTO {
 	private String dueDate;
 	private int departmentsId;
 	private String status;
-	
+
 	public WorkDTO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -88,8 +88,5 @@ public class WorkDTO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	
-	
-	
+
 }

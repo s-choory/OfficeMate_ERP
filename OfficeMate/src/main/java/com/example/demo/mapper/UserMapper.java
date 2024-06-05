@@ -10,7 +10,6 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.example.demo.dto.SalaryDTO;
 import com.example.demo.dto.UserDTO;
 	
 @Mapper
@@ -31,7 +30,7 @@ public interface UserMapper {
     @Select("SELECT * FROM users WHERE username LIKE CONCAT('%', #{username}, '%')")
     List<UserDTO> findByUsernameIncluded(String userName);
 
-    @Select("SELECT * FROM users order by case when userRank = '사장' then 1 when userRank = '부사장' then 2 when userRank = '팀장' then 3 when userRank = '과장' then 4 when userRank = '대리' then 5 ELSE 6 END")
+    @Select("SELECT * FROM users ORDER BY CASE WHEN userRank = '사장' THEN 1 WHEN userRank = '부사장' THEN 2 WHEN userRank = '팀장' THEN 3 WHEN userRank = '과장' THEN 4 WHEN userRank = '대리' THEN 5 ELSE 6 END, userId")
 	List<UserDTO> getUserAll();
 
     @Update("Update Users SET departmentId=#{departmentId}, userRank=#{userRank}, email=#{email}, monthSalary=#{monthSalary} where userId = #{userId}")
