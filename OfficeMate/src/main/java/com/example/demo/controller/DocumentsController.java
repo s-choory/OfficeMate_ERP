@@ -89,7 +89,8 @@ public class DocumentsController {
 		DocumentDTO documentDTO = documentsService.documentOne(documentId);
 
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
-		if (!name.equals(documentDTO.getUploadUser()) && !name.equals(documentDTO.getShareUser()) && !name.equals("admin")) {
+		if (!name.equals(documentDTO.getUploadUser()) && !name.equals(documentDTO.getShareUser())
+				&& !name.equals("admin")) {
 			return "redirect:/document";
 		}
 
