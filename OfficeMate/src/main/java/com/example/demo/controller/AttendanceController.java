@@ -62,6 +62,7 @@ public class AttendanceController {
 		AttendanceDTO attendanceDTO = new AttendanceDTO(0, userDTO.getUserId(), checkInTime, null, null);
 		if (attendanceService.getTodayAttendanceByUserId(userDTO.getUserId()) == null) {
 			int n = attendanceService.checkIn(attendanceDTO);
+			System.out.println(n);
 		} else {
 			return "이미 출첵 했습니다.";
 		}
