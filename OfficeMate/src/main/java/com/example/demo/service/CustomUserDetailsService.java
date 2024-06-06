@@ -24,7 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService{
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserDTO user = userMapper.findByUsername(username);
         if (user == null) {
-            return null;
+        	throw new UsernameNotFoundException("User not found with username: " + username);
         }
         
         return new org.springframework.security.core.userdetails.User(
