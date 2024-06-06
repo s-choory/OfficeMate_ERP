@@ -76,7 +76,7 @@ public class SecurityConfig {
         http
         	.sessionManagement((auth) -> auth
         			.maximumSessions(1)	//하나의 아이디에 대한 다중 로그인 허용 개
-        			.maxSessionsPreventsLogin(true)	//다중 로그인 개수를 초과하였을 경우 새로운 로그인 차
+//        			.maxSessionsPreventsLogin(true)	//다중 로그인 개수를 초과하였을 경우 새로운 로그인 차
         	); 
         
         http
@@ -93,6 +93,7 @@ public class SecurityConfig {
         return customUserDetailsService;
     }
 
+    
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
