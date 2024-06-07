@@ -10,11 +10,20 @@ public class SalaryDTO {
     private BigDecimal amount;
     private String paymentMethod;
     private String description;
+    private int bonus;
 
     @Override
 	public String toString() {
 		return "SalaryDTO [salaryId=" + salaryId + ", userId=" + userId + ", salaryDate=" + salaryDate + ", amount="
-				+ amount + ", paymentMethod=" + paymentMethod + ", description=" + description + "]";
+				+ amount + ", paymentMethod=" + paymentMethod + ", description=" + description + ", bonus="+bonus+"]";
+	}
+
+	public int getBonus() {
+		return bonus;
+	}
+
+	public void setBonus(int bonus) {
+		this.bonus = bonus;
 	}
 
 	public SalaryDTO(int userId, BigDecimal amount, String paymentMethod,

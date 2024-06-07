@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -151,7 +150,6 @@ public class DocumentsController {
 		}
 		try {
 			if (!file.isEmpty()) {
-				System.out.println(55);
 				byte[] fileBytes = file.getBytes();
 				String fileName = file.getOriginalFilename();
 				documentDTO.setFiles(fileBytes);

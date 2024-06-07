@@ -34,4 +34,16 @@ public class SalaryService {
 		return salaryMapper.getSalaryOne(salaryId);
 	}
 
+	public List<Integer> getSalaryList(LocalDate paymentMonth) {
+		return salaryMapper.getSalaryList(paymentMonth);
+	}
+
+	public SalaryDTO getSalaryOne(int userId, LocalDate paymentMonth) {
+		return salaryMapper.getSalaryOne2(userId, paymentMonth);
+	}
+
+	public boolean payBonus(int salaryId, int bonus) {
+		return salaryMapper.payBouns(salaryId, bonus);
+	}
+
 }

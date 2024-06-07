@@ -57,5 +57,13 @@ public class UserService{
 		userMapper.updateUserImg(userId, fileBytes);
 	}
 
+	public List<UserDTO> getSalaryUser(List<Integer> salaryUserIdList) {
+		List<UserDTO> userList = new ArrayList<>();
+		for(Integer id :salaryUserIdList) {
+			userList.add(userMapper.getUserById(id));
+		}
+		return userList;
+	}
+
 	
 }

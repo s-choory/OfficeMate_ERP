@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,12 @@ public class UserController {
 		if (user.getDepartmentId() != 0) {
 			DeptDTO deptDTO = deptService.getDeptOne(user.getDepartmentId());
 			model.addAttribute("deptOne", deptDTO);
+		}
+		byte[] fileBytes = user.getUserImg();
+		if (fileBytes != null && fileBytes.length > 0) {
+			String base64EncodedImage = Base64.getEncoder().encodeToString(fileBytes);
+			model.addAttribute("base64EncodedFile", base64EncodedImage);
+
 		}
 
 		return "user/user_detail_default";

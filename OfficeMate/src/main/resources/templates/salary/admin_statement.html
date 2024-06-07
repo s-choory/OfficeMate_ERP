@@ -1,16 +1,59 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>급여명세서</title>
-	<link rel="stylesheet" href="css/salary_styles.css">
+	<title>급여명세서</title>
+	<link rel="stylesheet" href="../css/salary_styles.css">
 </head>
+<script th:inline="javascript">
+	function payBonus() {
+		var bonus = document.getElementById('bonus').value;
+		var salaryId = document.getElementById('salaryId').value;
+		var csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+		var csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+	
+		if (!bonus || !salaryId) {
+		    alert("보너스 금액과 급여 ID를 확인해주세요.");
+		    return;
+		}
+		
+		var url = '/payBonus?salaryId=' + salaryId + '&bonus=' + bonus;
+		
+		fetch(url, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				[csrfHeader]: csrfToken
+			},
+			body: JSON.stringify({
+				salaryId: salaryId,
+				bonus: bonus
+			})
+		})
+		.then(response => response.json())
+		.then(data => {
+			if (data.success) {
+				alert('보너스가 성공적으로 지급되었습니다.');
+			} else {
+				alert('보너스 지급에 실패했습니다.');
+			}
+		})
+		.catch(error => console.error('Error:', error));
+	}
+</script>
 <body>
 
-	<div class="content" style="	margin-left: 100px; background-color: #fff;" >
+	<div class="content" style="	margin-left: 100px; background-color: #fff;">
 		<h2 th:text="${#strings.substring(salary.salaryDate.toString(), 0, 7) + ' (급여)'}"></h2>
 		<div class="button-container">
-			<input type="button" value="인쇄" onclick="window.print()"/>
-		<button class="back-button" onclick="location.href='/salary'">뒤로가기</button>
+			<form id="bonusForm">
+				<label for="bonusAmount">보너스 금액: </label>
+				<input type="number" id="bonus" name="bonus" min="0" step="10000" required>
+				<button type="button" onclick="payBonus()">보너스 지급</button>
+				<input type="hidden" id="salaryId" name="salaryId" th:value="${salary.salaryId}">
+			</form><br>
+			<input type="button" value="인쇄" onclick="window.print()" />
+			<button class="back-button" onclick="location.href='/salary'">뒤로가기</button>
 		</div>
 		<br><br>
 		<table>
@@ -124,8 +167,10 @@
 		</table>
 	</div>
 	<div class="logo2">
-			OfficeMate
+		OfficeMate
 	</div>
-
+	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </body>
+
 </html>

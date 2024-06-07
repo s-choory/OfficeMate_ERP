@@ -51,6 +51,17 @@
 		}
 	}
 	/*]]>*/
+	
+	/*<![CDATA[*/
+	function findStatement(paymentMonth) {
+	
+		if (confirm("명세서를 확인 하시겠습니까?")) {
+			var url = /*[[@{/admin/userStatementSearch}]]*/ '';
+			url += '?paymentMonth=' + paymentMonth;
+			window.open(url, 'statementWindow', 'resizable=yes,scrollbars=no,width=790,height=450,left=100,top=200');
+		}
+	}
+	/*]]>*/
 </script>
 
 <body>
@@ -102,10 +113,12 @@
 				<td th:text="${monthSalary.paymentDescription}"></td>
 				<td th:text="${#temporals.format(monthSalary.paymentMonth, 'yy년 M월')}"></td>
 				<td th:text="${#numbers.formatInteger(monthSalary.totalAmount, 3, 'COMMA') + '원'}" />
-				<td				style="text-align: center;"><a th:href="@{'salaryLedger?monthSalaryId=' + ${monthSalary.monthSalaryId}}">조회</a><br><br>
+				<td	style="text-align: center;"><a th:href="@{'salaryLedger?monthSalaryId=' + ${monthSalary.monthSalaryId}}">조회</a><br><br>
 					<a href="#" th:onclick="'confirmPayment(\'' + @{${monthSalary.paymentMonth}} + '\');'">지급확정</a>
 				</td>
-				<td style="text-align: center;"><a href="">조회</a></td>
+				<td	style="text-align: center;">
+					<a href="#" th:onclick="'findStatement(\'' + @{${monthSalary.paymentMonth}} + '\');'">조회</a>
+				</td>
 				<td th:text="${monthSalary.paymentState}"></td>
 			</tr>
 		</table>
