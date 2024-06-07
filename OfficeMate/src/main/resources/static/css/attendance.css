@@ -66,6 +66,10 @@ body {
 	background-color: #185066;
 }
 
+.user-info {
+	margin-bottom: 50px;
+	text-align: center;
+}
 
 .attendance-container {
 	margin-top: 50px;

@@ -14,24 +14,30 @@ public class DocumentDTO {
 	private String fileName;
 	private String shareUser;
 	private String updateDate;
+    private int version;
+    private int previousVersionId;
 	
 	public DocumentDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	
+
+
 	@Override
 	public String toString() {
 		return "DocumentDTO [documentId=" + documentId + ", documentName=" + documentName + ", description="
 				+ description + ", uploadedBy=" + uploadedBy + ", uploadUser=" + uploadUser + ", uploadDate="
 				+ uploadDate + ", files=" + Arrays.toString(files) + ", fileName=" + fileName + ", shareUser="
-				+ shareUser + ", updateDate=" + updateDate + "]";
+				+ shareUser + ", updateDate=" + updateDate + ", version=" + version + ", previousVersionId="
+				+ previousVersionId + "]";
 	}
 
 
+
 	public DocumentDTO(int documentId, String documentName, String description, int uploadedBy, String uploadUser,
-			String uploadDate, byte[] files, String fileName, String shareUser, String updateDate) {
+			String uploadDate, byte[] files, String fileName, String shareUser, String updateDate, int version,
+			int previousVersionId) {
 		super();
 		this.documentId = documentId;
 		this.documentName = documentName;
@@ -43,7 +49,34 @@ public class DocumentDTO {
 		this.fileName = fileName;
 		this.shareUser = shareUser;
 		this.updateDate = updateDate;
+		this.version = version;
+		this.previousVersionId = previousVersionId;
 	}
+
+
+
+	public int getVersion() {
+		return version;
+	}
+
+
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+
+
+	public int getPreviousVersionId() {
+		return previousVersionId;
+	}
+
+
+
+	public void setPreviousVersionId(int previouseVersionId) {
+		this.previousVersionId = previouseVersionId;
+	}
+
 
 
 	public String getUploadUser() {
