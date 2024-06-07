@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +31,12 @@ public class DocumentsController {
 	@Autowired
 	DocumentsService documentsService;
 	@Autowired
-	UserService userSerivce;
+	UserService userService;
 
 	@GetMapping("/admin/document")
 	public String documentAll(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
 		PageDTO pageDTO = new PageDTO(documentsService.documentsGetCount(), page);
+		System.out.println(pageDTO);
 		List<DocumentDTO> list = documentsService.getListAdminPage(pageDTO);
 		model.addAttribute("documentList", list);
 		model.addAttribute("page", page);
@@ -60,7 +62,6 @@ public class DocumentsController {
 
 	@PostMapping("/documentAddConfirm")
 	public String documentAddConfirm(DocumentDTO documentDTO, @RequestParam("file") MultipartFile file) {
-		// 업로드된 파일들 처리
 		try {
 			if (!file.isEmpty()) {
 				byte[] fileBytes = file.getBytes();
@@ -73,10 +74,11 @@ public class DocumentsController {
 		}
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String username = authentication.getName(); // 현재 인증된 사용자 이름
-		UserDTO userDTO = userSerivce.getUserByName(username);
+		String username = authentication.getName();
+		UserDTO userDTO = userService.getUserByName(username);
 		documentDTO.setUploadedBy(userDTO.getUserId());
 		documentDTO.setUploadUser(userDTO.getUsername());
+		documentDTO.setVersion(1); // 초기 버전 설정
 
 		int n = documentsService.documentAdd(documentDTO);
 		System.out.println(n);
@@ -86,7 +88,8 @@ public class DocumentsController {
 
 	@GetMapping("/document/{documentId}")
 	public String documentContent(@PathVariable Integer documentId, Model model) {
-		DocumentDTO documentDTO = documentsService.documentOne(documentId);
+		List<DocumentDTO> versions = documentsService.getVersions(documentId);
+		DocumentDTO documentDTO = versions.get(0);
 
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
 		if (!name.equals(documentDTO.getUploadUser()) && !name.equals(documentDTO.getShareUser())
@@ -95,6 +98,7 @@ public class DocumentsController {
 		}
 
 		model.addAttribute("document", documentDTO);
+		model.addAttribute("versions", versions);
 		return "document/document_content";
 	}
 
@@ -114,10 +118,11 @@ public class DocumentsController {
 
 	@GetMapping("/documentEdit/{documentId}")
 	public String documentEdit(@PathVariable Integer documentId, Model model) {
-		DocumentDTO documentDTO = documentsService.documentOne(documentId);
+		List<DocumentDTO> versions = documentsService.getVersions(documentId);
+		DocumentDTO documentDTO = versions.get(0);
 
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
-		if (!name.equals(documentDTO.getUploadUser()) && !name.equals(documentDTO.getShareUser())) {
+		if (!name.equals(documentDTO.getUploadUser()) && !name.equals(documentDTO.getShareUser()) && !name.equals("admin")) {
 			return "redirect:/document";
 		}
 
@@ -128,38 +133,60 @@ public class DocumentsController {
 	@PostMapping("/documentEditConfirm")
 	public String documentEditConfirm(DocumentDTO documentDTO, @RequestParam("file") MultipartFile file) {
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
-		if (!name.equals(documentDTO.getUploadUser()) && !name.equals(documentDTO.getShareUser())) {
+		if (!name.equals(documentDTO.getUploadUser()) && !name.equals(documentDTO.getShareUser()) && !name.equals("admin") ) {
 			return "redirect:/document";
+		}
+		int count = 0;
+		DocumentDTO oldDocument;
+		oldDocument = documentsService.documentOne(documentDTO.getDocumentId());
+		if (documentDTO.getPreviousVersionId() == 0) {
+			documentDTO.setPreviousVersionId(oldDocument.getDocumentId());
+		} else {
+			if (oldDocument == null) {
+				return "redirect:/document";
+			}
+			count = documentsService.getCountOldDocument(documentDTO.getPreviousVersionId());
+			documentDTO.setPreviousVersionId(documentDTO.getPreviousVersionId());
+			documentDTO.setShareUser(oldDocument.getShareUser());
 		}
 		try {
 			if (!file.isEmpty()) {
+				System.out.println(55);
 				byte[] fileBytes = file.getBytes();
 				String fileName = file.getOriginalFilename();
 				documentDTO.setFiles(fileBytes);
 				documentDTO.setFileName(fileName);
-
-				int n = documentsService.documentEditFile(documentDTO);
-				System.out.println("Correct fileUpdate:" + n);
+			} else {
+				System.out.println("올드 "+oldDocument);
+				documentDTO.setFiles(oldDocument.getFiles());
+				documentDTO.setFileName(oldDocument.getFileName());
 			}
 		} catch (Exception e) {
 		}
+		documentDTO.setUploadUser(name);
 
-		int n = documentsService.documentEdit(documentDTO);
-		System.out.println(n);
+		documentDTO.setVersion(count + 2);
 
-		return "redirect:/document/" + documentDTO.getDocumentId();
+		System.out.println(documentDTO);
+		int n = documentsService.documentAdd(documentDTO);
+		int m = documentsService.updatedate(documentDTO.getPreviousVersionId());
+		System.out.println("" + n + m);
+
+		return "redirect:/document/" + documentDTO.getPreviousVersionId();
 	}
 
 	@GetMapping("/documentDelete")
 	public String documentDelete(@RequestParam Integer documentId) {
 		DocumentDTO documentDTO = documentsService.documentOne(documentId);
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
-		if (!name.equals(documentDTO.getUploadUser()) && !name.equals(documentDTO.getShareUser())) {
+		if (!name.equals(documentDTO.getUploadUser()) && !name.equals(documentDTO.getShareUser()) && !name.equals("admin")) {
 			return "redirect:/document";
 		}
-
-		int n = documentsService.documentDelete(documentId);
+		
+		int id = documentDTO.getPreviousVersionId() == 0 ? documentId : documentDTO.getPreviousVersionId();	
+		int	n = documentsService.documentDelete(id);
 		System.out.println(n);
+
 		return "redirect:/document";
 	}
 
@@ -167,11 +194,11 @@ public class DocumentsController {
 	public String userSearch(@RequestParam String userName, @RequestParam int documentId, Model model) {
 		model.addAttribute("documentId", documentId);
 		if (userName == null || userName.equals("")) {
-			List<UserDTO> userList = userSerivce.getUserByNamIncluded("");
+			List<UserDTO> userList = userService.getUserByNamIncluded("");
 			model.addAttribute("userList", userList);
 			System.out.println(userList.size());
 		} else {
-			List<UserDTO> userList = userSerivce.getUserByNamIncluded(userName);
+			List<UserDTO> userList = userService.getUserByNamIncluded(userName);
 			System.out.println(userList.size());
 			model.addAttribute("userList", userList);
 		}
@@ -180,9 +207,14 @@ public class DocumentsController {
 
 	@GetMapping("/updateDocumentShareUser")
 	public String updateDocumentShareUser(@RequestParam String username, @RequestParam int documentId, Model model) {
-		int n = documentsService.updateDocumentShareUser(username, documentId);
+		DocumentDTO document = documentsService.documentOne(documentId);
+		int id = document.getPreviousVersionId() == 0 ? document.getDocumentId() : document.getPreviousVersionId();
+		
+		int n = documentsService.updateDocumentShareUser(username, id);
 		System.out.println(n);
-		return "redirect:document/" + documentId;
+		
+
+		return "redirect:/document/" + id;
 	}
 
 	// 파일 이름을 UTF-8로 인코딩하는 메서드

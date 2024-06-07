@@ -16,7 +16,9 @@ public class DocumentsService{
 	DocumentsMapper documentsMapper;
 
 	public int documentsGetCount() {
-		return documentsMapper.documentsGetCount();
+		int n =documentsMapper.documentsGetCount();
+		System.out.println(n);
+		return n;
 	}
 
 	public List<DocumentDTO> getListPage(PageDTO pageDTO, String name) {
@@ -29,7 +31,9 @@ public class DocumentsService{
 	}
 
 	public int documentAdd(DocumentDTO documentDTO) {
-		return documentsMapper.documentAdd(documentDTO);
+		int n = documentsMapper.documentAdd(documentDTO);
+
+		return n;
 	}
 
 	public DocumentDTO documentOne(Integer documentId) {
@@ -55,6 +59,19 @@ public class DocumentsService{
 	public int documentgetCount(String name) {
 		return documentsMapper.documentgetCount(name);
 	}
+
+	public List<DocumentDTO> getVersions(Integer documentId) {
+		return documentsMapper.getVersions(documentId);
+	}
+
+	public int getCountOldDocument(int documentId) {
+		return documentsMapper.getCountOldDocument(documentId);
+	}
+
+	public int updatedate(int previousVersionId) {
+		return documentsMapper.updatedate(previousVersionId);
+	}
+
 
 
 }

@@ -53,5 +53,9 @@ public class UserService{
 		return userList;
 	}
 
+	public void updateUserImg(int userId, byte[] fileBytes) {
+		userMapper.updateUserImg(userId, fileBytes);
+	}
+
 	
 }

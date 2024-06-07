@@ -33,7 +33,7 @@ public interface UserMapper {
     @Select("SELECT * FROM users ORDER BY CASE WHEN userRank = '사장' THEN 1 WHEN userRank = '부사장' THEN 2 WHEN userRank = '팀장' THEN 3 WHEN userRank = '과장' THEN 4 WHEN userRank = '대리' THEN 5 ELSE 6 END, userId")
 	List<UserDTO> getUserAll();
 
-    @Update("Update Users SET departmentId=#{departmentId}, userRank=#{userRank}, email=#{email}, monthSalary=#{monthSalary} where userId = #{userId}")
+    @Update("Update Users SET departmentId=#{departmentId}, userRank=#{userRank}, email=#{email}, monthSalary=#{monthSalary}, gender=#{gender}, phone=#{phone}, hiredate=#{hiredate}, birth=#{birth} where userId = #{userId}")
 	int updateUserDetail(UserDTO userDTO);
 
     @Delete("Delete from Users where userId=#{userId}")
@@ -41,6 +41,9 @@ public interface UserMapper {
 
     @Select("SELECT SUM(monthSalary) AS TotalAmount FROM users;")
 	BigDecimal getUserTotalAmount();
+
+    @Update("Update Users set userImg=#{fileBytes} where userId=#{userId}")
+	void updateUserImg(int userId, byte[] fileBytes);
 
 
 } 
