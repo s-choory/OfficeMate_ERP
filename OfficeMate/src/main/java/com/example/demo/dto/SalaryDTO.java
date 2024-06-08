@@ -26,10 +26,11 @@ public class SalaryDTO {
 		this.bonus = bonus;
 	}
 
-	public SalaryDTO(int userId, BigDecimal amount, String paymentMethod,
+	public SalaryDTO(int userId, LocalDate salaryDate,BigDecimal amount, String paymentMethod,
 			String description) {
 		super();
 		this.userId = userId;
+		this.salaryDate = salaryDate;
 		this.amount = amount;
 		this.paymentMethod = paymentMethod;
 		this.description = description;

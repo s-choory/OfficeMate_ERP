@@ -13,7 +13,7 @@ import com.example.demo.dto.SalaryDTO;
 @Mapper
 public interface SalaryMapper {
 
-    @Insert("INSERT INTO Salary (userId, salaryDate, amount, paymentMethod, description) VALUES (#{userId}, now(), #{amount}, #{paymentMethod}, #{description})")
+    @Insert("INSERT INTO Salary (userId, salaryDate, amount, paymentMethod, description) VALUES (#{userId}, #{salaryDate}, #{amount}, #{paymentMethod}, #{description})")
 	void userSalaryPayment(SalaryDTO salaryDTO);
 
     @Select("Select * from Salary where userId = #{userId}")

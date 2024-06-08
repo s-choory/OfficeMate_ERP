@@ -115,7 +115,7 @@ public class SalaryController {
 			if (!user.getUsername().equals("admin")) {
 				String monthSalaryString = String.valueOf(user.getMonthSalary());
 				BigDecimal monthSalary = new BigDecimal(monthSalaryString);
-				SalaryDTO salaryDTO = new SalaryDTO(user.getUserId(), monthSalary, "계좌이체", paymentDescription);
+				SalaryDTO salaryDTO = new SalaryDTO(user.getUserId(), monthSalaryDTO.getPaymentMonth(),monthSalary, "계좌이체", paymentDescription);
 				salaryService.userSalaryPayment(salaryDTO);
 			}
 		}
