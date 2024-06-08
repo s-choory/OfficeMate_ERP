@@ -59,10 +59,22 @@
 			<select name="userRank" class="detail_select">
 				<option value="사장" th:selected="${user.userRank == '사장'}">사장</option>
 				<option value="부사장" th:selected="${user.userRank == '부사장'}">부사장</option>
-				<option value="팀장" th:selected="${user.userRank == '팀장'}">팀장(부장)</option>
+				<option value="상무" th:selected="${user.userRank == '상무'}">상무</option>
+				<option value="부장" th:selected="${user.userRank == '부장'}">부장</option>
+				<option value="차장" th:selected="${user.userRank == '차장'}">차장</option>
 				<option value="과장" th:selected="${user.userRank == '과장'}">과장</option>
 				<option value="대리" th:selected="${user.userRank == '대리'}">대리</option>
 				<option value="사원" th:selected="${user.userRank == null || user.userRank == '사원'}">사원</option>
+			</select><br>
+			
+			<h3>직책</h3>
+			<select name="userPosition" class="detail_select">
+				<option value="CEO" th:selected="${user.userPosition == 'CEO'}">CEO</option>
+				<option value="대표이사" th:selected="${user.userPosition == '대표이사'}">대표이사</option>
+				<option value="본부장" th:selected="${user.userPosition == '본부장'}">본부장</option>
+				<option value="실장" th:selected="${user.userPosition == '실장'}">실장</option>
+				<option value="팀장" th:selected="${user.userPosition == '팀장'}">팀장</option>
+				<option value="없음" th:selected="${user.userPosition == null || user.userPosition == '없음'}">없음</option>
 			</select><br>
 			
 			<h3>성별</h3>

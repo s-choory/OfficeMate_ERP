@@ -1,0 +1,251 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: aliceblue;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background: linear-gradient(135deg, #0073a0, #005f80);
+    padding-top: 50px;
+}
+
+.sidebar a {
+    display: block;
+    padding: 15px;
+    color: white;
+    text-decoration: none;
+}
+.sidebar a:hover {
+    background-color: #005f80;
+}
+.padding {
+    background-color: #0073a0;
+}
+
+/* Action Container Styles */
+.action-container {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.usernameCss {
+    color: #12c2e9;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.usernameCss2 {
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+}
+.logout {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 10px;
+    color: white;
+    background-color: indianred;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.logout:hover {
+    background-color: #123a49;
+    color: #ffffff;
+}
+
+.myProfile {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 10px;
+    color: white;
+    background-color: #12c2e9;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.myProfile:hover {
+    background-color: #123a49;
+    color: #ffffff;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* Content Styles */
+.content {
+    margin-left: 380px;
+    margin-right:200px;
+    padding: 20px;
+    background-color: #fff;
+    min-height: 70vh;
+    margin-bottom: 100px;
+    font-style: normal;
+}
+
+
+header h1 {
+  	text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Document Info Styles */
+.document-info {
+    width: 30%;
+    font-size: 12px;
+    display: inline-block;
+}
+.document-info table td{
+	text-align: center;
+}
+
+/* Button Styles */
+.button-container {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.emp_manage_button {
+    background: linear-gradient(135deg, #0073a0, #005f80);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+.emp_manage_button:hover {
+    background: linear-gradient(135deg, #005f80, #003f5f);
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: lightgray;
+    color: black;
+    font-weight: 400;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+/* Form Styles */
+.form-section {
+    margin-bottom: 20px;
+}
+
+.form-section label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-section input, .form-section textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-section button {
+    display: inline-block;
+    padding: 10px 20px;
+    color: white;
+    background-color: #0073a0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.form-section button:hover {
+    background-color: #005f80;
+}
+
+/* Footer Styles */
+.footer {
+    background: linear-gradient(135deg, #005f80, #0073a0);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: calc(100% - 250px);
+    left: 250px;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Logo2 Styles */
+.logo2 {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0073a0;
+}
+
+/* Approval Table Styles */
+.approval {
+    width: 50%;
+    float:right;
+    margin-bottom: 50px;
+}
+
+.approval table th,
+.approval table td{
+	text-align: center;
+}

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>OfficeMate</title>
+	<link rel="stylesheet" href="../css/docu_styles.css">
+	<link rel="stylesheet" href="../css/approval.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<style>
+	.stamp {
+		font-size: 2em;
+	}
+
+	.approval-button {
+		padding: 5px 10px;
+		background-color: #4CAF50;
+		color: white;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+</style>
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+
+<body>
+	<div class="sidebar">
+		<a href="/home" style="text-decoration: none;">
+			<div class="logo">OfficeMate</div>
+		</a>
+		<div class="padding"></div> <!-- 여백 추가 -->
+
+		<ul class="menu">
+			<li><a href="../notice">공지사항</a></li>
+			<li><a href="../dept">부서</a></li>
+			<li><a href="../work">업무</a></li>
+			<li><a href="../approval" style="background-color:#185066">결재</a></li>
+			<li><a href="../attendance">근태</a></li>
+			<li><a href="../document">문서</a></li>
+			<li><a href="../salary">급여</a></li>
+			<div sec:authorize="hasRole('ADMIN')">
+				<li><a href="../admin/empManage">전체사원관리</a></li>
+			</div>
+		</ul>
+		<div class="action-container">
+			<span class="usernameCss" th:text="${username}"></span><span class="usernameCss2"> 님 환영합니다!</span><br>
+			<a class="logout" href="/logout">로그아웃</a>
+			<a class="myProfile" href="userDetailDefault">내 정보</a>
+		</div>
+	</div>
+
+	<div class="content">
+
+		<div class="header">
+			<div class="company-info">
+				<p>(주) OfficceMate</p>
+			</div>
+			<header>
+				<h1>기안서</h1>
+			</header>
+			<div style="text-align: center;">
+				<p style="color: gray;">아래와 같이 기안서를 제출합니다.</p>
+			</div>
+
+			<div class="document-info">
+				<table>
+					<tr height="10px">
+						<td style="background-color: lightgray; width: 40%;">문서번호</td>
+						<td th:text="${approval.approvalId}"></td>
+					</tr>
+					<tr>
+						<td style="background-color: lightgray;">작성자</td>
+						<td th:text="${user.username}"></td>
+					</tr>
+					<tr>
+						<td style="background-color: lightgray;">작성일자</td>
+						<td th:text="${#strings.substring(approval.createdAt.toString(), 0, 19)}"></td>
+					</tr>
+					<tr>
+						<td style="background-color:lightgray;">수신부서</td>
+						<td th:each="dept : ${deptList}" th:if="${dept.departmentId} == ${user.departmentId}"
+							th:text="${dept.departmentName}"></td>
+					</tr>
+				</table>
+			</div>
+			<div class="approval">
+				<table>
+					<tr>
+						<th rowspan="3">결재</th>
+						<th style="width:60px;">작성자</th>
+						<th>팀장</th>
+						<th>본부장</th>
+						<th>대표이사</th>
+					</tr>
+					<tr style="height:100px">
+						<td>
+							<span th:if="${approval.createdAt != null}" class="stamp">🟢</span>
+						</td>
+						<td>
+							<span th:if="${approval.managerApproval} != null" class="stamp">🟢</span>
+							<button th:if="${(currentUser.userPosition == '팀장' or currentUser.userPosition == '본부장' or currentUser.userPosition == '대표이사') && approval.managerApproval == null}"
+								class="approval-button" onclick="approve('manager')">승인</button>
+						</td>
+						<td>
+							<span th:if="${approval.departmentHeadApproval} != null" class="stamp">🟢</span>
+							<button
+								th:if="${(currentUser.userPosition == '본부장' or currentUser.userPosition == '대표이사') && approval.departmentHeadApproval == null}"
+								class="approval-button" onclick="approve('departmentHead')">승인</button>
+						</td>
+						<td>
+							<span th:if="${approval.ceoApproval} != null" class="stamp">🟢</span>
+							<button th:if="${currentUser.userPosition == '대표이사' && approval.ceoApproval == null}"
+								class="approval-button" onclick="approve('ceo')">승인</button>
+						</td>
+					</tr>
+					<tr>
+						<td th:text="${#strings.substring(approval.createdAt.toString(), 0, 19)}"></td>
+						<td th:if="${approval.managerApproval} != null"
+							th:text="${#strings.substring(approval.managerApproval.toString(), 0, 19)}"></td>
+						<td th:if="${approval.managerApproval == null}"></td>
+						<td th:if="${approval.departmentHeadApproval} != null"
+							th:text="${#strings.substring(approval.departmentHeadApproval.toString(), 0, 19)}"></td>
+						<td th:if="${approval.departmentHeadApproval == null}"></td>
+						<td th:if="${approval.ceoApproval} != null"
+							th:text="${#strings.substring(approval.ceoApproval.toString(), 0, 19)}"></td>
+						<td th:if="${approval.ceoApproval == null}"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div class="form-section">
+			<table class="info-table">
+				<tr>
+					<th rowspan="2" style="width: 20%;">기안자</th>
+					<td>
+						사번: <span th:text="${user.userId}" style="font-weight: bold;"></span>
+					</td>
+					<td>
+						소속: <span style="font-weight: bold;" th:each="dept : ${deptList}"
+							th:if="${dept.departmentId} == ${user.departmentId}"
+							th:text="${dept.departmentName}"></span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						직급: <span th:text="${user.userRank}" style="font-weight: bold;"></span>
+					</td>
+					<td>
+						성명: <span th:text="${user.username}" style="font-weight: bold;"></span>
+					</td>
+				</tr>
+				<tr>
+					<th colspan="3">제목</th>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<textarea th:text="${approval.title}" rows="3" readonly></textarea>
+					</td>
+				</tr>
+				<tr>
+					<th colspan="3">상세내용</th>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<textarea th:text="${approval.content}" rows="13" readonly></textarea>
+					</td>
+				</tr>
+				<tr>
+					<th colspan="3">특기사항</th>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<textarea th:text="${approval.remarks}" rows="3" readonly></textarea>
+					</td>
+				</tr>
+				<tr>
+					<th colspan="3">첨부목록</th>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<textarea th:text="${approval.attachments}" rows="3" readonly></textarea>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<footer class="footer">
+	    <a href="/contact">Contact</a>
+	    <a href="/about">About</a>
+	    <a href="/privacy">Privacy Policy</a>
+	</footer>
+	<div class="logo2">
+			OfficeMate
+	</div>
+</body>
+
+<script th:inline="javascript">
+    function approve(position) {
+        const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+        const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+		
+        fetch(`/approve/${position}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                [csrfHeader]: csrfToken
+            },
+            body: JSON.stringify({
+                approvalId:/*[[${approval.approvalId}]]*/''
+            })
+        })
+            .then(response => {
+                if (response.ok) {
+                    location.reload();
+                } else {
+                    alert('승인 처리에 실패했습니다.');
+                }
+            });
+    }
+</script>
+</html>

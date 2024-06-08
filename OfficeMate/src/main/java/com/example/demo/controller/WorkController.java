@@ -45,7 +45,7 @@ public class WorkController {
 			UserDTO userDTO = userService.getUserByName(username);
 			PageDTO pageDTO = null;
 			List<WorkDTO> workList = new ArrayList<>();
-			if (userDTO.getUserRank().equals("팀장")) {
+			if (!("없음").equals(userDTO.getUserPosition())){
 				pageDTO = new PageDTO(workService.workGetDeptCount(userDTO.getDepartmentId()), page);
 				workList = workService.getListDeptPage(pageDTO, userDTO.getDepartmentId());
 			} else {
@@ -68,7 +68,7 @@ public class WorkController {
 		UserDTO userDTO = userService.getUserByName(username);
 		PageDTO pageDTO = null;
 		List<WorkDTO> workList = new ArrayList<>();
-		if (userDTO.getUserRank().equals("팀장")) {
+		if (!("없음").equals(userDTO.getUserPosition())){
 			pageDTO = new PageDTO(workService.workConfirmDeptCount(userDTO.getDepartmentId()), page);
 			workList = workService.getListConfirmDeptPage(pageDTO, userDTO.getDepartmentId());
 		} else {
