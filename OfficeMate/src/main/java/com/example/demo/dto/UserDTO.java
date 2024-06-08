@@ -10,6 +10,7 @@ public class UserDTO {
 	private String password;
 	private int departmentId;
 	private String userRank;
+	private String userPosition;
 	private String role;
 	private int monthSalary;
 	private String hiredate;
@@ -23,8 +24,29 @@ public class UserDTO {
 		// TODO Auto-generated constructor stub
 	}
 
+
+	@Override
+	public String toString() {
+		return "UserDTO [userId=" + userId + ", username=" + username + ", email=" + email + ", password=" + password
+				+ ", departmentId=" + departmentId + ", userRank=" + userRank + ", userPosition=" + userPosition
+				+ ", role=" + role + ", monthSalary=" + monthSalary + ", hiredate=" + hiredate + ", gender=" + gender
+				+ ", phone=" + phone + ", birth=" + birth + ", userImg=" + Arrays.toString(userImg) + "]";
+	}
+
+
+	public String getUserPosition() {
+		return userPosition;
+	}
+
+
+	public void setUserPosition(String userPosition) {
+		this.userPosition = userPosition;
+	}
+
+
 	public UserDTO(int userId, String username, String email, String password, int departmentId, String userRank,
-			String role, int monthSalary, String hiredate, String gender, String phone, String birth, byte[] userImg) {
+			String userPosition, String role, int monthSalary, String hiredate, String gender, String phone,
+			String birth, byte[] userImg) {
 		super();
 		this.userId = userId;
 		this.username = username;
@@ -32,6 +54,7 @@ public class UserDTO {
 		this.password = password;
 		this.departmentId = departmentId;
 		this.userRank = userRank;
+		this.userPosition = userPosition;
 		this.role = role;
 		this.monthSalary = monthSalary;
 		this.hiredate = hiredate;
@@ -40,6 +63,7 @@ public class UserDTO {
 		this.birth = birth;
 		this.userImg = userImg;
 	}
+
 
 	public int getUserId() {
 		return userId;
@@ -143,14 +167,6 @@ public class UserDTO {
 
 	public void setUserImg(byte[] userImg) {
 		this.userImg = userImg;
-	}
-
-	@Override
-	public String toString() {
-		return "UserDTO [userId=" + userId + ", username=" + username + ", email=" + email + ", password=" + password
-				+ ", departmentId=" + departmentId + ", userRank=" + userRank + ", role=" + role + ", monthSalary="
-				+ monthSalary + ", hiredate=" + hiredate + ", gender=" + gender + ", phone=" + phone + ", birth="
-				+ birth + ", userImg=" + Arrays.toString(userImg) + "]";
 	}
 	
 }

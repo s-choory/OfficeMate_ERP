@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.example.demo.dto.SalaryDTO;
 	
@@ -23,5 +24,14 @@ public interface SalaryMapper {
 
     @Select("SELECT * FROM Salary WHERE salaryId = #{salaryId}")
 	SalaryDTO getSalaryOne(int salaryId);
-	
+
+    @Select("Select userId from Salary where salarydate = #{paymentMonth}")
+	List<Integer> getSalaryList(LocalDate paymentMonth);
+
+    @Select("SELECT * FROM Salary WHERE userId = #{userId} AND salarydate = #{paymentMonth}")
+	SalaryDTO getSalaryOne2(int userId, LocalDate paymentMonth);
+
+    @Update("Update Salary SET bonus=#{bonus} where salaryId = #{salaryId}")
+	boolean payBouns(int salaryId, int bonus);
+  
 } 

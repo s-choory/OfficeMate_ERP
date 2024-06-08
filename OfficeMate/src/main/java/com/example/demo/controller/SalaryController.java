@@ -2,7 +2,7 @@ package com.example.demo.controller;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.dto.DeptDTO;
 import com.example.demo.dto.MonthSalaryDTO;
@@ -117,7 +119,6 @@ public class SalaryController {
 				salaryService.userSalaryPayment(salaryDTO);
 			}
 		}
-
 		return "redirect:/admin/salary";
 	}
 
@@ -127,11 +128,43 @@ public class SalaryController {
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
 		UserDTO userDTO = userService.getUserByName(name);
 		DeptDTO deptDTO = deptService.getDeptOne(userDTO.getDepartmentId());
-		
+
 		model.addAttribute("salary", salaryDTO);
 		model.addAttribute("user", userDTO);
 		model.addAttribute("dept", deptDTO);
 		return "salary/statement";
 	}
+
+	@GetMapping("/admin/userStatementSearch")
+	public String userStatementSearch(@RequestParam LocalDate paymentMonth, Model model) {
+	    List<Integer> salaryUserIdList = salaryService.getSalaryList(paymentMonth);
+	    List<UserDTO> userList = userService.getSalaryUser(salaryUserIdList);
+	    model.addAttribute("userList", userList);
+	    model.addAttribute("paymentMonth",paymentMonth);
+		return "salary/user_state_search";
+	}
+	
+	@GetMapping("admin/statement")
+	public String userStatement(int userId, LocalDate paymentMonth, Model model) {
+		UserDTO userDTO = userService.getUserById(userId);
+		DeptDTO deptDTO = deptService.getDeptOne(userDTO.getDepartmentId());	
+		SalaryDTO salaryDTO = salaryService.getSalaryOne(userId, paymentMonth);
+
+		model.addAttribute("salary", salaryDTO);
+		model.addAttribute("user", userDTO);
+		model.addAttribute("dept", deptDTO);
+		return "salary/admin_statement";
+	}
+	
+	@PostMapping("/payBonus")
+	public ResponseEntity<?> payBonus(@RequestBody SalaryDTO salaryDTO) {
+		boolean success = salaryService.payBonus(salaryDTO.getSalaryId(), salaryDTO.getBonus());
+		if (success) {
+			return ResponseEntity.ok().body(Collections.singletonMap("success", true));
+		} else {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("success", false));
+		}
+	}
+
 
 }

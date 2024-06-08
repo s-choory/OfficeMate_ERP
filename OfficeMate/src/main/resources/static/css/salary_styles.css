@@ -77,8 +77,9 @@ body {
 }
 
 .back-button {
-	background: linear-gradient(135deg, gray, lightgray);
+	background-color: gray;
 	color: white;
+	font-weight: 500;
 	padding: 8px;
 	border: none;
 	border-radius: 5px;
@@ -92,12 +93,13 @@ body {
 }
 
 .content input {
-	position: absolute;
+
 	font-size: 1rem;
 
 	right:200px;
 	
-	background: linear-gradient(135deg, gray, lightgray);
+	background-color: gray;
+
 	/* 로그인 버튼 배경색 */
 	color: white;
 	border: none;
@@ -106,6 +108,8 @@ body {
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	padding: 7px 7px;
+	transition: background 0.3s;
+
 }
 .content input:hover {
 	background: linear-gradient(135deg, lightgray, gray);
