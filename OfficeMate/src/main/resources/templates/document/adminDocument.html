@@ -41,14 +41,14 @@
 			<h1>유저 전체 문서</h1>
 		</header>
 		<div class="button-container">
-		<span sec:authorize="hasRole('ADMIN')">
-			<button class="work_button" style="right:280px;" onclick="location.href='/document'">
-				<i class="fas fa-file"></i> 내 문서만 보기
+			<span sec:authorize="hasRole('ADMIN')">
+				<button class="work_button" style="right:280px;" onclick="location.href='/document'">
+					<i class="fas fa-file"></i> 내 문서만 보기
+				</button>
+			</span>
+			<button class="emp_manage_button emp_manage_add" onclick="location.href='../documentAdd'">
+				<i class="fas fa-plus-circle"></i> 등록
 			</button>
-		</span>
-		<button class="emp_manage_button emp_manage_add" onclick="location.href='../documentAdd'">
-			<i class="fas fa-plus-circle"></i> 등록
-		</button>
 		</div>
 
 		<table>
@@ -64,7 +64,8 @@
 				<td class="dtitle" th:text="${document.documentName}"></td>
 				<td class="dwriter" th:text="${document.uploadUser}"></td>
 				<td class="dwdate" th:text="${#strings.substring(document.uploadDate.toString(), 0, 19)}"></td>
-				<td class="dedate" th:if="${document.updateDate} != null" th:text="${#strings.substring(document.updateDate.toString(), 0, 19)}"></td>
+				<td class="dedate" th:if="${document.updateDate} != null"
+					th:text="${#strings.substring(document.updateDate.toString(), 0, 19)}"></td>
 				<td class="dedate" th:if="${document.updateDate} == null"></td>
 				<td class="sharer" th:text="${document.shareUser}"></td>
 			</tr>
@@ -97,12 +98,12 @@
 		</div>
 	</div>
 	<footer class="footer">
-	    <a href="/contact">Contact</a>
-	    <a href="/about">About</a>
-	    <a href="/privacy">Privacy Policy</a>
+		<a href="/contact">Contact</a>
+		<a href="/about">About</a>
+		<a href="/privacy">Privacy Policy</a>
 	</footer>
 	<div class="logo2">
-			OfficeMate
+		OfficeMate
 	</div>
 </body>
 

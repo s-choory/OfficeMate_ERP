@@ -22,8 +22,8 @@ public class JoinController {
 
 	@PostMapping("/joinProc")
 	public String joinProcess(JoinDTO joinDTO, Model model) {
-
 		int n = joinService.joinProcess(joinDTO);
+
 		if (n == 0) {
 			model.addAttribute("message", "이미 존재하는 username입니다.");
 			return "/home/join";

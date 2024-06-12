@@ -21,7 +21,7 @@ public class SalaryService {
 	public void userSalaryPayment(SalaryDTO salaryDTO) {
 		salaryMapper.userSalaryPayment(salaryDTO);
 	}
-	
+
 	public List<SalaryDTO> getSalaryUser(int userId) {
 		return salaryMapper.getSalaryUser(userId);
 	}

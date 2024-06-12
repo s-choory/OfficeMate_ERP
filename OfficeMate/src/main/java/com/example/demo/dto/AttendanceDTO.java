@@ -5,11 +5,11 @@ import java.sql.Timestamp;
 public class AttendanceDTO {
 
 	private int attendanceId;
-    private int userId;
-    private String checkIn;
-    private String checkOut;
-    private String date;
-    
+	private int userId;
+	private String checkIn;
+	private String checkOut;
+	private String date;
+
 	public AttendanceDTO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -69,7 +69,5 @@ public class AttendanceDTO {
 		return "AttendanceDTO [attendanceId=" + attendanceId + ", userId=" + userId + ", checkIn=" + checkIn
 				+ ", checkOut=" + checkOut + ", date=" + date + "]";
 	}
-	
-    
-	
+
 }

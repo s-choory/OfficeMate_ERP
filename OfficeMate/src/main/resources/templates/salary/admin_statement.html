@@ -11,14 +11,14 @@
 		var salaryId = document.getElementById('salaryId').value;
 		var csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
 		var csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
-	
+
 		if (!bonus || !salaryId) {
-		    alert("보너스 금액과 급여 ID를 확인해주세요.");
-		    return;
+			alert("보너스 금액과 급여 ID를 확인해주세요.");
+			return;
 		}
-		
+
 		var url = '/payBonus?salaryId=' + salaryId + '&bonus=' + bonus;
-		
+
 		fetch(url, {
 			method: 'POST',
 			headers: {
@@ -30,17 +30,18 @@
 				bonus: bonus
 			})
 		})
-		.then(response => response.json())
-		.then(data => {
-			if (data.success) {
-				alert('보너스가 성공적으로 지급되었습니다.');
-			} else {
-				alert('보너스 지급에 실패했습니다.');
-			}
-		})
-		.catch(error => console.error('Error:', error));
+			.then(response => response.json())
+			.then(data => {
+				if (data.success) {
+					alert('보너스가 성공적으로 지급되었습니다.');
+				} else {
+					alert('보너스 지급에 실패했습니다.');
+				}
+			})
+			.catch(error => console.error('Error:', error));
 	}
 </script>
+
 <body>
 
 	<div class="content" style="	margin-left: 100px; background-color: #fff;">
@@ -116,7 +117,8 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td	th:text="${#numbers.formatDecimal(salary.bonus, 0, 'COMMA', 0, 'POINT')}"></td></td>
+				<td th:text="${#numbers.formatDecimal(salary.bonus, 0, 'COMMA', 0, 'POINT')}"></td>
+				</td>
 				<td></td>
 			</tr>
 			<tr>
@@ -169,8 +171,8 @@
 	<div class="logo2">
 		OfficeMate
 	</div>
-	<meta name="_csrf" th:content="${_csrf.token}"/>
-	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	<meta name="_csrf" th:content="${_csrf.token}" />
+	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
 </body>
 
 </html>

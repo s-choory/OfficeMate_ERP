@@ -46,14 +46,14 @@ public class AdminController {
 		List<DeptDTO> deptList = deptService.getDeptAll();
 		model.addAttribute("user", userDTO);
 		model.addAttribute("deptList", deptList);
-		
+
 		byte[] fileBytes = userDTO.getUserImg();
 		if (fileBytes != null && fileBytes.length > 0) {
 			String base64EncodedImage = Base64.getEncoder().encodeToString(fileBytes);
 			model.addAttribute("base64EncodedFile", base64EncodedImage);
 
 		}
-		
+
 		if (userDTO.getDepartmentId() != 0) {
 			DeptDTO deptDTO = deptService.getDeptOne(userDTO.getDepartmentId());
 			model.addAttribute("deptOne", deptDTO);
@@ -74,14 +74,14 @@ public class AdminController {
 		System.out.println(n);
 		return "redirect:/admin/empManage";
 	}
-	
-	@PostMapping("/admin/uploadImage")
-	public String uploadImage(@RequestParam("userImg") MultipartFile file, @RequestParam("userId") int userId) throws IOException {
-		
-		userService.updateUserImg(userId, file.getBytes());
-	    
-	    return "redirect:/admin/userDetail/"+userId;
-	}
 
+	@PostMapping("/admin/uploadImage")
+	public String uploadImage(@RequestParam("userImg") MultipartFile file, @RequestParam("userId") int userId)
+			throws IOException {
+
+		userService.updateUserImg(userId, file.getBytes());
+
+		return "redirect:/admin/userDetail/" + userId;
+	}
 
 }

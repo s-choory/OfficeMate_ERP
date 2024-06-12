@@ -21,10 +21,12 @@ body {
 	color: white;
 	text-decoration: none;
 }
+
 .sidebar a:hover {
 	background-color: #005f80;
 }
-.padding{
+
+.padding {
 	background-color: #0073a0;
 }
 
@@ -33,17 +35,18 @@ body {
 	text-align: center;
 }
 
-.usernameCss{
+.usernameCss {
 	color: #12c2e9;
 	font-size: 20px;
 	font-weight: bold;
 }
 
-.usernameCss2{
+.usernameCss2 {
 	font-size: 14px;
 	font-weight: bold;
 	color: white;
 }
+
 .logout {
 	display: inline-block;
 	padding: 6px 12px;

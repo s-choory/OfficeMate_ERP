@@ -97,7 +97,8 @@
 						</td>
 						<td>
 							<span th:if="${approval.managerApproval} != null" class="stamp">🟢</span>
-							<button th:if="${(currentUser.userPosition == '팀장' or currentUser.userPosition == '본부장' or currentUser.userPosition == '대표이사') && approval.managerApproval == null}"
+							<button
+								th:if="${(currentUser.userPosition == '팀장' or currentUser.userPosition == '본부장' or currentUser.userPosition == '대표이사') && approval.managerApproval == null}"
 								class="approval-button" onclick="approve('manager')">승인</button>
 						</td>
 						<td>
@@ -185,37 +186,38 @@
 		</div>
 	</div>
 	<footer class="footer">
-	    <a href="/contact">Contact</a>
-	    <a href="/about">About</a>
-	    <a href="/privacy">Privacy Policy</a>
+		<a href="/contact">Contact</a>
+		<a href="/about">About</a>
+		<a href="/privacy">Privacy Policy</a>
 	</footer>
 	<div class="logo2">
-			OfficeMate
+		OfficeMate
 	</div>
 </body>
 
 <script th:inline="javascript">
-    function approve(position) {
-        const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
-        const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
-		
-        fetch(`/approve/${position}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                [csrfHeader]: csrfToken
-            },
-            body: JSON.stringify({
-                approvalId:/*[[${approval.approvalId}]]*/''
-            })
-        })
-            .then(response => {
-                if (response.ok) {
-                    location.reload();
-                } else {
-                    alert('승인 처리에 실패했습니다.');
-                }
-            });
-    }
+	function approve(position) {
+		const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+		const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+		fetch(`/approve/${position}`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				[csrfHeader]: csrfToken
+			},
+			body: JSON.stringify({
+				approvalId:/*[[${approval.approvalId}]]*/''
+			})
+		})
+			.then(response => {
+				if (response.ok) {
+					location.reload();
+				} else {
+					alert('승인 처리에 실패했습니다.');
+				}
+			});
+	}
 </script>
+
 </html>

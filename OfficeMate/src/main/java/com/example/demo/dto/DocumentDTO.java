@@ -14,15 +14,13 @@ public class DocumentDTO {
 	private String fileName;
 	private String shareUser;
 	private String updateDate;
-    private int version;
-    private int previousVersionId;
-	
+	private int version;
+	private int previousVersionId;
+
 	public DocumentDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
 
 	@Override
 	public String toString() {
@@ -32,8 +30,6 @@ public class DocumentDTO {
 				+ shareUser + ", updateDate=" + updateDate + ", version=" + version + ", previousVersionId="
 				+ previousVersionId + "]";
 	}
-
-
 
 	public DocumentDTO(int documentId, String documentName, String description, int uploadedBy, String uploadUser,
 			String uploadDate, byte[] files, String fileName, String shareUser, String updateDate, int version,
@@ -53,36 +49,26 @@ public class DocumentDTO {
 		this.previousVersionId = previousVersionId;
 	}
 
-
-
 	public int getVersion() {
 		return version;
 	}
-
-
 
 	public void setVersion(int version) {
 		this.version = version;
 	}
 
-
-
 	public int getPreviousVersionId() {
 		return previousVersionId;
 	}
-
-
 
 	public void setPreviousVersionId(int previouseVersionId) {
 		this.previousVersionId = previouseVersionId;
 	}
 
-
-
 	public String getUploadUser() {
 		return uploadUser;
 	}
-	
+
 	public String getShareUser() {
 		return shareUser;
 	}
@@ -122,33 +108,41 @@ public class DocumentDTO {
 	public int getDocumentId() {
 		return documentId;
 	}
+
 	public void setDocumentId(int documentId) {
 		this.documentId = documentId;
 	}
+
 	public String getDocumentName() {
 		return documentName;
 	}
+
 	public void setDocumentName(String documentName) {
 		this.documentName = documentName;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public int getUploadedBy() {
 		return uploadedBy;
 	}
+
 	public void setUploadedBy(int uploadedBy) {
 		this.uploadedBy = uploadedBy;
 	}
+
 	public String getUploadDate() {
 		return uploadDate;
 	}
+
 	public void setUploadDate(String uploadDate) {
 		this.uploadDate = uploadDate;
 	}
-	
-	
+
 }

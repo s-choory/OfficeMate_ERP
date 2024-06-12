@@ -13,18 +13,19 @@
 		margin-top: 30px;
 		text-align: center;
 	}
-	
-	.usernameCss{
+
+	.usernameCss {
 		color: #12c2e9;
 		font-size: 20px;
 		font-weight: bold;
 	}
-	
-	.usernameCss2{
+
+	.usernameCss2 {
 		font-size: 14px;
 		font-weight: bold;
 		color: white;
 	}
+
 	.logout {
 		display: inline-block;
 		padding: 6px 12px;
@@ -38,12 +39,12 @@
 		text-align: center;
 		transition: background-color 0.3s, color 0.3s;
 	}
-	
+
 	.logout:hover {
 		background-color: #123a49;
 		color: #ffffff;
 	}
-	
+
 	.myProfile {
 		display: inline-block;
 		padding: 6px 12px;
@@ -57,12 +58,11 @@
 		text-align: center;
 		transition: background-color 0.3s, color 0.3s;
 	}
-	
+
 	.myProfile:hover {
 		background-color: #123a49;
 		color: #ffffff;
 	}
-	
 </style>
 
 <body>
@@ -171,7 +171,9 @@
 			</tbody>
 			<tr>
 				<td colspan="3" rowspan="2" style="background-color:#f5f5f5;">합계</td>
-				<td th:text="${#numbers.formatDecimal(totalPay.totalBasicPay-180000*userList.size(), 0, 'COMMA', 0, 'POINT')}"></td>
+				<td
+					th:text="${#numbers.formatDecimal(totalPay.totalBasicPay-180000*userList.size(), 0, 'COMMA', 0, 'POINT')}">
+				</td>
 				<td>0</td>
 				<td>0</td>
 				<td rowspan="2" th:text="${#numbers.formatDecimal(totalPay.totalBasicPay, 0, 'COMMA', 0, 'POINT')}">
@@ -193,7 +195,7 @@
 		</table>
 	</div>
 	<div class="logo2">
-			OfficeMate
+		OfficeMate
 	</div>
 
 

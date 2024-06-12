@@ -19,21 +19,21 @@ public class TotalPay {
 
 	public TotalPay(List<SalaryDTO> salaryList) {
 		for (SalaryDTO salary : salaryList) {
-            double basicPay = salary.getAmount().doubleValue();
-            double incomeTax = basicPay * 0.03;
-            double residentTax = basicPay * 0.003;
-            double healthInsurance = basicPay * 0.06;
-            double employmentInsurance = basicPay * 0.007;
-            double deduction = basicPay * 0.1;
-            double actualPay = basicPay * 0.9;
+			double basicPay = salary.getAmount().doubleValue();
+			double incomeTax = basicPay * 0.03;
+			double residentTax = basicPay * 0.003;
+			double healthInsurance = basicPay * 0.06;
+			double employmentInsurance = basicPay * 0.007;
+			double deduction = basicPay * 0.1;
+			double actualPay = basicPay * 0.9;
 
-            totalBasicPay += basicPay;
-            totalIncomeTax += incomeTax;
-            totalResidentTax += residentTax;
-            totalHealthInsurance += healthInsurance;
-            totalEmploymentInsurance += employmentInsurance;
-            totalDeduction += deduction;
-            totalActualPay += actualPay;
+			totalBasicPay += basicPay;
+			totalIncomeTax += incomeTax;
+			totalResidentTax += residentTax;
+			totalHealthInsurance += healthInsurance;
+			totalEmploymentInsurance += employmentInsurance;
+			totalDeduction += deduction;
+			totalActualPay += actualPay;
 		}
 	}
 
@@ -101,5 +101,4 @@ public class TotalPay {
 				+ "]";
 	}
 
-	
 }

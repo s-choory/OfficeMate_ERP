@@ -121,7 +121,8 @@ public class DocumentsController {
 		DocumentDTO documentDTO = versions.get(0);
 
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
-		if (!name.equals(documentDTO.getUploadUser()) && !name.equals(documentDTO.getShareUser()) && !name.equals("admin")) {
+		if (!name.equals(documentDTO.getUploadUser()) && !name.equals(documentDTO.getShareUser())
+				&& !name.equals("admin")) {
 			return "redirect:/document";
 		}
 
@@ -132,7 +133,8 @@ public class DocumentsController {
 	@PostMapping("/documentEditConfirm")
 	public String documentEditConfirm(DocumentDTO documentDTO, @RequestParam("file") MultipartFile file) {
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
-		if (!name.equals(documentDTO.getUploadUser()) && !name.equals(documentDTO.getShareUser()) && !name.equals("admin") ) {
+		if (!name.equals(documentDTO.getUploadUser()) && !name.equals(documentDTO.getShareUser())
+				&& !name.equals("admin")) {
 			return "redirect:/document";
 		}
 		int count = 0;
@@ -155,7 +157,7 @@ public class DocumentsController {
 				documentDTO.setFiles(fileBytes);
 				documentDTO.setFileName(fileName);
 			} else {
-				System.out.println("올드 "+oldDocument);
+				System.out.println("올드 " + oldDocument);
 				documentDTO.setFiles(oldDocument.getFiles());
 				documentDTO.setFileName(oldDocument.getFileName());
 			}
@@ -177,12 +179,13 @@ public class DocumentsController {
 	public String documentDelete(@RequestParam Integer documentId) {
 		DocumentDTO documentDTO = documentsService.documentOne(documentId);
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
-		if (!name.equals(documentDTO.getUploadUser()) && !name.equals(documentDTO.getShareUser()) && !name.equals("admin")) {
+		if (!name.equals(documentDTO.getUploadUser()) && !name.equals(documentDTO.getShareUser())
+				&& !name.equals("admin")) {
 			return "redirect:/document";
 		}
-		
-		int id = documentDTO.getPreviousVersionId() == 0 ? documentId : documentDTO.getPreviousVersionId();	
-		int	n = documentsService.documentDelete(id);
+
+		int id = documentDTO.getPreviousVersionId() == 0 ? documentId : documentDTO.getPreviousVersionId();
+		int n = documentsService.documentDelete(id);
 		System.out.println(n);
 
 		return "redirect:/document";
@@ -207,10 +210,9 @@ public class DocumentsController {
 	public String updateDocumentShareUser(@RequestParam String username, @RequestParam int documentId, Model model) {
 		DocumentDTO document = documentsService.documentOne(documentId);
 		int id = document.getPreviousVersionId() == 0 ? document.getDocumentId() : document.getPreviousVersionId();
-		
+
 		int n = documentsService.updateDocumentShareUser(username, id);
 		System.out.println(n);
-		
 
 		return "redirect:/document/" + id;
 	}

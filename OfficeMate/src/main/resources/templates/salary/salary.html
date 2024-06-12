@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="css/salary_styles.css">
 	<link rel="stylesheet" href="../css/total_styles.css">
 </head>
+
 <body>
 
 	<div class="sidebar">
@@ -49,7 +50,7 @@
 				<th style="width:20%">급여 내용</th>
 				<th style="width:15%">급여액</th>
 				<th style="width:15%">지급 방식</th>
-				<th	style="width:10%">명세서</th>
+				<th style="width:10%">명세서</th>
 			</tr>
 			<tr th:each="salary:${salaryList}">
 				<td th:text="${salary.salaryDate}"></td>
@@ -61,16 +62,16 @@
 
 		</table>
 	</div>
-	
-		<div class="logo2">
-				OfficeMate
-		</div>
 
-		<footer class="footer">
-		    <a href="contact">Contact</a>
-		    <a href="about">About</a>
-		    <a href="privacy">Privacy Policy</a>
-		</footer>
+	<div class="logo2">
+		OfficeMate
+	</div>
+
+	<footer class="footer">
+		<a href="contact">Contact</a>
+		<a href="about">About</a>
+		<a href="privacy">Privacy Policy</a>
+	</footer>
 
 
 </body>

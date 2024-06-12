@@ -13,13 +13,13 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class CommonErrorController implements ErrorController {
 
-    @GetMapping("/error")
-    public String handleError(HttpServletRequest request, Model model) {
-        Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+	@GetMapping("/error")
+	public String handleError(HttpServletRequest request, Model model) {
+		Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 
-        model.addAttribute("code", status.toString());
-        model.addAttribute("msg", HttpStatus.valueOf(Integer.valueOf(status.toString())));
-        return "home/error";
-    }
+		model.addAttribute("code", status.toString());
+		model.addAttribute("msg", HttpStatus.valueOf(Integer.valueOf(status.toString())));
+		return "home/error";
+	}
 
 }

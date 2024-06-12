@@ -183,12 +183,12 @@
 		</div>
 	</div>
 	<footer class="footer">
-	    <a href="/contact">Contact</a>
-	    <a href="/about">About</a>
-	    <a href="/privacy">Privacy Policy</a>
+		<a href="/contact">Contact</a>
+		<a href="/about">About</a>
+		<a href="/privacy">Privacy Policy</a>
 	</footer>
 	<div class="logo2">
-			OfficeMate
+		OfficeMate
 	</div>
 
 	<div id="editModal" class="modal">
@@ -209,23 +209,23 @@
 	document.addEventListener('DOMContentLoaded', function () {
 		const rows = document.querySelectorAll('tr');
 		const now = new Date();
-		
+
 		rows.forEach(row => {
-		    const dueDateCell = row.children[2]; // 마감 날짜 열의 <td> 요소 선택
-		    if (dueDateCell) {
-		        const dueDateText = dueDateCell.textContent;
-		        const dueDate = new Date(dueDateText);
-		        const timeDiff = dueDate.getTime() - now.getTime();
-		        const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-		
-		        if (daysDiff <= 0) {
-		            dueDateCell.style.color = '#FF6347'; // 남은 일자가 0일 이하일 때 배경색 변경
+			const dueDateCell = row.children[2]; // 마감 날짜 열의 <td> 요소 선택
+			if (dueDateCell) {
+				const dueDateText = dueDateCell.textContent;
+				const dueDate = new Date(dueDateText);
+				const timeDiff = dueDate.getTime() - now.getTime();
+				const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+				if (daysDiff <= 0) {
+					dueDateCell.style.color = '#FF6347'; // 남은 일자가 0일 이하일 때 배경색 변경
 					dueDateCell.style.fontWeight = 'bolder'; // 폰트 두껍게 설정
-		        } else if (daysDiff <= 3) {
-		            dueDateCell.style.color = 'goldenrod'; // 남은 일자가 3일 이하일 때 배경색 변경
+				} else if (daysDiff <= 3) {
+					dueDateCell.style.color = 'goldenrod'; // 남은 일자가 3일 이하일 때 배경색 변경
 					dueDateCell.style.fontWeight = 'bolder'; // 폰트 두껍게 설정
-		        }
-		    }
+				}
+			}
 
 			row.addEventListener('click', function (event) {
 				if (event.target.classList.contains('status-select') || event.target.classList.contains('delete-btn')) {

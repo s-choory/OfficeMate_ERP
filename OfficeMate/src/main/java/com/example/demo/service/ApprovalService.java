@@ -49,6 +49,7 @@ public class ApprovalService {
 	public void approveDepartmentHead(Long approvalId) {
 		approvalMapper.approveDepartmentHead(approvalId);
 	}
+
 	public void approveCeo(Long approvalId) {
 		approvalMapper.ceoApproval(approvalId);
 	}
@@ -59,7 +60,7 @@ public class ApprovalService {
 	}
 
 	public List<ApprovalDTO> getListComplete(String name, PageDTO pageDTO) {
-		return approvalMapper.getListComplete(name,pageDTO);
+		return approvalMapper.getListComplete(name, pageDTO);
 	}
 
 	public int approvalGetCountDeptComplete(String deptName) {
@@ -67,7 +68,7 @@ public class ApprovalService {
 	}
 
 	public List<ApprovalDTO> getListDeptComplete(String deptName, PageDTO pageDTO) {
-		return approvalMapper.getListDeptComplete(deptName,pageDTO);
+		return approvalMapper.getListDeptComplete(deptName, pageDTO);
 
 	}
 
@@ -86,8 +87,5 @@ public class ApprovalService {
 	public List<ApprovalDTO> getListCompleteAll(PageDTO pageDTO) {
 		return approvalMapper.getListCompleteAll(pageDTO);
 	}
-
-
-
 
 }

@@ -1,73 +1,95 @@
 body {
-    margin: 0;
-    padding: 0;
-    background-color: aliceblue;
+	margin: 0;
+	padding: 0;
+	background-color: aliceblue;
 }
+
 .sidebar {
-    width: 200px;
-    height: 100%;
-    background-color: #0073a0; /* 하늘색 */
-    position: fixed;
-    left: 0;
-    top: 0;
-    padding-top: 20px;
+	width: 200px;
+	height: 100%;
+	background-color: #0073a0;
+	/* 하늘색 */
+	position: fixed;
+	left: 0;
+	top: 0;
+	padding-top: 20px;
 }
+
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    margin-bottom: 20px;
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: white;
+	text-align: center;
+	margin-bottom: 20px;
 }
+
 .padding {
-    background-color: #0073a0; /* 남색의 배경색 */
-    height: 30px;
-    border-bottom: 1px solid #0c3252;
+	background-color: #0073a0;
+	/* 남색의 배경색 */
+	height: 30px;
+	border-bottom: 1px solid #0c3252;
 }
+
 .menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+	list-style: none;
+	padding: 0;
+	margin: 0;
 }
+
 .menu li a {
-    display: block;
-    padding: 20px;
-    text-decoration: none;
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    border-bottom: 1px solid #0c3252;
+	display: block;
+	padding: 20px;
+	text-decoration: none;
+	font-weight: bold;
+	color: white;
+	text-align: center;
+	border-bottom: 1px solid #0c3252;
 }
+
 .menu li a:hover {
-    background-color: #185066;
+	background-color: #185066;
 }
+
 .content {
-	border-radius: 5px; /* 박스 테두리를 둥글게 만듦 */
-	margin-bottom: 20px; /* 박스와 다음 내용 간격 조정 */
+	border-radius: 5px;
+	/* 박스 테두리를 둥글게 만듦 */
+	margin-bottom: 20px;
+	/* 박스와 다음 내용 간격 조정 */
 	box-shadow: 0 0 5px;
-	margin-left: 280px; /* 사이드바와 겹치지 않도록 왼쪽 여백 추가 */
+	margin-left: 280px;
+	/* 사이드바와 겹치지 않도록 왼쪽 여백 추가 */
 	margin-right: 50px;
 	margin-top: 60px;
-	padding: 20px; /* 내용 주변에 패딩 추가 */
+	padding: 20px;
+	/* 내용 주변에 패딩 추가 */
 }
+
 table {
-    width: 100%;
-    border-collapse: collapse;
+	width: 100%;
+	border-collapse: collapse;
 }
-table, th, td {
-    border: 1px solid black;
+
+table,
+th,
+td {
+	border: 1px solid black;
 }
+
 tr {
-    height: 40px;
+	height: 40px;
 }
-th, td {
-    padding: 8px;
-    text-align: center;
+
+th,
+td {
+	padding: 8px;
+	text-align: center;
 }
+
 th {
-    background-color: #f2f2f2;
+	background-color: #f2f2f2;
 }
-.e_detail:hover{
+
+.e_detail:hover {
 	background-color: #dbdbdb;
 }
 
@@ -89,18 +111,23 @@ button:hover {
 }
 
 .emp_manage_edit {
-    right: 120px; /* 위치 조정 */
+	right: 120px;
+	/* 위치 조정 */
 }
+
 .emp_manage_edit::before {
-    content: '\270F';
-    margin-right: 5px;
+	content: '\270F';
+	margin-right: 5px;
 }
+
 .emp_manage_delete {
-    right: 120px; /* 위치 조정 */
+	right: 120px;
+	/* 위치 조정 */
 }
+
 .emp_manage_delete::before {
-    content: '\1F5D1';
-    margin-right: 5px;
+	content: '\1F5D1';
+	margin-right: 5px;
 }
 
 .button-container {
@@ -123,8 +150,8 @@ th {
 
 .logo2 {
 	text-align: right;
-	margin-right: 100px;	
+	margin-right: 100px;
 	font-size: 30px;
 	font-weight: bold;
-    color: #0073a0;
+	color: #0073a0;
 }

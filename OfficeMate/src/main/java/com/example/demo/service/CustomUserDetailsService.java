@@ -15,27 +15,25 @@ import com.example.demo.dto.UserDTO;
 import com.example.demo.mapper.UserMapper;
 
 @Service
-public class CustomUserDetailsService implements UserDetailsService{
-	
+public class CustomUserDetailsService implements UserDetailsService {
+
 	@Autowired
 	private UserMapper userMapper;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDTO user = userMapper.findByUsername(username);
-        if (user == null) {
-        	throw new UsernameNotFoundException("User not found with username: " + username);
-        }
-        
-        return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
-                user.getPassword(), true, true, true, true,
-                getRoles(user.getRole()));
-    }
-    
-    public Collection<? extends GrantedAuthority> getRoles(String role) {
-        ArrayList<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
-        auth.add(new SimpleGrantedAuthority(role));
-        return auth;
-    }
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		UserDTO user = userMapper.findByUsername(username);
+		if (user == null) {
+			throw new UsernameNotFoundException("User not found with username: " + username);
+		}
+
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), true,
+				true, true, true, getRoles(user.getRole()));
+	}
+
+	public Collection<? extends GrantedAuthority> getRoles(String role) {
+		ArrayList<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
+		auth.add(new SimpleGrantedAuthority(role));
+		return auth;
+	}
 }
