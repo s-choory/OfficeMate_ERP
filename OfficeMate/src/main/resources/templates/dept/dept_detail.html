@@ -42,34 +42,41 @@
 		</header>
 		<table>
 			<tr>
-				<th class="e_role">직급</th>
-				<th class="e_role">직책</th>
-				<th class="e_name">이름</th>
-				<th class="e_email">이메일</th>
+				<th class="e_role" style="width: 5%;">직급</th>
+				<th class="e_role" style="width: 5%;">직책</th>
+				<th class="e_role" style="width: 5%;">성별</th>
+				<th class="e_name" style="width: 10%;">이름</th>
+				<th class="e_email" style="width: 30%;">이메일</th>
+				<th class="e_email" style="width:20%;">전화번호</th>
 			</tr>
 			<tr th:each="user : ${userList}" th:if="${name == 'admin'}" class="e_detail"
 				th:onclick="|location.href='@{/admin/userDetail/{userId}(userId=${user.userId})}'|">
 				<td th:text="${user.userPosition}"></td>
 				<td th:text="${user.userRank}"></td>
+				<td th:text="${user.gender}"></td>
 				<td th:text="${user.username}"></td>
 				<td th:text="${user.email}"></td>
+				<td th:text="${user.phone}"></td>
 				</a>
 			</tr>
-			<tr th:each="user : ${userList}" th:if="${name != 'admin'}" class="e_detail">
+			<tr th:each="user : ${userList}" th:if="${name != 'admin'}" class="e_detail"
+				th:onclick="|location.href='@{/userDetail/{userId}(userId=${user.userId})}'|">
 				<td th:text="${user.userPosition}"></td>
 				<td th:text="${user.userRank}"></td>
+				<td th:text="${user.gender}"></td>
 				<td th:text="${user.username}"></td>
 				<td th:text="${user.email}"></td>
+				<td th:text="${user.phone}"></td>
 			</tr>
 		</table>
 	</div>
 	<footer class="footer">
-		    <a href="/contact">Contact</a>
-		    <a href="/about">About</a>
-		    <a href="/privacy">Privacy Policy</a>
-		</footer>
+		<a href="/contact">Contact</a>
+		<a href="/about">About</a>
+		<a href="/privacy">Privacy Policy</a>
+	</footer>
 	<div class="logo2">
-			OfficeMate
+		OfficeMate
 	</div>
 </body>
 

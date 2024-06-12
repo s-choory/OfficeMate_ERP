@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>OfficeMate</title>
-	<link rel="stylesheet" href="../../css/user_styles.css">
+	<link rel="stylesheet" href="../css/user_styles.css">
 </head>
 
 
@@ -37,7 +37,7 @@
 			</div>
 
 			<h3>직급</h3>
-			<select name="userRank" class="detail_select">
+			<select name="userRank" class="detail_select" >
 				<option value="사장" th:selected="${user.userRank == '사장'}">사장</option>
 				<option value="부사장" th:selected="${user.userRank == '부사장'}">부사장</option>
 				<option value="상무" th:selected="${user.userRank == '상무'}">상무</option>
@@ -65,9 +65,6 @@
 				<option value="여자" th:selected="${user.gender == '여자'}">여자</option>
 			</select><br>
 			
-			<h3>주민번호</h3>
-			<input type="text" name="birth" th:value="${user.birth}" class="detail_input"><br>
-			
 			<h3>이메일</h3>
 			<input type="text" name="email" th:value="${user.email}" class="detail_input"><br>
 			
@@ -77,8 +74,6 @@
 			<h3>입사날짜</h3>
 			<input type="text" name="hiredate" th:value="${user.hiredate}" class="detail_input"><br>
 			
-			<h3>월급</h3>
-			<input type="text" name="monthSalary" th:value="${user.monthSalary}" class="detail_input"><br>
 			
 			<input type="hidden" name="userId" th:value="${user.userId}">
 		</form>

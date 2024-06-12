@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.dto.DeptDTO;
 import com.example.demo.dto.UserDTO;
@@ -43,6 +44,28 @@ public class UserController {
 		}
 
 		return "user/user_detail_default";
+	}
+
+	
+	@GetMapping("/userDetail/{userId}")
+	public String userinfo(Model model, @PathVariable int userId) {
+		UserDTO userDTO = userService.getUserById(userId);
+		List<DeptDTO> deptList = deptService.getDeptAll();
+		model.addAttribute("user", userDTO);
+		model.addAttribute("deptList", deptList);
+		
+		byte[] fileBytes = userDTO.getUserImg();
+		if (fileBytes != null && fileBytes.length > 0) {
+			String base64EncodedImage = Base64.getEncoder().encodeToString(fileBytes);
+			model.addAttribute("base64EncodedFile", base64EncodedImage);
+
+		}
+		
+		if (userDTO.getDepartmentId() != 0) {
+			DeptDTO deptDTO = deptService.getDeptOne(userDTO.getDepartmentId());
+			model.addAttribute("deptOne", deptDTO);
+		}
+		return "user/user_info";
 	}
 
 
