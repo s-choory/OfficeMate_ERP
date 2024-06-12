@@ -26,7 +26,7 @@
 
 <body>
 	<div class="logo2">
-			OfficeMate
+		OfficeMate
 	</div>
 	<div class="content">
 		<div style="text-align: center;">
@@ -34,11 +34,13 @@
 				<img th:src="@{/images/user-profile.png}" width="100" height="100" style="border-radius: 50px;">
 			</div>
 			<div th:if="${base64EncodedFile != null}">
-				<img th:src="'data:image/*;base64,' + ${base64EncodedFile}" class="rounded mx-auto d-block" alt="Notice Image" width="100" height="120" style="border-radius: 50px;">
+				<img th:src="'data:image/*;base64,' + ${base64EncodedFile}" class="rounded mx-auto d-block"
+					alt="Notice Image" width="100" height="120" style="border-radius: 50px;">
 			</div>
-			<form th:action="@{/admin/uploadImage}" method="post" onsubmit="confirmUpdate(event)" enctype="multipart/form-data">
+			<form th:action="@{/admin/uploadImage}" method="post" onsubmit="confirmUpdate(event)"
+				enctype="multipart/form-data">
 				<input type="file" class="form-control" id="imageFile" name="userImg" style="margin-left: 100px;"><br>
-				<input type="hidden" name="userId" th:value="${user.userId}"> 
+				<input type="hidden" name="userId" th:value="${user.userId}">
 				<button type="submit" style="width: 100px; margin-bottom: 30px;">이미지 변경</button>
 			</form>
 		</div>
@@ -46,13 +48,13 @@
 			<div class="detail_text" th:text="${user.username}"></div>
 			<h3>부서명</h3>
 			<div th:if="${user.username != 'admin'}">
-			    <select name="departmentId" class="detail_select">
-			        <option value="0">없음</option>
-			        <option th:each="dept : ${deptList}" th:value="${dept.departmentId}"
-			            th:text="${dept.departmentName}"
-			            th:selected="${deptOne != null} ? ${dept.departmentId == deptOne.departmentId} : false">
-			        </option>
-			    </select><br>
+				<select name="departmentId" class="detail_select">
+					<option value="0">없음</option>
+					<option th:each="dept : ${deptList}" th:value="${dept.departmentId}"
+						th:text="${dept.departmentName}"
+						th:selected="${deptOne != null} ? ${dept.departmentId == deptOne.departmentId} : false">
+					</option>
+				</select><br>
 			</div>
 
 			<h3>직급</h3>
@@ -66,7 +68,7 @@
 				<option value="대리" th:selected="${user.userRank == '대리'}">대리</option>
 				<option value="사원" th:selected="${user.userRank == null || user.userRank == '사원'}">사원</option>
 			</select><br>
-			
+
 			<h3>직책</h3>
 			<select name="userPosition" class="detail_select">
 				<option value="CEO" th:selected="${user.userPosition == 'CEO'}">CEO</option>
@@ -76,14 +78,14 @@
 				<option value="팀장" th:selected="${user.userPosition == '팀장'}">팀장</option>
 				<option value="없음" th:selected="${user.userPosition == null || user.userPosition == '없음'}">없음</option>
 			</select><br>
-			
+
 			<h3>성별</h3>
 			<select name="gender" class="detail_select">
 				<option value="">없음</option>
 				<option value="남자" th:selected="${user.gender == '남자'}">남자</option>
 				<option value="여자" th:selected="${user.gender == '여자'}">여자</option>
 			</select><br>
-			
+
 			<h3>주민번호</h3>
 			<input type="text" name="birth" th:value="${user.birth}" class="detail_input"><br>
 
@@ -92,10 +94,10 @@
 
 			<h3>전화번호</h3>
 			<input type="text" name="phone" th:value="${user.phone}" class="detail_input"><br>
-			
+
 			<h3>입사날짜</h3>
 			<input type="text" name="hiredate" th:value="${user.hiredate}" class="detail_input"><br>
-			
+
 			<h3>월급</h3>
 			<input type="text" name="monthSalary" th:value="${user.monthSalary}" class="detail_input"><br>
 
@@ -108,7 +110,8 @@
 			<button type="submit" class="back-button" style="background-color:red;">삭제</button>
 		</form>
 
-		<button onclick="location.href='/admin/empManage'" class="back-button" 		style="background-color:gray;">돌아가기</button>
+		<button onclick="location.href='/admin/empManage'" class="back-button"
+			style="background-color:gray;">돌아가기</button>
 	</div>
 
 </body>

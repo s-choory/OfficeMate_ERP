@@ -51,7 +51,7 @@
 				<i class="fas fa-plus-circle"></i> 등록
 			</button>
 		</div>
-		
+
 		<table>
 			<tr>
 				<th class="dtitle">제목</th>
@@ -65,7 +65,8 @@
 				<td class="dtitle" th:text="${document.documentName}"></td>
 				<td class="dwriter" th:text="${document.uploadUser}"></td>
 				<td class="dwdate" th:text="${#strings.substring(document.uploadDate.toString(), 0, 19)}"></td>
-				<td class="dedate" th:if="${document.updateDate} != null" th:text="${#strings.substring(document.updateDate.toString(), 0, 19)}"></td>
+				<td class="dedate" th:if="${document.updateDate} != null"
+					th:text="${#strings.substring(document.updateDate.toString(), 0, 19)}"></td>
 				<td class="dedate" th:if="${document.updateDate} == null"></td>
 				<td class="sharer" th:text="${document.shareUser}"></td>
 			</tr>
@@ -98,12 +99,12 @@
 		</div>
 	</div>
 	<footer class="footer">
-	    <a href="/contact">Contact</a>
-	    <a href="/about">About</a>
-	    <a href="/privacy">Privacy Policy</a>
+		<a href="/contact">Contact</a>
+		<a href="/about">About</a>
+		<a href="/privacy">Privacy Policy</a>
 	</footer>
 	<div class="logo2">
-			OfficeMate
+		OfficeMate
 	</div>
 </body>
 

@@ -3,15 +3,15 @@ package com.example.demo.dto;
 import java.util.Arrays;
 
 public class NoticeDTO {
-	
+
 	private int noticeId;
 	private String title;
 	private String content;
 	private int postedBy;
 	private String postDate;
 	private String updateDate;
-	private byte[] file; 
-	
+	private byte[] file;
+
 	public NoticeDTO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -39,7 +39,7 @@ public class NoticeDTO {
 	public byte[] getFile() {
 		return file;
 	}
-	
+
 	public void setFile(byte[] file) {
 		this.file = file;
 	}

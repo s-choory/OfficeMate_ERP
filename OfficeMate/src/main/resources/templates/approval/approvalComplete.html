@@ -49,27 +49,27 @@
 				<i class="fas fa-plus-circle"></i> 등록
 			</button>
 		</div>
-		
+
 		<table>
-		    <thead>
-		        <tr>
-		            <th>제목</th>
-		            <th>작성자</th>
-		            <th>부서</th>
-		            <th>작성일</th>
-		            <th>상태</th>
-		        </tr>
-		    </thead>
-		    <tbody>
-		        <tr class="document" th:each="approval : ${approvalList}"
-		            th:onclick="|location.href='@{'/approval/' + ${approval.approvalId}}'|" style="cursor: pointer;">
-		            <td class="dtitle" th:text="${approval.title}"></td>
-		            <td class="dwriter" th:text="${approval.creator}"></td>
-		            <td class="ddepartment" th:text="${approval.department}"></td>
-		            <td class="dcreated" th:text="${#strings.substring(approval.createdAt.toString(), 0, 19)}"></td>
-		            <td class="dstatus" th:text="${approval.status}"></td>
-		        </tr>
-		    </tbody>
+			<thead>
+				<tr>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>부서</th>
+					<th>작성일</th>
+					<th>상태</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="document" th:each="approval : ${approvalList}"
+					th:onclick="|location.href='@{'/approval/' + ${approval.approvalId}}'|" style="cursor: pointer;">
+					<td class="dtitle" th:text="${approval.title}"></td>
+					<td class="dwriter" th:text="${approval.creator}"></td>
+					<td class="ddepartment" th:text="${approval.department}"></td>
+					<td class="dcreated" th:text="${#strings.substring(approval.createdAt.toString(), 0, 19)}"></td>
+					<td class="dstatus" th:text="${approval.status}"></td>
+				</tr>
+			</tbody>
 		</table>
 		<div th:if="${pageDTO.totalPageCount > 0}" id="pagination">
 			<!-- 맨 처음 페이지로 이동하는 버튼 -->
@@ -99,12 +99,12 @@
 		</div>
 	</div>
 	<footer class="footer">
-	    <a href="/contact">Contact</a>
-	    <a href="/about">About</a>
-	    <a href="/privacy">Privacy Policy</a>
+		<a href="/contact">Contact</a>
+		<a href="/about">About</a>
+		<a href="/privacy">Privacy Policy</a>
 	</footer>
 	<div class="logo2">
-			OfficeMate
+		OfficeMate
 	</div>
 </body>
 

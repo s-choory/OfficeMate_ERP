@@ -48,18 +48,18 @@ public class AttendanceController {
 	public String home(Model model) {
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
 		UserDTO userDTO = userService.getUserByName(name);
-	
+
 		byte[] fileBytes = userDTO.getUserImg();
 		if (fileBytes != null && fileBytes.length > 0) {
 			String base64EncodedImage = Base64.getEncoder().encodeToString(fileBytes);
 			model.addAttribute("base64EncodedFile", base64EncodedImage);
 		}
-		
+
 		// 사용자의 오늘 출근 기록 가져오기
 		AttendanceDTO attendanceDTO = attendanceService.getTodayAttendanceByUserId(userDTO.getUserId());
 
 		model.addAttribute("attendanceDTO", attendanceDTO != null ? attendanceDTO : new AttendanceDTO());
-		model.addAttribute("user",userDTO);
+		model.addAttribute("user", userDTO);
 		return "home/home";
 	}
 

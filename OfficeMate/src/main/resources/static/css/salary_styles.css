@@ -62,13 +62,17 @@ body {
 }
 
 .content {
-	border-radius: 5px; /* 박스 테두리를 둥글게 만듦 */
-	margin-bottom: 20px; /* 박스와 다음 내용 간격 조정 */
+	border-radius: 5px;
+	/* 박스 테두리를 둥글게 만듦 */
+	margin-bottom: 20px;
+	/* 박스와 다음 내용 간격 조정 */
 	box-shadow: 0 0 5px;
-	margin-left: 280px; /* 사이드바와 겹치지 않도록 왼쪽 여백 추가 */
+	margin-left: 280px;
+	/* 사이드바와 겹치지 않도록 왼쪽 여백 추가 */
 	margin-right: 100px;
 	margin-top: 60px;
-	padding: 20px; /* 내용 주변에 패딩 추가 */
+	padding: 20px;
+	/* 내용 주변에 패딩 추가 */
 }
 
 .button-container {
@@ -96,8 +100,8 @@ body {
 
 	font-size: 1rem;
 
-	right:200px;
-	
+	right: 200px;
+
 	background-color: gray;
 
 	/* 로그인 버튼 배경색 */
@@ -111,6 +115,7 @@ body {
 	transition: background 0.3s;
 
 }
+
 .content input:hover {
 	background: linear-gradient(135deg, lightgray, gray);
 	/* 로그인 버튼 hover 시 배경색 */
@@ -144,8 +149,8 @@ td:hover {
 
 .logo2 {
 	text-align: right;
-	margin-right: 100px;	
+	margin-right: 100px;
 	font-size: 30px;
 	font-weight: bold;
-    color: #0073a0;
+	color: #0073a0;
 }

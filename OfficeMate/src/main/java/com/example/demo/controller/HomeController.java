@@ -29,7 +29,7 @@ public class HomeController {
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		Iterator<? extends GrantedAuthority> iter = authorities.iterator();
 		GrantedAuthority auth = iter.next();
-		String role = auth.getAuthority(); 
+		String role = auth.getAuthority();
 
 		model.addAttribute("name", name);
 		model.addAttribute("role", role);
@@ -51,17 +51,17 @@ public class HomeController {
 
 		return "redirect:/";
 	}
-	
+
 	@GetMapping("/contact")
 	public String contact() {
 		return "redirect:/home";
 	}
-	
+
 	@GetMapping("/about")
 	public String about() {
 		return "redirect:/home";
 	}
-	
+
 	@GetMapping("/privacy")
 	public String privacy() {
 		return "redirect:/home";

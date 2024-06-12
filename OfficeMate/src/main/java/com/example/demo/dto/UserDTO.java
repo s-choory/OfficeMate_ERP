@@ -3,7 +3,7 @@ package com.example.demo.dto;
 import java.util.Arrays;
 
 public class UserDTO {
-	
+
 	private int userId;
 	private String username;
 	private String email;
@@ -18,12 +18,11 @@ public class UserDTO {
 	private String phone;
 	private String birth;
 	private byte[] userImg;
-	
+
 	public UserDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 
 	@Override
 	public String toString() {
@@ -33,16 +32,13 @@ public class UserDTO {
 				+ ", phone=" + phone + ", birth=" + birth + ", userImg=" + Arrays.toString(userImg) + "]";
 	}
 
-
 	public String getUserPosition() {
 		return userPosition;
 	}
 
-
 	public void setUserPosition(String userPosition) {
 		this.userPosition = userPosition;
 	}
-
 
 	public UserDTO(int userId, String username, String email, String password, int departmentId, String userRank,
 			String userPosition, String role, int monthSalary, String hiredate, String gender, String phone,
@@ -63,7 +59,6 @@ public class UserDTO {
 		this.birth = birth;
 		this.userImg = userImg;
 	}
-
 
 	public int getUserId() {
 		return userId;
@@ -168,5 +163,5 @@ public class UserDTO {
 	public void setUserImg(byte[] userImg) {
 		this.userImg = userImg;
 	}
-	
+
 }

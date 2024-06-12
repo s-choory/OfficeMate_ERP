@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>급여명세서</title>
+	<title>급여명세서</title>
 	<link rel="stylesheet" href="css/salary_styles.css">
 </head>
+
 <body>
 
-	<div class="content" style="	margin-left: 100px; background-color: #fff;" >
+	<div class="content" style="	margin-left: 100px; background-color: #fff;">
 		<h2 th:text="${#strings.substring(salary.salaryDate.toString(), 0, 7) + ' (급여)'}"></h2>
 		<div class="button-container">
-			<input type="button" value="인쇄" onclick="window.print()"/>
-		<button class="back-button" onclick="location.href='/salary'">뒤로가기</button>
+			<input type="button" value="인쇄" onclick="window.print()" />
+			<button class="back-button" onclick="location.href='/salary'">뒤로가기</button>
 		</div>
 		<br><br>
 		<table>
@@ -73,7 +75,8 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td	th:text="${#numbers.formatDecimal(salary.bonus, 0, 'COMMA', 0, 'POINT')}"></td></td>
+				<td th:text="${#numbers.formatDecimal(salary.bonus, 0, 'COMMA', 0, 'POINT')}"></td>
+				</td>
 				<td></td>
 			</tr>
 			<tr>
@@ -124,8 +127,9 @@
 		</table>
 	</div>
 	<div class="logo2">
-			OfficeMate
+		OfficeMate
 	</div>
 
 </body>
+
 </html>

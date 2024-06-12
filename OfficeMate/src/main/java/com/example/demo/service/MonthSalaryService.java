@@ -11,14 +11,14 @@ import com.example.demo.dto.MonthSalaryDTO;
 import com.example.demo.mapper.MonthSalaryMapper;
 
 @Service
-public class MonthSalaryService{
-	
+public class MonthSalaryService {
+
 	@Autowired
 	MonthSalaryMapper monthSalaryMapper;
 
-    public Optional<MonthSalaryDTO> findByPaymentMonth(LocalDate currentMonth) {
-        return Optional.ofNullable(monthSalaryMapper.findByPaymentMonth(currentMonth));
-    }
+	public Optional<MonthSalaryDTO> findByPaymentMonth(LocalDate currentMonth) {
+		return Optional.ofNullable(monthSalaryMapper.findByPaymentMonth(currentMonth));
+	}
 
 	public int addMonthSalary(MonthSalaryDTO monthSalaryDTO) {
 		return monthSalaryMapper.addMonthSalary(monthSalaryDTO);
@@ -39,5 +39,5 @@ public class MonthSalaryService{
 	public MonthSalaryDTO getMonthSalaryDTO(LocalDate paymentMonth) {
 		return monthSalaryMapper.findByPaymentMonth(paymentMonth);
 	}
-	
+
 }

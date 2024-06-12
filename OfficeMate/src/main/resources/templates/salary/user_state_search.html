@@ -41,11 +41,12 @@
 				<th style="width:20%">이름</th>
 				<th style="width:60%">이메일</th>
 			</tr>
-			<tr th:each="user : ${userList}" class="user_info" th:data-userid="${user.userId}" th:data-paymentMonth = "${paymentMonth}" onclick="statementOne(this)">
-			    <td th:text="${user.departmentId}"></td>
-			    <td th:text="${user.userRank}"></td>
-			    <td th:text="${user.username}"></td>
-			    <td th:text="${user.email}"></td>
+			<tr th:each="user : ${userList}" class="user_info" th:data-userid="${user.userId}"
+				th:data-paymentMonth="${paymentMonth}" onclick="statementOne(this)">
+				<td th:text="${user.departmentId}"></td>
+				<td th:text="${user.userRank}"></td>
+				<td th:text="${user.username}"></td>
+				<td th:text="${user.email}"></td>
 			</tr>
 		</table>
 	</div>

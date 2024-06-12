@@ -10,15 +10,13 @@ import com.example.demo.dto.PageDTO;
 import com.example.demo.mapper.DocumentsMapper;
 
 @Service
-public class DocumentsService{
+public class DocumentsService {
 
 	@Autowired
 	DocumentsMapper documentsMapper;
 
 	public int documentsGetCount() {
-		int n =documentsMapper.documentsGetCount();
-		System.out.println(n);
-		return n;
+		return documentsMapper.documentsGetCount();
 	}
 
 	public List<DocumentDTO> getListPage(PageDTO pageDTO, String name) {
@@ -31,9 +29,7 @@ public class DocumentsService{
 	}
 
 	public int documentAdd(DocumentDTO documentDTO) {
-		int n = documentsMapper.documentAdd(documentDTO);
-
-		return n;
+		return documentsMapper.documentAdd(documentDTO);
 	}
 
 	public DocumentDTO documentOne(Integer documentId) {
@@ -72,8 +68,4 @@ public class DocumentsService{
 		return documentsMapper.updatedate(previousVersionId);
 	}
 
-
-
 }
-	
-
