@@ -8,7 +8,7 @@
 
 ## 👨🏻‍💻팀 구성 및 역할 분담
 #### 정원준:
-#### 신승철: Back-end, Cloud, GitHub
+#### 신승철: Back-end, Cloud, GitHub 관리
 #### 장성민:
 
 
@@ -38,9 +38,9 @@
 
 
 **Collaboration Tool**<br>
-<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/><br>
-<img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white"/>
-<img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white"/><br>
+<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/>
+<img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white"/><br>
+<img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white"/>
 <img src="https://img.shields.io/badge/KakaoTalk-FFCD00?style=for-the-badge&logo=kakaotalk&logoColor=black"/><br>
 
 <hr>
