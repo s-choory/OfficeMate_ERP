@@ -1,0 +1,123 @@
+-- 테이블 CREATE문
+-- 기존 테이블 삭제 
+DROP TABLE IF EXISTS Users CASCADE;
+DROP TABLE IF EXISTS Departments CASCADE;
+DROP TABLE IF EXISTS Works CASCADE; 
+DROP TABLE IF EXISTS Attendance CASCADE; 
+DROP TABLE IF EXISTS Documents CASCADE; 
+DROP TABLE IF EXISTS Salary CASCADE; 
+DROP TABLE IF EXISTS MonthlyPaymentSummary CASCADE; 
+DROP TABLE IF EXISTS Notices CASCADE;
+DROP TABLE IF EXISTS Approval CASCADE; 
+
+CREATE TABLE Users (
+    userId SERIAL PRIMARY KEY,
+    userName VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100),
+    password VARCHAR(100) NOT NULL,
+    departmentId INT,  -- 부서 테이블의 department_id 참조
+    userRank VARCHAR(50),
+    userPosition VARCHAR,
+    role VARCHAR(50) NOT NULL DEFAULT 'ROLE_USER',  -- 사용자 역할 (예: USER, ADMIN 등)
+    monthSalary INT,
+    hiredate VARCHAR(20),
+    phone VARCHAR(20),
+    gender VARCHAR(10),
+    birth VARCHAR(20),
+    userImg bytea
+);
+
+CREATE TABLE Departments (
+    departmentId SERIAL PRIMARY KEY,
+    departmentName VARCHAR(100) UNIQUE NOT NULL
+);
+
+CREATE TABLE Works (
+    workId SERIAL PRIMARY KEY,
+    workName VARCHAR(100) NOT NULL,
+    description TEXT,
+    assignedTo INT,  -- 담당자 (Users 테이블의 user_id 참조)
+    dueDate VARCHAR(50),
+    departmentsId INT,
+    status VARCHAR(50) DEFAULT 'Pending'  -- 작업 상태 (예: Pending, In Progress, Completed 등)
+);
+
+CREATE TABLE Attendance (
+    attendanceId SERIAL PRIMARY KEY,
+    userId INT,  -- 사용자 ID (Users 테이블의 user_id 참조)
+    checkIn VARCHAR,
+    checkOut VARCHAR,
+    date DATE
+);
+
+CREATE TABLE Documents (
+    documentId SERIAL PRIMARY KEY,
+    documentName VARCHAR(100) NOT NULL,
+    description TEXT,
+    uploadedBy INT,  -- 업로드한 사용자 (Users 테이블의 user_id 참조)
+    uploadDate TIMESTAMP,
+    files bytea,
+    filename VARCHAR,
+    uploadUser VARCHAR(50),
+    updateDate TIMESTAMP,
+    shareUser VARCHAR(50),
+    version INT DEFAULT 1,
+    previousVersionId INT
+);
+
+CREATE TABLE Salary (
+    salaryId SERIAL PRIMARY KEY,
+    userId INT NOT NULL,  -- 지급 대상 사용자 ID (Users 테이블의 user_id 참조)
+    salaryDate DATE,
+    amount DECIMAL(10, 2) NOT NULL,  -- 급여 지급액
+    paymentMethod VARCHAR(50),  -- 지급 방법 (예: 현금, 계좌이체 등)
+    description TEXT,
+    bonus int
+);
+
+CREATE TABLE MonthlyPaymentSummary (
+    monthSalaryId SERIAL PRIMARY KEY,
+    paymentMonth DATE NOT NULL,
+    paymentDescription VARCHAR(255) NOT NULL,
+    totalAmount DECIMAL(10, 2) NOT NULL,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    paymentState VARCHAR NOT NULL DEFAULT '지급 미완료'
+);
+
+CREATE TABLE Notices (
+    noticeId SERIAL PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    content TEXT NOT NULL,
+    postedBy INT,  -- 작성자 (Users 테이블의 user_id 참조)
+    postDate TIMESTAMP,
+    updateDate TIMESTAMP,
+    file bytea
+);
+CREATE TABLE approval (
+    approvalid SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    creator VARCHAR(255) NOT NULL,
+    department VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    remarks VARCHAR,
+    attachments VARCHAR,
+    createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(50) DEFAULT 'pending',
+    managerapproval TIMESTAMP,
+    departmentheadapproval TIMESTAMP,
+    ceoapproval TIMESTAMP
+);
+
+INSERT into Users (userName, password, role)
+VALUES ('admin', '$2a$10$dhmpdPJxP3/hp0FOmrwjI.YS19X9vcfVY6PyenCipuR1PLNPIbDMG', 'ROLE_ADMIN'); -- username: admin, password: 1234로 관리자 추가
+
+INSERT INTO Departments (departmentName) VALUES ('인사부');
+INSERT INTO Departments (departmentName) VALUES ('회계부');
+INSERT INTO Departments (departmentName) VALUES ('생산부');
+INSERT INTO Departments (departmentName) VALUES ('영업부');
+INSERT INTO Departments (departmentName) VALUES ('마케팅부');
+INSERT INTO Departments (departmentName) VALUES ('재무부');
+INSERT INTO Departments (departmentName) VALUES ('연구개발부');
+
+COMMIT;
+
