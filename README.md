@@ -8,24 +8,32 @@
 
 ## 👨🏻‍💻팀 구성 및 역할 분담
 #### 정원준:
-#### 신승철: Back-end, Cloud, GitHub 관리
+#### 신승철: Back-end, Cloud, GitHub
 #### 장성민:
 
 
 ## 기술 스택
-**Back-end**: JDK 21, STS4 4.22.9, Springboot 3.2.4, 내장톰캣, Spring Security 6.2.3, Mybatis 3.0.3, 빌드: Maven
-<img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"/>
-<img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white-4.22.9-blue">
-**Front-end**: thymeleaf 3.1.2 RELEASE
-<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
-<img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
-<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
+**Back-end**:
+<img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"/><br>
+<img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"/><br>
+<img alt="RED" src="https://camo.githubusercontent.com/7122c38c18f72432ed8e0269f5eccc729752384949ffeba63f6f19b342c64aff/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4a4156412d3030343032372e7376673f267374796c653d666f722d7468652d6261646765266c6f676f3d4a616d65736f6e266c6f676f436f6c6f723d7768697465" data-canonical-src="https://img.shields.io/badge/JAVA-004027.svg?&amp;style=for-the-badge&amp;logo=Jameson&amp;logoColor=white" style="max-width: 100%;">
+![MyBatis](https://img.shields.io/badge/MyBatis-007396.svg?logo=mybatis&logoColor=white)<br>
+![Maven](https://img.shields.io/badge/Maven-C71A36.svg?logo=apache-maven&logoColor=white)
+
+
+https://img.shields.io/npm/v/npm.svg?logo=npm
+**Front-end**: 
+<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/><br>
+<img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"/><br>
+<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/><br>
+![Thymeleaf](https://img.shields.io/badge/Thymeleaf-005F0F.svg?logo=thymeleaf&logoColor=white)
 
 
 **DBMS**: <img src="https://img.shields.io/badge/postgresql-4169E1?style=for-the-badge&logo=postgresql&logoColor=white"/>
 
 
-**Cloud**: AWS EC2(Ubuntu 22.04 LTS) 
+**Deploy**: <img src="https://img.shields.io/badge/aws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"/>
+
 
 
 **Collaboration Tool**: GitHub, Slack, Notion, Kakao Talk
