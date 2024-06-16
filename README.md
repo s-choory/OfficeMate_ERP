@@ -16,23 +16,30 @@
 <hr>
 
 ## 개발환경
-JDK 21, STS4 4.22.9, Springboot 3.2.4, Springboot 내장 Tomcat, Spring Security 6.2.3, PostgreSQL 14.12, Mybatis 3.0.3, jsqlparser 4.6<br>
+#### Back-end
+JDK 21, STS4 4.22.9, Springboot 3.2.4, Springboot 내장 Tomcat, Spring Security 6.2.3, Mybatis 3.0.3, jsqlparser 4.6 
+
+#### Front-end
 HTML, CSS, JavaScript, thymeleaf 3.1.2 RELEASE
 
-### 이벤트 플로우 도식화
+#### DBMS
+PostgreSQL 14.12
+
+#### Collaboration Tool
+GitHub, Slack, Notion, Kakao Talk
+
+### Event Flow Diagram
 ![SoftwareFlow drawio](https://github.com/s-choory/OfficeMate_ERP/assets/135598730/b7a49c04-5809-4cca-ac8f-ef1dc3677ce6)
 
-
-### ERD
+### ERD Diagram
 ![스크린샷 2024-06-16 오전 12 15 39](https://github.com/s-choory/OfficeMate_ERP/assets/135598730/c0c36766-86e7-41eb-855e-83a2ac1dad6b)
 
 <hr>
 
-## 기능
+## 주요 기능
 
-<hr>
+### 공지사항 관리 <br>
 
-**공지사항 관리**<br>
 ![스크린샷 2024-06-16 185120](https://github.com/s-choory/OfficeMate_ERP/assets/130647831/e157d109-7fad-4001-845d-0d8883322a92)<br>
 - 등록된 공지사항 목록 확인
 - 공지사항 등록 기능(관리자)
@@ -44,7 +51,7 @@ HTML, CSS, JavaScript, thymeleaf 3.1.2 RELEASE
 - 공지사항 수정 및 삭제 기능 (관리자)
 <br>
 
-**부서 관리**<br>
+### 부서 관리 <br>
 ![스크린샷 2024-06-16 185249](https://github.com/s-choory/OfficeMate_ERP/assets/130647831/d702428f-2412-4c10-b95b-1ec33a24fe6b)<br>
 - 전체 부서 확인(관리자)
 - 부서명 편집, 부서 등록 및 삭제 기능(관리자)
@@ -54,7 +61,7 @@ HTML, CSS, JavaScript, thymeleaf 3.1.2 RELEASE
 - 부서 내 사원 정보 확인 기능
 <br>
 
-**업무 관리**<br>
+### 업무 관리 <br>
 ![스크린샷 2024-06-16 185332](https://github.com/s-choory/OfficeMate_ERP/assets/130647831/38c702d1-6ca8-4ad3-be6a-e91043143a3c)<br>
 - 등록된 업무 목록 확인
 - 업무 작업 상태,삭제 기능
@@ -69,7 +76,7 @@ HTML, CSS, JavaScript, thymeleaf 3.1.2 RELEASE
 - 업무 상세 내용 저장 기능
 <br>
 
-**문서 관리**<br>
+### 문서 관리 <br>
 ![338836276-6396d8ba-6773-4636-a548-7fba63e63088](https://github.com/s-choory/OfficeMate_ERP/assets/130647831/7f4763e6-e2d7-4ca7-afdf-58d3c627e158)<br>
 - 등록된 문서 목록 확인
 - 문서 등록 기능
@@ -84,7 +91,7 @@ HTML, CSS, JavaScript, thymeleaf 3.1.2 RELEASE
 - 문서 수정, 삭제, 공유 기능
 <br>
 
-**근태 관리**<br>
+### 근태 관리 <br>
 - 출퇴근 등록 기능은 홈 화면에 통합
 <br>
 <img width="1450" alt="340079203-190f869b-1e87-42f6-98ff-af33a9bc1371" src="https://github.com/s-choory/OfficeMate_ERP/assets/130647831/7370487e-45ff-4168-a7de-83d63aec12fa"><br>
@@ -92,7 +99,7 @@ HTML, CSS, JavaScript, thymeleaf 3.1.2 RELEASE
 - 다른 사용자 출퇴근 기록 확인 기능(관리자)
 <br>
 
-**결재 관리**<br>
+### 결재 관리 <br>
 ![스크린샷 2024-06-16 185521](https://github.com/s-choory/OfficeMate_ERP/assets/130647831/a79f4674-682e-4a70-8623-84e84a315496)<br>
 - 등록된 기안서 목록 확인
 - 기안서 등록 기능
@@ -103,7 +110,7 @@ HTML, CSS, JavaScript, thymeleaf 3.1.2 RELEASE
 - 기안서 결재 기능
 <br>
 
-**급여 관리**<br>
+### 급여 관리<br>
 <img width="1149" alt="338829700-e79a4824-59ae-412f-93dc-e893ac868b10" src="https://github.com/s-choory/OfficeMate_ERP/assets/130647831/5a5f3c72-867c-47ba-a3e8-a8a3d68475a6"><br>
 - 급여 지급 기록 확인 기능
 <br>
