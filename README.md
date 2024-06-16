@@ -19,8 +19,6 @@
 JDK 21, STS4 4.22.9, Springboot 3.2.4, Springboot 내장 Tomcat, Spring Security 6.2.3, PostgreSQL 14.12, Mybatis 3.0.3, jsqlparser 4.6<br>
 HTML, CSS, JavaScript, thymeleaf 3.1.2 RELEASE
 
-<hr>
-
 ### 이벤트 플로우 도식화
 ![SoftwareFlow drawio](https://github.com/s-choory/OfficeMate_ERP/assets/135598730/b7a49c04-5809-4cca-ac8f-ef1dc3677ce6)
 
@@ -28,6 +26,7 @@ HTML, CSS, JavaScript, thymeleaf 3.1.2 RELEASE
 ### ERD
 ![스크린샷 2024-06-16 오전 12 15 39](https://github.com/s-choory/OfficeMate_ERP/assets/135598730/c0c36766-86e7-41eb-855e-83a2ac1dad6b)
 
+<hr>
 
 ## 기능
 
