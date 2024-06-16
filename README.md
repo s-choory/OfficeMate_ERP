@@ -1,18 +1,18 @@
 # 캡스톤디자인 OfficeMate_ERP
 
-## 📌프로젝트 개요
+## 📌 프로젝트 개요
 ### 사내 인사/회계 관리 웹 시스템
 회사 조직 내에서 각종 데이터를 활용하는 업무를 효율적으로 관리하기 위해 사용되는 자원 관리 소프트웨어 프로그램인 ERP(전사적 자원 관리) 시스템을 웹을 통하여 구현하였습니다.<br>
 주요 기능은 공지사항 관리, 부서 관리, 업무 및 문서 관리, 근태(출퇴근) 관리와 기안서 작성 및 결재 기능, 급여 관리 등이 있습니다.
 <hr>
 
-## 👨🏻‍💻팀 구성 및 역할 분담
+## 👨🏻‍💻 팀 구성 및 역할 분담
 #### 정원준:
 #### 신승철: Back-end, Cloud, GitHub 관리
 #### 장성민:
 
 
-## 🛠️기술 스택
+## 🛠️ 기술 스택
 #### Back-end
 
 <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"/> <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"/> <img alt="RED" src="https://camo.githubusercontent.com/7122c38c18f72432ed8e0269f5eccc729752384949ffeba63f6f19b342c64aff/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4a4156412d3030343032372e7376673f267374796c653d666f722d7468652d6261646765266c6f676f3d4a616d65736f6e266c6f676f436f6c6f723d7768697465" data-canonical-src="https://img.shields.io/badge/JAVA-004027.svg?&amp;style=for-the-badge&amp;logo=Jameson&amp;logoColor=white" style="max-width: 100%;"> <img src="https://img.shields.io/badge/MyBatis-007396?style=for-the-badge&logo=mybatis&logoColor=white"/> <img src="https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white"/><br>
@@ -45,7 +45,7 @@
 
 <hr>
 
-## 🖥️주요 기능
+## 🖥️ 주요 기능
 
 ### 공지사항 관리 <br>
 
