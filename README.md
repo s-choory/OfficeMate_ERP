@@ -1,28 +1,38 @@
 # 캡스톤디자인 OfficeMate_ERP
 
-## 📌프로젝트 주제 
-사내 인사/회계 관리 웹 시스템
-
-## 👨🏻‍💻팀 구성 및 역할 분담
-#### 정원준(조장)
-#### 신승철
-#### 장성민
-
-<hr>
-
-## 개요
+## 📌프로젝트 개요
+### 사내 인사/회계 관리 웹 시스템
 회사 조직 내에서 각종 데이터를 활용하는 업무를 효율적으로 관리하기 위해 사용되는 자원 관리 소프트웨어 프로그램인 ERP(전사적 자원 관리) 시스템을 웹을 통하여 구현하였습니다.<br>
 주요 기능은 공지사항 관리, 부서 관리, 업무 및 문서 관리, 근태(출퇴근) 관리와 기안서 작성 및 결재 기능, 급여 관리 등이 있습니다.
 <hr>
 
-## 개발환경
-**Back-end**: JDK 21, STS4 4.22.9, Springboot 3.2.4, Springboot 내장 Tomcat, Spring Security 6.2.3, Mybatis 3.0.3, jsqlparser 4.6 
+## 👨🏻‍💻팀 구성 및 역할 분담
+#### 정원준:
+#### 신승철: Back-end, Cloud, GitHub 관리
+#### 장성민:
 
-**Front-end**: HTML, CSS, JavaScript, thymeleaf 3.1.2 RELEASE
 
-**DBMS**: PostgreSQL 14.12
+## 기술 스택
+**Back-end**: JDK 21, STS4 4.22.9, Springboot 3.2.4, 내장톰캣, Spring Security 6.2.3, Mybatis 3.0.3, 빌드: Maven
+<img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"/>
+<img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white-4.22.9-blue">
+**Front-end**: thymeleaf 3.1.2 RELEASE
+<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
+<img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
+<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
+
+
+**DBMS**: <img src="https://img.shields.io/badge/postgresql-4169E1?style=for-the-badge&logo=postgresql&logoColor=white"/>
+
+
+**Cloud**: AWS EC2(Ubuntu 22.04 LTS) 
+
 
 **Collaboration Tool**: GitHub, Slack, Notion, Kakao Talk
+
+
+
+**Distribution**
 
 <hr>
 
