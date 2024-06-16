@@ -98,7 +98,9 @@ public class AttendanceController {
 	@GetMapping("/admin/attendance")
 	public String adminAttendance(Model model) {
 		List<UserDTO> userList = userService.getUserAll();
+		List<DeptDTO> deptList = deptService.getDeptAll();
 		model.addAttribute("userList", userList);
+		model.addAttribute("deptList", deptList);
 		return "attendance/attendance_admin";
 	}
 

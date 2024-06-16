@@ -42,11 +42,11 @@
 		</header>
 		<table>
 			<tr>
-				<th class="e_role" style="width: 5%;">직급</th>
-				<th class="e_role" style="width: 5%;">직책</th>
-				<th class="e_role" style="width: 5%;">성별</th>
+				<th class="e_role" style="width: 10%;">직급</th>
+				<th class="e_role" style="width: 10%;">직책</th>
+				<th class="e_role" style="width: 7%;">성별</th>
 				<th class="e_name" style="width: 10%;">이름</th>
-				<th class="e_email" style="width: 30%;">이메일</th>
+				<th class="e_email" style="width: 20%;">이메일</th>
 				<th class="e_email" style="width:20%;">전화번호</th>
 			</tr>
 			<tr th:each="user : ${userList}" th:if="${name == 'admin'}" class="e_detail"
