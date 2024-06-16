@@ -42,9 +42,11 @@
 		<br>
 		<table>
 			<tr>
-				<th class="e_id">사용자번호</th>
-				<th class="e_role">직급</th>
-				<th class="e_name">이름</th>
+				<th style="width: 7%;">사용자번호</th>
+				<th style="width: 12%;">직급</th>
+				<th style="width: 12%;">직책</th>
+				<th style="width: 12%;">부서</th>
+				<th style="width: 13%;">이름</th>
 				<th class="e_email">이메일</th>
 			</tr>
 			<tr class="e_detail" th:each="user : ${userList}"
@@ -52,6 +54,10 @@
 				style="cursor: pointer;">
 				<td th:text="${user.userId}"></td>
 				<td th:text="${user.userRank}">123</td>
+				<td th:text="${user.userPosition}"></td>
+				<td th:each="dept : ${deptList}" th:if="${dept.departmentId} == ${user.departmentId}"
+					th:text="${dept.departmentName}"></td>
+				<td	th:if="${user.departmentId} == 0">없음</td>
 				<td th:text="${user.username}"></td>
 				<td th:text="${user.email}"></td>
 			</tr>
