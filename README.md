@@ -1,9 +1,9 @@
 # 캡스톤디자인 OfficeMate_ERP
 
-## 프로젝트 주제 
+## 📌프로젝트 주제 
 사내 인사/회계 관리 웹 시스템
 
-## 팀 구성 및 역할 분담
+## 👨🏻‍💻팀 구성 및 역할 분담
 #### 정원준(조장)
 #### 신승철
 #### 장성민
@@ -16,22 +16,20 @@
 <hr>
 
 ## 개발환경
-#### Back-end
-JDK 21, STS4 4.22.9, Springboot 3.2.4, Springboot 내장 Tomcat, Spring Security 6.2.3, Mybatis 3.0.3, jsqlparser 4.6 
+**Back-end**: JDK 21, STS4 4.22.9, Springboot 3.2.4, Springboot 내장 Tomcat, Spring Security 6.2.3, Mybatis 3.0.3, jsqlparser 4.6 
 
-#### Front-end
-HTML, CSS, JavaScript, thymeleaf 3.1.2 RELEASE
+**Front-end**: HTML, CSS, JavaScript, thymeleaf 3.1.2 RELEASE
 
-#### DBMS
-PostgreSQL 14.12
+**DBMS**: PostgreSQL 14.12
 
-#### Collaboration Tool
-GitHub, Slack, Notion, Kakao Talk
+**Collaboration Tool**: GitHub, Slack, Notion, Kakao Talk
 
-### Event Flow Diagram
+<hr>
+
+## Event Flow Diagram
 ![SoftwareFlow drawio](https://github.com/s-choory/OfficeMate_ERP/assets/135598730/b7a49c04-5809-4cca-ac8f-ef1dc3677ce6)
 
-### ERD Diagram
+## ERD Diagram
 ![스크린샷 2024-06-16 오전 12 15 39](https://github.com/s-choory/OfficeMate_ERP/assets/135598730/c0c36766-86e7-41eb-855e-83a2ac1dad6b)
 
 <hr>
