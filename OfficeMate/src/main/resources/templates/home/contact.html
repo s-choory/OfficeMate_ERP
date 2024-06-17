@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="../css/attendance.css">
+    <link rel="stylesheet" href="../css/total_styles.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <a href="/home" style="text-decoration: none;">
+            <div class="logo">OfficeMate</div>
+        </a>
+        <div class="padding"></div>
+        <ul class="menu">
+            <li><a href="notice">공지사항</a></li>
+            <li><a href="dept">부서</a></li>
+            <li><a href="work">업무</a></li>
+            <li><a href="approval">결재</a></li>
+            <li><a href="attendance">근태</a></li>
+            <li><a href="document">문서</a></li>
+            <li><a href="salary">급여</a></li>
+            <div sec:authorize="hasRole('ADMIN')">
+                <li><a href="admin/empManage">전체사원관리</a></li>
+            </div>
+            <div class="action-container">
+                <span class="usernameCss" th:text="${username}"></span><span class="usernameCss2"> 님 환영합니다!</span><br>
+                <a class="logout" href="/logout">로그아웃</a>
+                <a class="myProfile" href="userDetailDefault">내 정보</a>
+            </div>
+        </ul>
+    </div>
+    <div class="content" style="margin-top: 100px; margin-left: 25%;">
+        <header>
+            <h1>Contact Us</h1>
+        </header>
+        <main>
+            <p>If you have any questions, feedback, or need assistance, please feel free to reach out to us. We are here to help!</p>
+            <h2>Contact Information</h2>
+            <ul>
+                <li><strong>Email:</strong> support@officemate.com</li>
+                <li><strong>Phone:</strong> +1 (123) 456-7890</li>
+                <li><strong>Address:</strong> 123 OfficeMate Street, Business City, Country</li>
+            </ul>
+            <h2>Business Hours</h2>
+            <p>Our business hours are Monday to Friday, 9:00 AM to 5:00 PM.</p>
+        </main>
+    </div>
+    <footer class="footer">
+        <a href="/contact">Contact</a>
+        <a href="/about">About</a>
+        <a href="/privacy">Privacy Policy</a>
+    </footer>
+</body>
+
+</html>

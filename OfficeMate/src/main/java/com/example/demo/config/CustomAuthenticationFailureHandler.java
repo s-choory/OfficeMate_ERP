@@ -11,13 +11,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class CustomAuthenticationFailureHandler implements AuthenticationFailureHandler {
-    @Override
-    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
-                                        AuthenticationException exception) throws IOException, ServletException {
-        if (exception instanceof SessionAuthenticationException) {
-            response.sendRedirect("/login?maxSessions=true");
-        } else {
-            response.sendRedirect("/login?error=true");
-        }
-    }
+	@Override
+	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+			AuthenticationException exception) throws IOException, ServletException {
+		if (exception instanceof SessionAuthenticationException) {
+			response.sendRedirect("/login?maxSessions=true");
+		} else {
+			response.sendRedirect("/login?error=true");
+		}
+	}
 }
