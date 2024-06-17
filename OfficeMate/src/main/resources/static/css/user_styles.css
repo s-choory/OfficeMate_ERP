@@ -104,3 +104,9 @@ h3 {
 	font-weight: bold;
 	color: #0073a0;
 }
+
+.error{
+ text-align: center;
+ color: red;
+ font-weight: bold;
+}
