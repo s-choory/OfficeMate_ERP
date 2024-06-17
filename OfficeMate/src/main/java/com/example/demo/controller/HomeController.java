@@ -54,16 +54,19 @@ public class HomeController {
 
 	@GetMapping("/contact")
 	public String contact() {
-		return "redirect:/home";
+		return "home/contact";
 	}
 
 	@GetMapping("/about")
 	public String about() {
-		return "redirect:/home";
+		return "home/about";
 	}
 
 	@GetMapping("/privacy")
 	public String privacy() {
-		return "redirect:/home";
+		return "home/privacy";
 	}
+
+	
+	
 }

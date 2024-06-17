@@ -10,10 +10,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class CustomSessionAuthenticationStrategy implements SessionInformationExpiredStrategy {
-    @Override
-    public void onExpiredSessionDetected(SessionInformationExpiredEvent event) throws IOException, ServletException {
-        HttpServletRequest request = event.getRequest();
-        HttpServletResponse response = event.getResponse();
-        response.sendRedirect("/login?maxSessions=true");
-    }
+	@Override
+	public void onExpiredSessionDetected(SessionInformationExpiredEvent event) throws IOException, ServletException {
+		HttpServletRequest request = event.getRequest();
+		HttpServletResponse response = event.getResponse();
+		response.sendRedirect("/login?maxSessions=true");
+	}
 }
