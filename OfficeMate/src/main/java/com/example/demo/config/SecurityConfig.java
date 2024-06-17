@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 import com.example.demo.service.CustomUserDetailsService;
@@ -71,6 +72,7 @@ public class SecurityConfig {
 	                .loginPage("/login")
 	                .loginProcessingUrl("/loginProc")
 	                .defaultSuccessUrl("/home") // 로그인 성공 시 /home으로 리디렉션
+	                .failureHandler(customAuthenticationFailureHandler()) // Custom failure handler
 	                .permitAll()	
             );
         http
@@ -87,9 +89,10 @@ public class SecurityConfig {
         
         http
         	.sessionManagement((auth) -> auth
-        			.maximumSessions(1)	//하나의 아이디에 대한 다중 로그인 허용 개
+        			.maximumSessions(1)	//하나의 아이디에 대한 다중 로그인 허용 개수
         			.maxSessionsPreventsLogin(true)	//다중 로그인 개수를 초과하였을 경우 새로운 로그인
         			.sessionRegistry(sessionRegistry())
+                    .expiredSessionStrategy(customSessionAuthenticationStrategy()) // Custom session strategy
         	); 
         
         http
@@ -99,7 +102,15 @@ public class SecurityConfig {
 
         return http.build();
     }
-   
+    @Bean
+    public AuthenticationFailureHandler customAuthenticationFailureHandler() {
+        return new CustomAuthenticationFailureHandler();
+    }
+
+    @Bean
+    public CustomSessionAuthenticationStrategy customSessionAuthenticationStrategy() {
+        return new CustomSessionAuthenticationStrategy();
+    }
     
     @Bean
     public UserDetailsService userDetailsService() {
