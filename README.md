@@ -43,11 +43,6 @@
 ## ERD Diagram
 ![스크린샷 2024-06-16 오전 12 15 39](https://github.com/s-choory/OfficeMate_ERP/assets/135598730/c0c36766-86e7-41eb-855e-83a2ac1dad6b)
 
-<hr>
-
-### 테스트 계정
-관리자: admin/1234 <br>
-사원: 신승철/1234
 
 <hr>
 
